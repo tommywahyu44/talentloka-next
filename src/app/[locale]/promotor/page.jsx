@@ -13,7 +13,7 @@ import {
 
 import Head from 'next/head'
 
-export async function getStaticProps() {
+export default function Example() {
   const pageData = {
     title: 'Talentloka Sales Promotion Staffing Solutions',
     description:
@@ -21,11 +21,6 @@ export async function getStaticProps() {
     image: 'images/team-spg-landing.jpg',
     url: 'https://talentloka.com/promotor',
   }
-
-  return { props: { pageData } }
-}
-
-export default function Example({ pageData }) {
   return (
     <>
       <Head>
