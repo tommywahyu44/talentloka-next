@@ -5,7 +5,6 @@ import { locales } from '../../navigation'
 import dynamic from 'next/dynamic'
 import { Nunito, Roboto } from 'next/font/google'
 import './globals.css'
-import Head from 'next/head'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -20,14 +19,36 @@ const roboto_mono = Roboto({
   weight: ['500'],
 })
 
-export default async function RootLayout({ children, params: { locale } }) {
-  const pageData = {
+export const metadata = {
+  title: 'Talentloka Sales Promotion Staffing Solutions',
+  description:
+    'Talentloka is the latest professional service from Talentvis to provide experienced and qualified staff for sales promotion events. We specialize in SPG/SPB events, Crew, and Usher outsourcing services, with proven experience in managing events such as exhibitions, product launches, brochures, and direct sales.',
+  icons: {
+    icon: '/favicon.ico', // Path to your favicon
+  },
+  openGraph: {
     title: 'Talentloka Sales Promotion Staffing Solutions',
     description:
       'Talentloka is the latest professional service from Talentvis to provide experienced and qualified staff for sales promotion events. We specialize in SPG/SPB events, Crew, and Usher outsourcing services, with proven experience in managing events such as exhibitions, product launches, brochures, and direct sales.',
-    image: 'images/team-spg-landing.jpg',
-    url: 'https://talentloka.com/promotor',
-  }
+    images: [
+      {
+        url: 'images/team-spg-landing.jpg', // Path to your image
+        width: 1200, // Image width
+        height: 630, // Image height
+        alt: 'spg team', // Alt text for accessibility
+      },
+    ],
+  },
+  twitter: {
+    card: 'Talentloka',
+    title: 'Talentloka Sales Promotion Staffing Solutions',
+    description:
+      'Talentloka is the latest professional service from Talentvis to provide experienced and qualified staff for sales promotion events. We specialize in SPG/SPB events, Crew, and Usher outsourcing services, with proven experience in managing events such as exhibitions, product launches, brochures, and direct sales.',
+    images: ['images/team-spg-landing.jpg'], // Path to your image
+  },
+}
+
+export default async function RootLayout({ children, params: { locale } }) {
   const CrispWithNoSSR = dynamic(() => import('../../components/crisp'))
 
   if (!locales.includes(locale)) {
@@ -38,33 +59,12 @@ export default async function RootLayout({ children, params: { locale } }) {
     <html
       lang={locale}
       className={`${nunito.variable} ${roboto_mono.variable}`}>
-      <Head>
-        <title>{pageData.title}</title>
-        <meta
-          property="og:title"
-          content={pageData.title}
-        />
-        <meta
-          property="og:description"
-          content={pageData.description}
-        />
-        <meta
-          property="og:image"
-          content={pageData.image}
-        />
-        <meta
-          property="og:type"
-          content="website"
-        />
-        <meta
-          property="og:url"
-          content={pageData.url}
-        />
+      <head>
         <link
           rel="icon"
-          href="/favicon.ico"
+          href={metadata.icons.icon}
         />
-      </Head>
+      </head>
       <CrispWithNoSSR />
       <NextIntlClientProvider
         locale={locale}
