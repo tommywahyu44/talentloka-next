@@ -94,7 +94,7 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
 
                   <dl className="flex items-center justify-between gap-4">
                     <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Supervision service charge ({countSupervision} person)
+                      Supervision service charge
                     </dt>
                     <dd className="text-base font-medium text-gray-900 dark:text-white">
                       {moneyFormat(serviceCharge)}
@@ -102,9 +102,7 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
                   </dl>
 
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Tax PPH 23 (2%) + VAT (11%)
-                    </dt>
+                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
                     <dd className="text-base font-medium text-gray-900 dark:text-white">
                       {moneyFormat(taxFee)}
                     </dd>
