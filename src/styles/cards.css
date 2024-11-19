@@ -1,0 +1,130 @@
+.section-cards {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 8px;
+}
+.card-item {
+  width: 240px;
+  height: 300px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  filter: brightness(75%) grayscale(50%) saturate(75%);
+}
+
+.card-item:hover {
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.05);
+  filter: brightness(90%) grayscale(0%) saturate(120%);
+}
+
+.card-item h2,
+h4 {
+  text-align: left;
+}
+.card-item p {
+  font-size: 13px;
+  max-width: 270px;
+  text-align: left;
+  color: #374151;
+}
+
+.card-item .card-img {
+  width: 125x;
+  height: 280px;
+}
+
+#profile-image {
+  width: 240px;
+  height: 300px;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.card-item span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  --color: #374151;
+  width: 120px;
+  height: 28px;
+  margin-top: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button::before,
+.button::after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background: linear-gradient(10deg, #e11d48, #db2777);
+  transition: 1s ease;
+}
+
+.button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.button:hover {
+  color: rgb(255, 255, 255);
+}
+
+.button:active {
+  filter: brightness(0.8);
+}
+
+.img-saturate {
+  filter: saturate(120%);
+}
+
+@media (width < 330px) {
+  .card-item {
+    width: 300px;
+  }
+}
