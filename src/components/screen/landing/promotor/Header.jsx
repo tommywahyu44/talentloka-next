@@ -39,7 +39,7 @@ export default function Header() {
     <header
       id="sticky-header"
       className="sticky inset-x-0 top-0 z-50 pt-6 transition-opacity hover:opacity-100">
-      <div className="mx-20 rounded-full bg-gradient-to-r from-rose-100 to-pink-100">
+      <div className="mx-4 rounded-full bg-gradient-to-r from-rose-100 to-pink-100 lg:mx-20">
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-6 lg:px-8">

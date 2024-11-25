@@ -71,7 +71,10 @@ export default function Interest() {
       eventPromotor: answers[2],
     }
     axios
-      .post('https://asia-southeast1-hireplace.cloudfunctions.net/earlyOnboardingClient', data)
+      .post(
+        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/earlyOnboardingClient',
+        data
+      )
       .then(() => {
         localStorage.setItem(localStorageKeys.earlyOnboardingClient, JSON.stringify(data))
         setIsSubmit(false)

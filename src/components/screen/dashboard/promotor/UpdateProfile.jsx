@@ -393,8 +393,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       axios
         .post(
           isFromRegister
-            ? 'https://asia-southeast1-hireplace.cloudfunctions.net/registerSPG'
-            : 'https://asia-southeast1-hireplace.cloudfunctions.net/updateSPG',
+            ? 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/registerSPG'
+            : 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/updateSPG',
           formData,
           {
             headers: {

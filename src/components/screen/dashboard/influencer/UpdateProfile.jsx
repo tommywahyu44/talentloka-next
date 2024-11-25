@@ -447,8 +447,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       axios
         .post(
           isFromRegister
-            ? 'https://asia-southeast1-hireplace.cloudfunctions.net/registerInfluencer'
-            : 'https://asia-southeast1-hireplace.cloudfunctions.net/updateInfluencer',
+            ? 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/registerInfluencer'
+            : 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/updateInfluencer',
           formData,
           {
             headers: {

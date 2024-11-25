@@ -11,7 +11,7 @@ function signIn(email, password) {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user
-      if (user.email !== 'spg.admin@talentvis.com') {
+      if (user.email !== 'admin@talentloka.com') {
         Swal.fire({
           text: "You're not allowed to login!",
           icon: 'error',

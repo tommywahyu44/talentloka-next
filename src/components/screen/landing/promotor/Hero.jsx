@@ -57,7 +57,7 @@ export default function Hero() {
                 href="#"
                 className="absolute h-10 w-20 animate-ping rounded-md bg-rose-600 text-lg font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"></div>
             </div>
-            <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 text-gray-800 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+            <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-10 text-gray-800 sm:mt-20 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.id}
@@ -75,8 +75,8 @@ export default function Hero() {
           <div
             id="benefits"
             className="mt-48 flow-root">
-            <div className="grid grid-cols-2">
-              <div className="relative m-auto mt-20 h-full w-96 items-center justify-center">
+            <div className="grid grid-cols-1 place-items-center gap-x-6 gap-y-6 md:grid-cols-2">
+              <div className="relative mt-16 h-full w-full max-w-xl items-center justify-center">
                 <h1 className="text-center text-4xl font-semibold tracking-tight text-stone-900">
                   <span className="text-rose-600">Promote it.</span>
                   <br></br>
@@ -103,17 +103,19 @@ export default function Hero() {
                 <div className="estimation-bubble absolute mt-2 -translate-x-[1.7rem] transform rounded-lg bg-gray-800 px-2 py-1 text-sm">
                   {estimationFee} events
                 </div>
-                <ArrowDownIcon className="mx-auto mb-4 mt-20 h-6 w-6 animate-bounce text-rose-600" />
-                <a
-                  href="promotor/register"
-                  className="ml-36 rounded-md bg-rose-600 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-rose-500">
-                  Withdraw
-                </a>
+                <div className="mt-20 flex flex-col items-center">
+                  <ArrowDownIcon className="mb-4 h-6 w-6 animate-bounce text-rose-600" />
+                  <a
+                    href="promotor/register"
+                    className="rounded-md bg-rose-600 px-3.5 py-2.5 text-center text-base font-semibold text-white shadow-sm hover:bg-rose-500">
+                    Withdraw
+                  </a>
+                </div>
               </div>
               <img
                 alt="Company name"
                 src="/images/booth-spg-landing.jpg"
-                className="ml-auto h-full w-full max-w-xl rounded-3xl object-cover object-center"
+                className="h-full w-full max-w-xl rounded-3xl object-cover object-center"
               />
             </div>
           </div>

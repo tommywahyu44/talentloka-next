@@ -9,14 +9,14 @@ import { getFirestore } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCcGuXkcdRcjRTMMqPKqcJkwzIKVUaAvgk',
-  authDomain: 'hireplace.firebaseapp.com',
-  databaseURL: 'https://hireplace-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'hireplace',
-  storageBucket: 'hireplace.appspot.com',
-  messagingSenderId: '94209867011',
-  appId: '1:94209867011:web:23aae6710867a787997d36',
-  measurementId: 'G-ZJHNLGFT7T',
+  apiKey: 'AIzaSyAFEDh1mgzKIeybGniFhvrKQ0OtNDz-LXM',
+  authDomain: 'talentloka-35463.firebaseapp.com',
+  databaseURL: 'https://talentloka-35463-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'talentloka-35463',
+  storageBucket: 'talentloka-35463.firebasestorage.app',
+  messagingSenderId: '192512140674',
+  appId: '1:192512140674:web:97820c1a8d1f84dd011b9b',
+  measurementId: 'G-5E4G1N7S1Y',
 }
 
 // Initialize Firebase

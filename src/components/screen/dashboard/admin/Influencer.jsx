@@ -23,7 +23,7 @@ function verifyInfluencer(email, code, name) {
       Swal.showLoading()
       const data = { email: email, code: code, name: name }
       axios
-        .post('https://asia-southeast1-hireplace.cloudfunctions.net/verifyInfluencer', data)
+        .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/verifyInfluencer', data)
         .then(() => {
           Swal.hideLoading()
           Swal.fire({
@@ -89,7 +89,7 @@ export default function Influencer() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       var email = user.email
-      if (email !== 'spg.admin@talentvis.com') {
+      if (email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')
       }
     } else {

@@ -19,6 +19,8 @@ import {
   moneyFormat,
   dateToTwoDateRange,
   dateDaysUntil,
+  calculateHourDifference,
+  paymentCalculation,
 } from '@/lib/helpers'
 import {
   getStyleEventStatus,
@@ -43,6 +45,10 @@ export default function ListClientEvents({
         {events.map((event) => {
           var eventStatus = getTextEventStatus(event.status)
           var daysUntil = dateDaysUntil(event.startDate)
+          const hoursDuration = calculateHourDifference(event.startTime, event.endTime)
+          const paymentDp = event?.paymentDp?.amount ?? 0
+          const { totalFee } = paymentCalculation(event?.promotorNumber ?? 0, paymentDp, 'full')
+          const listInvitedPromotor = event.listPromotor ?? []
           if (
             (!event.paymentDp || event.paymentDp?.imageUrl === '') &&
             (!event.paymentFull || event.paymentFull?.imageUrl === '') &&
@@ -102,8 +108,8 @@ export default function ListClientEvents({
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-shrink-0 border-l">
-                  <div className="px-4 py-3 text-xs">
+                <div className="flex w-56 flex-shrink-0 justify-between space-x-2 border-l px-4 py-3">
+                  <div className="text-xs">
                     <div className="grid grid-cols-1 items-center gap-0.5 text-gray-700">
                       <div>
                         <CalendarDaysIcon
@@ -117,7 +123,8 @@ export default function ListClientEvents({
                           className="mb-1 mr-2 inline h-4 w-4"
                           aria-hidden="true"
                         />
-                        {event.startTime} - {event.endTime}
+                        {event.startTime}-{event.endTime}
+                        {hoursDuration > 8 ? ' (2 shift)' : null}
                       </div>
                       <div>
                         <BuildingOfficeIcon
@@ -138,18 +145,18 @@ export default function ListClientEvents({
                           className="mb-1 mr-2 inline h-4 w-4"
                           aria-hidden="true"
                         />
-                        {event.promotorNumber - 2} / {event.promotorNumber}
+                        {listInvitedPromotor.length} / {event.promotorNumber}
                       </div>
                       <div>
                         <WalletIcon
                           className="mb-1 mr-2 inline h-4 w-4"
                           aria-hidden="true"
                         />
-                        {moneyFormat(event.budget)}
+                        {moneyFormat(totalFee)}
                       </div>
                     </div>
                   </div>
-                  <div className="px-4 py-3 text-sm">
+                  <div className="text-sm">
                     <div className="grid grid-cols-1 items-center gap-1 text-gray-700">
                       <PencilIcon
                         onClick={() => updateEvent(event)}

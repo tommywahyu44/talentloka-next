@@ -180,7 +180,7 @@ export default function Dashboard() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       userData = user
-      if (!userData.emailVerified && userData.email !== 'spg.admin@talentvis.com') {
+      if (!userData.emailVerified && userData.email !== 'admin@talentloka.com') {
         setStep(0)
       } else if (isFirstTime) {
         isFirstTime = false

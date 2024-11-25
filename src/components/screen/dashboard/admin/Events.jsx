@@ -134,7 +134,7 @@ export default function Events(email) {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       email = user.email
-      if (email !== 'spg.admin@talentvis.com') {
+      if (email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')
       }
     } else {
@@ -213,7 +213,7 @@ export default function Events(email) {
         updateStatusEvent={updateStatusEvent}
       />
       <CreateEventModal
-        openCreateEvent={event.openCreateEvent}
+        isOpenCreateEvent={event.openCreateEvent}
         closeCreateEvent={closeCreateEvent}
         email={email}
         data={event.data}

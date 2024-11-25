@@ -57,7 +57,7 @@ function verifyClient(email, name) {
       Swal.showLoading()
       const data = { email: email, name: name }
       axios
-        .post('https://asia-southeast1-hireplace.cloudfunctions.net/verifyClient', data)
+        .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/verifyClient', data)
         .then(() => {
           Swal.hideLoading()
           Swal.fire({
@@ -120,7 +120,7 @@ export default function Clients() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       email = user.email
-      if (email !== 'spg.admin@talentvis.com') {
+      if (email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')
       }
     } else {

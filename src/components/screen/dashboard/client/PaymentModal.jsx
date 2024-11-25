@@ -108,13 +108,29 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
                     </dd>
                   </dl>
                 </div>
-
-                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-4 dark:border-gray-700">
-                  <dt className="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                  <dd className="text-base font-bold text-gray-900 dark:text-white">
-                    {moneyFormat(totalFee)}
-                  </dd>
-                </dl>
+                {method === 'full' && paymentDp === 0 ? (
+                  <div>
+                    <dl className="mt-4 flex items-center justify-between gap-4">
+                      <dt className="text-base font-bold text-gray-900 dark:text-white">
+                        Total Amount
+                      </dt>
+                      <dd className="flex flex-row space-x-2 text-base font-bold text-blue-600 underline dark:text-white">
+                        <CopyButton
+                          textToCopy={totalTransfer}
+                          className="pr-2"
+                        />
+                        <p>{moneyFormat(totalTransfer)}</p>
+                      </dd>
+                    </dl>
+                  </div>
+                ) : (
+                  <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-4 dark:border-gray-700">
+                    <dt className="text-base font-bold text-gray-900 dark:text-white">Total</dt>
+                    <dd className="text-base font-bold text-gray-900 dark:text-white">
+                      {moneyFormat(totalFee)}
+                    </dd>
+                  </dl>
+                )}
                 {method === 'dp' && (
                   <dl className="flex items-center justify-between gap-4">
                     <dt className="text-base font-bold text-gray-900 dark:text-white">

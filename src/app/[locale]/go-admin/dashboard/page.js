@@ -61,7 +61,7 @@ export default function Example() {
 
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
-      if (user.email !== 'spg.admin@talentvis.com') {
+      if (user.email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')
       } else {
         setUserData(user)

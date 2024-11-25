@@ -67,7 +67,7 @@ export default function Spg(email) {
         Swal.showLoading()
         const data = { email: email, code: code, name: name }
         axios
-          .post('https://asia-southeast1-hireplace.cloudfunctions.net/verifySPG', data)
+          .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/verifySPG', data)
           .then(() => {
             Swal.hideLoading()
             Swal.fire({
@@ -141,7 +141,7 @@ export default function Spg(email) {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       var email = user.email
-      if (email !== 'spg.admin@talentvis.com') {
+      if (email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')
       }
     } else {

@@ -38,7 +38,7 @@ export default function Feature() {
   return (
     <div
       id="features"
-      className="relative isolate mt-20 py-32 sm:mt-32">
+      className="relative isolate mt-20 px-8 py-32 sm:mt-32">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-rose-600">Promoters Community</h2>

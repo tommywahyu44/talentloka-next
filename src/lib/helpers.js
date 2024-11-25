@@ -94,8 +94,7 @@ export const moneyFormat = (value) => {
 export const paymentCalculation = (promotorNumber, paymentDp, type) => {
   const countPromotor = Number(promotorNumber) ?? 0
   const promotorFee = countPromotor * 350000
-  const countSupervision = Math.ceil(countPromotor / 5)
-  const serviceCharge = countSupervision * 1000000
+  const serviceCharge = countPromotor < 5 ? 500000 : countPromotor * 100000
   const taxFee = (promotorFee + serviceCharge) * 0.13
   const totalFee = promotorFee + serviceCharge + taxFee
 
@@ -107,7 +106,7 @@ export const paymentCalculation = (promotorNumber, paymentDp, type) => {
   } else if (type === 'full' && paymentDp === 0) {
     totalTransfer = totalFee
   }
-  return { promotorFee, countSupervision, serviceCharge, taxFee, totalFee, totalTransfer }
+  return { promotorFee, serviceCharge, taxFee, totalFee, totalTransfer }
 }
 
 /// Date
@@ -208,6 +207,22 @@ export const mapUpdateDateWithTime = (data) => {
   })
 
   return events
+}
+
+export const calculateHourDifference = (startTime, endTime) => {
+  // Parse the times as Date objects
+  const [startHours, startMinutes] = startTime.split(':').map(Number)
+  const [endHours, endMinutes] = endTime.split(':').map(Number)
+
+  // Convert the times to minutes
+  const startTotalMinutes = startHours * 60 + startMinutes
+  const endTotalMinutes = endHours * 60 + endMinutes
+
+  // Calculate the difference in minutes and convert to hours
+  const differenceInMinutes = endTotalMinutes - startTotalMinutes
+  const differenceInHours = differenceInMinutes / 60
+
+  return differenceInHours
 }
 
 export const dateDaysUntil = (dateString) => {

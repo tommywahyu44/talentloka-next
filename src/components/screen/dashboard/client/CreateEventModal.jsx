@@ -12,6 +12,7 @@ export default function CreateEventModal({
   method = 'create',
   data,
 }) {
+  console.log('excal open ', isOpenCreateEvent)
   const t = useTranslations('default')
   const listIndustry = ['Retail', 'Cosmetics', 'Automotive', 'Electronics']
   const listType = ['Public', 'Private']
@@ -122,14 +123,16 @@ export default function CreateEventModal({
       })
       formSubmitData.append('email', email)
       formSubmitData.append('estimatedFee', 0)
-
+      var result = false
       switch (method) {
         case 'create':
-          apiService.createEventPromotor(formSubmitData)
+          result = await apiService.createEventPromotor(formSubmitData)
+          if (result) closeCreateEvent()
           break
         case 'update':
           formSubmitData.append('id', data?.id)
-          apiService.updateEventPromotor(formSubmitData)
+          result = await apiService.updateEventPromotor(formSubmitData)
+          if (result) closeCreateEvent()
           break
         default:
           break

@@ -98,7 +98,7 @@ export default function OnboardingForm({ email }) {
       Swal.showLoading()
       try {
         await axios.post(
-          'https://asia-southeast1-hireplace.cloudfunctions.net/registerClient',
+          'https://asia-southeast1-talentloka-35463.cloudfunctions.net/registerClient',
           formSubmitData,
           {
             headers: { 'Content-Type': 'multipart/form-data' },

@@ -50,13 +50,21 @@ export default function Filters({ email, listInitFavorites }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [queryResults, setQueryResults] = useState([])
   const [openModal, setOpenModal] = useState(clientDashboard.cardEntity)
-  const [openCreateEvent, setOpenCreateEvent] = useState(false)
+  const [createEvent, setCreateEvent] = useState({
+    openCreateEvent: false,
+    method: null,
+    data: null,
+  })
   const [listIndex, setListIndex] = useState(0)
   const [listFavorites, setFavorite] = useState(listInitFavorites)
   const [loading, setLoading] = useState(false)
 
+  const openCreateEvent = () => {
+    setCreateEvent({ openCreateEvent: true, method: 'create', data: {} })
+  }
+
   const closeCreateEvent = () => {
-    setOpenCreateEvent(false)
+    setCreateEvent({ openCreateEvent: false, method: 'create', data: {} })
   }
 
   const handleFilterChange = (event) => {
@@ -106,7 +114,10 @@ export default function Filters({ email, listInitFavorites }) {
   function updateRemovedFavorited(newFavorited) {
     const data = { email: email, favorited: newFavorited.join() }
     axios
-      .post('https://asia-southeast1-hireplace.cloudfunctions.net/promotorUpdateFavorited', data)
+      .post(
+        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
+        data
+      )
       .then(() => {})
       .catch((err) => {
         console.log('err ', err)
@@ -117,7 +128,10 @@ export default function Filters({ email, listInitFavorites }) {
     const data = { email: email, favorited: listFavorites.join() }
     Swal.showLoading()
     axios
-      .post('https://asia-southeast1-hireplace.cloudfunctions.net/promotorUpdateFavorited', data)
+      .post(
+        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
+        data
+      )
       .then(() => {
         Swal.hideLoading()
         Swal.fire({
@@ -205,7 +219,7 @@ export default function Filters({ email, listInitFavorites }) {
     setLoading(true)
     listSpg = []
     const db = getDatabase()
-    const spgRef = ref(db, 'promotor_spg_new/')
+    const spgRef = ref(db, 'promotor_spg/')
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       if (data && listSpg.length === 0) {
@@ -540,7 +554,7 @@ export default function Filters({ email, listInitFavorites }) {
                       ))}
                     </div>
                     <a
-                      onClick={() => setOpenCreateEvent(true)}
+                      onClick={() => openCreateEvent()}
                       type="button"
                       className="mt-8 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                       <CheckCircleIcon
@@ -593,9 +607,11 @@ export default function Filters({ email, listInitFavorites }) {
                     t={t}
                   />
                   <CreateEventModal
-                    openCreateEvent={openCreateEvent}
+                    isOpenCreateEvent={createEvent.openCreateEvent}
                     closeCreateEvent={closeCreateEvent}
                     email={email}
+                    data={createEvent.data}
+                    method={createEvent.method}
                   />
                   <nav className="flex items-center justify-between border-t border-stone-200 px-4 sm:px-0">
                     <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 transition duration-300">

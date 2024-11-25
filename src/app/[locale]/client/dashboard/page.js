@@ -47,7 +47,7 @@ function signout() {
 
 function sendEmailNotification() {
   const actionCodeSettings = {
-    url: 'https://hireplace.com/client/dashboard',
+    url: 'https://talentloka.com/client/dashboard',
   }
   sendEmailVerification(userData, actionCodeSettings)
     .then(() => {
@@ -171,7 +171,7 @@ export default function Dashboard() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
       userData = user
-      if (!userData.emailVerified && userData.email !== 'spg.admin@talentvis.com') {
+      if (!userData.emailVerified && userData.email !== 'admin@talentloka.com') {
         setOnboardingStatus('email not verified')
       } else if (isFirstTime || !onboardingStatus) {
         isFirstTime = false

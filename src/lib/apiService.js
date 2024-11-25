@@ -1,6 +1,6 @@
 // utils/apiService.js
 
-const API_BASE_URL = 'https://asia-southeast1-hireplace.cloudfunctions.net'
+const API_BASE_URL = 'https://asia-southeast1-talentloka-35463.cloudfunctions.net'
 import axios from 'axios'
 
 import Swal from 'sweetalert2'
@@ -39,6 +39,7 @@ export const apiService = {
         confirmButtonText: 'Okay',
         confirmButtonColor: '#BE123C',
       })
+      return true
     } catch (err) {
       Swal.hideLoading()
       Swal.fire({
@@ -47,6 +48,7 @@ export const apiService = {
         confirmButtonText: 'Retry',
         confirmButtonColor: '#BE123C',
       })
+      return false
     }
   },
   updateEventPromotor: async (formData) => {
@@ -70,6 +72,7 @@ export const apiService = {
         confirmButtonText: 'Retry',
         confirmButtonColor: '#BE123C',
       })
+      return false
     }
   },
   cancelEventPromotor: async (eventId, email) => {
