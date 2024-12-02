@@ -26,7 +26,8 @@ import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { Badge } from 'flowbite-react'
 import {
   ChevronDownIcon,
-  FunnelIcon,
+  AdjustmentsHorizontalIcon,
+  BarsArrowUpIcon,
   MinusIcon,
   PlusIcon,
   ArrowLongLeftIcon,
@@ -39,6 +40,7 @@ import TalentDetailModal from './TalentDetailModal'
 import CreateEventModal from './CreateEventModal'
 import { clientDashboard } from '@/lib/constants'
 import SpgCard from './SpgCard'
+import { ModelCard } from '@/components/card/Card'
 
 var listSpg = []
 var listData = []
@@ -114,10 +116,7 @@ export default function Filters({ email, listInitFavorites }) {
   function updateRemovedFavorited(newFavorited) {
     const data = { email: email, favorited: newFavorited.join() }
     axios
-      .post(
-        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
-        data
-      )
+      .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/createEvent', data)
       .then(() => {})
       .catch((err) => {
         console.log('err ', err)
@@ -128,10 +127,7 @@ export default function Filters({ email, listInitFavorites }) {
     const data = { email: email, favorited: listFavorites.join() }
     Swal.showLoading()
     axios
-      .post(
-        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
-        data
-      )
+      .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/createEvent', data)
       .then(() => {
         Swal.hideLoading()
         Swal.fire({
@@ -219,7 +215,7 @@ export default function Filters({ email, listInitFavorites }) {
     setLoading(true)
     listSpg = []
     const db = getDatabase()
-    const spgRef = ref(db, 'promotor_spg/')
+    const spgRef = ref(db, 'promoters_public_info/')
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       if (data && listSpg.length === 0) {
@@ -263,19 +259,8 @@ export default function Filters({ email, listInitFavorites }) {
           as={Fragment}>
           <Dialog
             as="div"
-            className="relative z-40 lg:hidden"
+            className="relative z-40"
             onClose={setMobileFiltersOpen}>
-            <TransitionChild
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0">
-              <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </TransitionChild>
-
             <div className="fixed inset-0 z-40 flex">
               <TransitionChild
                 as={Fragment}
@@ -307,17 +292,15 @@ export default function Filters({ email, listInitFavorites }) {
                       <Disclosure
                         as="div"
                         key={section.id}
-                        className="border-t border-stone-200 px-4 py-6">
+                        className="border-b border-stone-200 px-4 py-6">
                         {({ open }) => (
                           <>
-                            <h3 className="-mx-2 -my-3 flow-root">
-                              <DisclosureButton className="flex w-full items-center justify-between bg-white px-2 py-3 text-stone-400 transition duration-300 hover:text-rose-500">
+                            <h3 className="-my-3 flow-root">
+                              <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-stone-400 transition duration-300 hover:text-rose-500">
                                 <span className="font-medium text-stone-900">
                                   {t(section.name)}
                                 </span>
-                                <span className="font-medium text-rose-600">
-                                  {selectedFilter[index]}
-                                </span>
+
                                 <span className="ml-6 flex items-center">
                                   {open ? (
                                     <MinusIcon
@@ -325,32 +308,37 @@ export default function Filters({ email, listInitFavorites }) {
                                       aria-hidden="true"
                                     />
                                   ) : (
-                                    <PlusIcon
-                                      className="h-5 w-5"
-                                      aria-hidden="true"
-                                    />
+                                    <div className="flex">
+                                      <span className="mr-2 font-medium text-rose-600">
+                                        {selectedFilter[index]}
+                                      </span>
+                                      <PlusIcon
+                                        className="h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    </div>
                                   )}
                                 </span>
                               </DisclosureButton>
                             </h3>
                             <DisclosurePanel className="pt-6">
-                              <div className="space-y-6">
+                              <div className="space-y-4">
                                 {section.options.map((option, optionIdx) => (
                                   <div
                                     key={option.value}
                                     className="flex items-center outline-none focus:outline-none">
                                     <input
-                                      id={`filter-mobile-${section.id}-${optionIdx}`}
+                                      id={`filter-${section.id}-${optionIdx}`}
                                       name={`${section.id}`}
                                       defaultValue={option.value}
-                                      type="checkbox"
-                                      defaultChecked={option.checked}
+                                      type="radio"
+                                      defaultChecked={option.value == selectedFilter[index]}
                                       onChange={handleFilterChange}
-                                      className="h-4 w-4 rounded border-stone-300 text-rose-600 focus:ring-0"
+                                      className="h-4 w-4 rounded border-stone-300 text-rose-600 outline-none focus:ring-0"
                                     />
                                     <label
-                                      htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                      className="ml-3 min-w-0 flex-1 text-stone-500">
+                                      htmlFor={`filter-${section.id}-${optionIdx}`}
+                                      className="ml-3 text-sm text-stone-600">
                                       {option.label}
                                     </label>
                                   </div>
@@ -362,9 +350,9 @@ export default function Filters({ email, listInitFavorites }) {
                       </Disclosure>
                     ))}
                     {listFavorites.length > 0 ? (
-                      <div className="ml-4">
+                      <div>
                         <h3 className="mb-2 mt-4 flow-root">
-                          <span className="text-base font-medium text-stone-900">Hired</span>
+                          <span className="text-sm font-medium text-stone-900">Hired</span>
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {listFavorites.map((fav) => (
@@ -382,7 +370,7 @@ export default function Filters({ email, listInitFavorites }) {
                           ))}
                         </div>
                         <a
-                          onClick={updateFavorited}
+                          onClick={() => openCreateEvent()}
                           type="button"
                           className="mt-8 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                           <CheckCircleIcon
@@ -403,24 +391,23 @@ export default function Filters({ email, listInitFavorites }) {
         </Transition>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-stone-200 pb-6 pt-8">
-            <h1 className="mr-4 text-xl font-bold tracking-tight text-stone-900 md:text-3xl">
+          <div className="flex items-baseline justify-between border-b border-stone-200 py-3 sm:py-5">
+            <h1 className="mr-4 text-lg font-bold tracking-tight text-stone-900 md:text-3xl">
               <span className="text-rose-600">Discover</span> Your Perfect Talent
             </h1>
           </div>
 
           <section
             aria-labelledby="products-heading"
-            className="pb-16 pt-6">
-            <div className="flex items-center">
+            className="pt-2">
+            <div className="flex items-center justify-between text-center">
               <Menu
                 as="div"
                 className="relative inline-block text-left">
                 <div>
-                  <MenuButton className="group inline-flex justify-center text-sm font-medium text-stone-700 transition duration-300 hover:text-rose-600">
-                    Sort
-                    <ChevronDownIcon
-                      className="group-transition -mr-1 ml-1 h-5 w-5 flex-shrink-0 text-stone-400 duration-300 hover:text-rose-500"
+                  <MenuButton className="group inline-flex justify-center font-medium text-stone-700 transition duration-300 hover:text-rose-600">
+                    <BarsArrowUpIcon
+                      className="mt-2 h-7 w-7"
                       aria-hidden="true"
                     />
                   </MenuButton>
@@ -460,213 +447,110 @@ export default function Filters({ email, listInitFavorites }) {
               </Menu>
               <button
                 type="button"
-                className="-m-2 ml-4 p-2 text-stone-400 transition duration-300 hover:text-rose-500 sm:ml-6 lg:hidden"
+                className="-m-2 ml-4 p-2 text-stone-700 transition duration-300 hover:text-rose-500 sm:ml-6"
                 onClick={() => setMobileFiltersOpen(true)}>
                 <span className="sr-only">Filters</span>
-                <FunnelIcon
-                  className="h-5 w-5"
+                <AdjustmentsHorizontalIcon
+                  className="h-6 w-6"
                   aria-hidden="true"
                 />
               </button>
             </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-4">
-              {/* Filters */}
-              <form className="hidden lg:block">
-                <h3 className="sr-only">Categories</h3>
-                {clientDashboard.filters.map((section, index) => (
-                  <Disclosure
-                    as="div"
-                    key={section.id}
-                    className="border-b border-stone-200 py-6">
-                    {({ open }) => (
-                      <>
-                        <h3 className="-my-3 flow-root">
-                          <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-stone-400 transition duration-300 hover:text-rose-500">
-                            <span className="font-medium text-stone-900">{t(section.name)}</span>
-
-                            <span className="ml-6 flex items-center">
-                              {open ? (
-                                <MinusIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <div className="flex">
-                                  <span className="mr-2 font-medium text-rose-600">
-                                    {selectedFilter[index]}
-                                  </span>
-                                  <PlusIcon
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                  />
-                                </div>
-                              )}
-                            </span>
-                          </DisclosureButton>
-                        </h3>
-                        <DisclosurePanel className="pt-6">
-                          <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
-                              <div
-                                key={option.value}
-                                className="flex items-center outline-none focus:outline-none">
-                                <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}`}
-                                  defaultValue={option.value}
-                                  type="radio"
-                                  defaultChecked={option.value == selectedFilter[index]}
-                                  onChange={handleFilterChange}
-                                  className="h-4 w-4 rounded border-stone-300 text-rose-600 outline-none focus:ring-0"
-                                />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-stone-600">
-                                  {option.label}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
-                        </DisclosurePanel>
-                      </>
-                    )}
-                  </Disclosure>
-                ))}
-                {listFavorites.length > 0 ? (
-                  <div>
-                    <h3 className="mb-2 mt-4 flow-root">
-                      <span className="text-sm font-medium text-stone-900">Hired</span>
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {listFavorites.map((fav) => (
-                        <Badge
-                          key={fav}
-                          className="cursor-pointer bg-pink-50 pr-2 text-rose-600"
-                          icon={XMarkIcon}
-                          onClick={() => {
-                            var newFavorited = listFavorites.filter((e) => e !== fav)
-                            updateRemovedFavorited(newFavorited)
-                            setFavorite([...newFavorited])
-                          }}>
-                          {fav}
-                        </Badge>
-                      ))}
-                    </div>
-                    <a
-                      onClick={() => openCreateEvent()}
-                      type="button"
-                      className="mt-8 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                      <CheckCircleIcon
-                        className="-ml-0.5 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                      SUBMIT!
-                    </a>
+            <div className="mt-2">
+              <section>
+                {loading ? (
+                  <DotLottieReact
+                    src={lottieFiles.loading}
+                    loop
+                    autoplay
+                  />
+                ) : queryResults.length > 0 ? (
+                  <div className="h-main-nav grid grid-cols-2 gap-4 overflow-auto sm:h-[75vh] md:grid-cols-3 lg:grid-cols-4">
+                    {queryResults.map((card, index) => {
+                      return (
+                        <ModelCard
+                          key={card[0]}
+                          model={card[1]}
+                        />
+                      )
+                    })}
                   </div>
                 ) : (
-                  <div></div>
+                  <div className="mx-auto my-48 text-center">
+                    <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-stone-400"></MagnifyingGlassIcon>
+                    <h3 className="mt-2 text-sm font-semibold text-stone-900">No results</h3>
+                    <p className="mt-1 text-sm text-stone-500">
+                      Sorry we can&apos;t find any results for you, please try another filter.
+                    </p>
+                  </div>
                 )}
-              </form>
-              <div className="lg:col-span-3">
-                <div className="o">
-                  <section className="section-cards overflow-auto">
-                    {loading ? (
-                      <DotLottieReact
-                        src={lottieFiles.loading}
-                        loop
-                        autoplay
-                      />
-                    ) : queryResults.length > 0 ? (
-                      queryResults.map((card, index) => {
-                        return (
-                          <SpgCard
-                            key={card[0]}
-                            card={card}
-                            index={index}
-                            listFavorites={listFavorites}
-                            setFavorite={setFavorite}
-                            setOpenModal={setOpenModal}
-                          />
-                        )
-                      })
-                    ) : (
-                      <div className="my-48 text-center">
-                        <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-stone-400"></MagnifyingGlassIcon>
-                        <h3 className="mt-2 text-sm font-semibold text-stone-900">No results</h3>
-                        <p className="mt-1 text-sm text-stone-500">
-                          Sorry we can&apos;t find any results for you, please try another filter.
-                        </p>
-                      </div>
-                    )}
-                  </section>
-                  <TalentDetailModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
-                    cardEntity={clientDashboard.cardEntity}
-                    t={t}
-                  />
-                  <CreateEventModal
-                    isOpenCreateEvent={createEvent.openCreateEvent}
-                    closeCreateEvent={closeCreateEvent}
-                    email={email}
-                    data={createEvent.data}
-                    method={createEvent.method}
-                  />
-                  <nav className="flex items-center justify-between border-t border-stone-200 px-4 sm:px-0">
-                    <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 transition duration-300">
-                      <a
-                        onClick={() => {
-                          if (listIndex > 0) {
-                            setListIndex(listIndex - 1)
-                            setQueryResults(listData[listIndex - 1])
-                            window.scrollTo(0, 0)
-                          }
-                        }}
-                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
-                        <ArrowLongLeftIcon
-                          className="hover:text-rose-5000 mr-3 h-5 w-5 text-stone-400 transition duration-300"
-                          aria-hidden="true"
-                        />
-                        Previous
-                      </a>
-                    </div>
-                    <div className="hidden md:-mt-px md:flex">
-                      {listData.map((card, index) => (
-                        <a
-                          onClick={() => {
-                            setListIndex(index)
-                            setQueryResults(listData[index])
-                            window.scrollTo(0, 0)
-                          }}
-                          key={index}
-                          className={`inline-flex cursor-pointer items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium transition duration-300 hover:border-rose-300 hover:text-rose-500 ${
-                            listIndex == index ? 'border-rose-500 text-rose-500' : 'text-stone-500'
-                          }`}>
-                          {index + 1}
-                        </a>
-                      ))}
-                    </div>
-                    <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 justify-end transition duration-300">
-                      <a
-                        onClick={() => {
-                          if (listIndex < listData.length - 1) {
-                            setListIndex(listIndex + 1)
-                            setQueryResults(listData[listIndex + 1])
-                            window.scrollTo(0, 0)
-                          }
-                        }}
-                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
-                        Next
-                        <ArrowLongRightIcon
-                          className="hover:text-rose-5000 ml-3 h-5 w-5 text-stone-400 transition duration-300"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    </div>
-                  </nav>
+              </section>
+              <TalentDetailModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                cardEntity={clientDashboard.cardEntity}
+                t={t}
+              />
+              <CreateEventModal
+                isOpenCreateEvent={createEvent.openCreateEvent}
+                closeCreateEvent={closeCreateEvent}
+                email={email}
+                data={createEvent.data}
+                method={createEvent.method}
+              />
+              <nav className="flex items-center justify-between border-t border-stone-200 px-4 sm:px-0">
+                <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 transition duration-300">
+                  <a
+                    onClick={() => {
+                      if (listIndex > 0) {
+                        setListIndex(listIndex - 1)
+                        setQueryResults(listData[listIndex - 1])
+                        window.scrollTo(0, 0)
+                      }
+                    }}
+                    className="inline-flex cursor-pointer items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
+                    <ArrowLongLeftIcon
+                      className="hover:text-rose-5000 mr-3 h-5 w-5 text-stone-400 transition duration-300"
+                      aria-hidden="true"
+                    />
+                    Previous
+                  </a>
                 </div>
-              </div>
+                <div className="hidden md:-mt-px md:flex">
+                  {listData.map((card, index) => (
+                    <a
+                      onClick={() => {
+                        setListIndex(index)
+                        setQueryResults(listData[index])
+                        window.scrollTo(0, 0)
+                      }}
+                      key={index}
+                      className={`inline-flex cursor-pointer items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium transition duration-300 hover:border-rose-300 hover:text-rose-500 ${
+                        listIndex == index ? 'border-rose-500 text-rose-500' : 'text-stone-500'
+                      }`}>
+                      {index + 1}
+                    </a>
+                  ))}
+                </div>
+                <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 justify-end transition duration-300">
+                  <a
+                    onClick={() => {
+                      if (listIndex < listData.length - 1) {
+                        setListIndex(listIndex + 1)
+                        setQueryResults(listData[listIndex + 1])
+                        window.scrollTo(0, 0)
+                      }
+                    }}
+                    className="inline-flex cursor-pointer items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
+                    Next
+                    <ArrowLongRightIcon
+                      className="hover:text-rose-5000 ml-3 h-5 w-5 text-stone-400 transition duration-300"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </div>
+              </nav>
             </div>
           </section>
         </main>

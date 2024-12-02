@@ -7,11 +7,13 @@ import RegisterForm from '@/components/screen/auth/promotor/RegisterForm'
 import AuthLayout from '@/components/layout/AuthLayout'
 
 import Swal from 'sweetalert2'
+import localStorageService from '@/utils/localStorageService'
 
 function createUser(email, password) {
   createUserWithEmailAndPassword(fireAuth, email, password)
     .then(() => {
-      window.location.replace('/promotor/onboarding')
+      localStorageService.setEmailPromotor(email)
+      window.location.replace('/promotor/dashboard')
     })
     .catch((error) => {
       const errorMessage = error.message
@@ -28,7 +30,7 @@ function createUser(email, password) {
 export default function Registration() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
-      window.location.replace('/promotor/onboarding')
+      window.location.replace('/promotor/dashboard')
     } else {
       // User is signed out
       // ...

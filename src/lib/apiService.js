@@ -26,10 +26,10 @@ const headers = {
 
 export const apiService = {
   /// Client
-  createEventPromotor: async (formData) => {
+  createEvent: async (formData) => {
     Swal.showLoading()
     try {
-      await axios.post(API_BASE_URL + '/createEventPromotor', formData, {
+      await axios.post(API_BASE_URL + '/createEvent', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       Swal.hideLoading()
@@ -51,10 +51,10 @@ export const apiService = {
       return false
     }
   },
-  updateEventPromotor: async (formData) => {
+  updateEvent: async (formData) => {
     Swal.showLoading()
     try {
-      await axios.post(API_BASE_URL + '/updateEventPromotor', formData, {
+      await axios.post(API_BASE_URL + '/updateEvent', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       Swal.hideLoading()
@@ -75,7 +75,7 @@ export const apiService = {
       return false
     }
   },
-  cancelEventPromotor: async (eventId, email) => {
+  cancelEvent: async (eventId, email) => {
     Swal.fire({
       title: 'Are you sure you want to cancel this event?',
       showCancelButton: true,
@@ -90,7 +90,7 @@ export const apiService = {
           id: eventId,
         }
         try {
-          await axios.post(API_BASE_URL + '/cancelEventPromotor', payload)
+          await axios.post(API_BASE_URL + '/cancelEvent', payload)
           Swal.hideLoading()
           Swal.fire('Event canceled!', '', 'success')
         } catch (err) {
@@ -105,14 +105,14 @@ export const apiService = {
       }
     })
   },
-  inviteSPGToEventPromotor: async (listId, eventId) => {
+  invitePromoterToEvent: async (listId, eventId) => {
     Swal.showLoading()
     const payload = {
       eventId: eventId,
       spgCodes: listId,
     }
     try {
-      await axios.post(API_BASE_URL + '/inviteSPGToEventPromotor', payload)
+      await axios.post(API_BASE_URL + '/invitePromoterToEvent', payload)
       Swal.hideLoading()
       Swal.fire('Invited promotor successfully updated!', '', 'success')
     } catch (err) {
@@ -125,10 +125,10 @@ export const apiService = {
       })
     }
   },
-  clientUploadPaymentProofPromotor: async (formData) => {
+  clientUploadPaymentProof: async (formData) => {
     Swal.showLoading()
     try {
-      await axios.post(API_BASE_URL + '/clientUploadPaymentProofPromotor', formData, {
+      await axios.post(API_BASE_URL + '/clientUploadPaymentProof', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       Swal.hideLoading()
@@ -149,7 +149,7 @@ export const apiService = {
     }
   },
   /// SPG
-  spgUpdateInvitationEventPromotor: async (data, action) => {
+  promoterUpdateInvitationEvent: async (data, action) => {
     var actionSuccessText = 'Invitation successfully accepted!'
     var actionFailedText = 'Failed to accept the event'
     switch (action) {
@@ -170,7 +170,7 @@ export const apiService = {
       email: data?.promotorEmail,
     }
     try {
-      await axios.post(API_BASE_URL + '/spgUpdateInvitationEventPromotor', payload)
+      await axios.post(API_BASE_URL + '/promoterUpdateInvitationEvent', payload)
       Swal.hideLoading()
       Swal.fire({
         text: actionSuccessText,
@@ -189,7 +189,7 @@ export const apiService = {
     }
   },
   /// Admin
-  adminUpdateStatusEventPromotor: async (eventId, email, action) => {
+  adminUpdateStatusEvent: async (eventId, email, action) => {
     var actionQuestionText = 'Are you sure you want to approve this event?'
     var actionSuccessText = 'Event approved!'
     var actionFailedText = 'Failed to approve the event'
@@ -215,7 +215,7 @@ export const apiService = {
           action: action,
         }
         try {
-          await axios.post(API_BASE_URL + '/adminUpdateStatusEventPromotor', payload)
+          await axios.post(API_BASE_URL + '/adminUpdateStatusEvent', payload)
           Swal.hideLoading()
           Swal.fire(actionSuccessText, '', 'success')
         } catch (err) {

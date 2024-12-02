@@ -7,16 +7,12 @@ import {
   dateIsPast,
   classNames,
   capitalizeFirstLetter,
+  mapUpdateDateWithTime,
 } from '@/lib/helpers'
-
-const statuses = {
-  Paid: 'text-green-700 bg-green-50 ring-green-600/20',
-  Pending: 'text-gray-600 bg-gray-50 ring-gray-500/10',
-  Cancelled: 'text-red-700 bg-red-50 ring-red-600/10',
-  Accepted: 'text-blue-700 bg-blue-50 ring-blue-600/10',
-}
+import { getStyleEventStatus, getTextEventStatus } from '@/lib/statusUtils'
 
 export default function ListEvents({ title, events, detailEvent }) {
+  const eventsData = mapUpdateDateWithTime(events)
   return (
     <div className="">
       <div className="mb-3 mt-6 flex items-center justify-between">
@@ -30,7 +26,7 @@ export default function ListEvents({ title, events, detailEvent }) {
       <ul
         role="list"
         className="flex flex-row space-x-4 overflow-x-auto">
-        {events.map((event) => (
+        {eventsData.map((event) => (
           <li
             key={event.id}
             onClick={() => detailEvent(event)}
@@ -53,10 +49,10 @@ export default function ListEvents({ title, events, detailEvent }) {
             </div>
             <div
               className={classNames(
-                statuses[event.status],
+                getStyleEventStatus(event.status),
                 'absolute bottom-20 right-4 rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset'
               )}>
-              {event.status}
+              {getTextEventStatus(event.status)}
             </div>
             <img
               src={event.image}
@@ -72,7 +68,7 @@ export default function ListEvents({ title, events, detailEvent }) {
             <dl className="divide-y divide-gray-100 text-xs">
               <div className="flex flex-row space-x-3 px-3 pb-2">
                 <div className="flex justify-between space-x-1">
-                  <ClockIcon className="h-4 w-4" />
+                  <ClockIcon className="h-4 w-4 text-rose-600" />
                   <dd className="text-gray-700">
                     <div className="font-medium text-gray-900">
                       {event.startTime} - {event.endTime}
@@ -80,7 +76,7 @@ export default function ListEvents({ title, events, detailEvent }) {
                   </dd>
                 </div>
                 <div className="flex justify-between space-x-1">
-                  <BuildingOfficeIcon className="h-4 w-4" />
+                  <BuildingOfficeIcon className="h-4 w-4 text-rose-600" />
                   <dd className="text-gray-700">
                     <div className="font-medium text-gray-900">
                       {capitalizeFirstLetter(event.industry)}

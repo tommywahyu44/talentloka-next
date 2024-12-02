@@ -43,8 +43,8 @@ export const clientDashboard = {
       name: 'commonGender',
       options: [
         { value: 'All', label: 'All', checked: false },
-        { value: 'Female', label: 'commonFemale', checked: true },
-        { value: 'Male', label: 'commonMale', checked: false },
+        { value: 'Female', label: 'Female', checked: true },
+        { value: 'Male', label: 'Male', checked: false },
       ],
     },
     {
@@ -84,8 +84,8 @@ export const clientDashboard = {
       name: 'commonRole',
       options: [
         { value: 'All', label: 'All', checked: false },
-        { value: 'SPG', label: 'commonPromotor', checked: true },
-        { value: 'Model', label: 'commonModel', checked: false },
+        { value: 'SPG', label: 'Promoter', checked: true },
+        { value: 'Model', label: 'Model', checked: false },
       ],
     },
     {
@@ -195,16 +195,6 @@ export const clientDashboard = {
       introVideoUrl: '',
       previousSalaryAmount: 0,
       previousSalaryCurrency: '',
-    },
-  ],
-  navigations: [
-    {
-      id: 'dashboard',
-      title: 'Dashboard',
-    },
-    {
-      id: 'events',
-      title: 'Events',
     },
   ],
 }

@@ -47,7 +47,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
     { id: 'language-others', name: 'Others', active: false },
   ]
 
-  const events = [
+  const experiences = [
     { id: 'event-bazaar', name: 'Bazaar', active: false },
     {
       id: 'event-company',
@@ -175,8 +175,15 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
   const [selectedCountryCode, setSelectedCountryCode] = useState(defaultCountry)
   const [race, setRace] = useState(profileData?.race ?? listRace[0])
   const [role, setRole] = useState(profileData?.role ?? listRole[0])
-  const [yoe, setYoe] = useState(profileData?.yoe ?? '')
-  const [salary, setSalary] = useState(profileData?.previousSalaryAmount ?? '')
+  const [yoe, setYoe] = useState(profileData?.yoe ?? 0)
+  const [salary, setSalary] = useState(profileData?.previousSalaryAmount ?? 0)
+  const [roleFee, setRoleFee] = useState(
+    profileData?.fee ?? {
+      SPG: 0,
+      USHER: 0,
+      RUNNER: 0,
+    }
+  )
   const [currency, setCurrency] = useState(profileData?.previousSalaryCurrency ?? listCurrency[0])
   const [introVideoUrl, setIntroVideoUrl] = useState(profileData?.introVideoUrl ?? '')
   const [photo1, setPhoto1] = useState([profileData?.profilePicture[0] ?? null, ''])
@@ -185,11 +192,13 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
   const [photo4, setPhoto4] = useState([profileData?.profilePicture[3] ?? null, ''])
   const [isSubmit, setIsSubmit] = useState(false)
   const [isUpdateProfile, setIsUpdateProfile] = useState(isFromRegister)
-  const [eventCheckedItems, setEventCheckedItems] = useState(profileData?.events ?? [])
+  const [experienceCheckedItems, setExperienceCheckedItems] = useState(
+    profileData?.experiences ?? []
+  )
   const [brandCheckedItems, setBrandCheckedItems] = useState(profileData?.brands ?? [])
   const [languageCheckedItems, setLanguageCheckedItems] = useState(profileData?.languages ?? [])
   const [customEventText, setCustomEventText] = useState(
-    getOthersInArray(profileData?.events ?? [])
+    getOthersInArray(profileData?.experiences ?? [])
   )
   const [customBrandText, setCustomBrandText] = useState(
     getOthersInArray(profileData?.brands ?? [])
@@ -209,12 +218,14 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
   const handleChangeEventCheckbox = (event) => {
     if (event.target.checked) {
-      setEventCheckedItems([...eventCheckedItems, event.target.name])
+      setExperienceCheckedItems([...experienceCheckedItems, event.target.name])
     } else {
       if (event.target.name.includes('Others')) {
         setCustomEventText('')
       }
-      setEventCheckedItems([...eventCheckedItems.filter((e) => !e.includes(event.target.name))])
+      setExperienceCheckedItems([
+        ...experienceCheckedItems.filter((e) => !e.includes(event.target.name)),
+      ])
     }
   }
 
@@ -244,8 +255,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
   const handleCustomEventChange = (event) => {
     setCustomEventText(event.target.value)
-    var newArr = replaceCustomOthers(eventCheckedItems, event.target.value)
-    setEventCheckedItems(newArr)
+    var newArr = replaceCustomOthers(experienceCheckedItems, event.target.value)
+    setExperienceCheckedItems(newArr)
   }
 
   const handleCustomBrandChange = (event) => {
@@ -292,6 +303,16 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
   const handleSalaryChange = (event) => {
     setSalary(event.target.value)
+  }
+
+  const handleRoleFeeChange = (event) => {
+    const { name, value } = event.target
+
+    // Update the specific role fee
+    setRoleFee((prevState) => ({
+      ...prevState,
+      [name]: parseFloat(value) || 0, // Ensure the value is a number
+    }))
   }
 
   const handleIntroVideoUrlChange = (event) => {
@@ -355,10 +376,17 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       photo4[0]
     ) {
       var formData = new FormData()
+      const roleCategories = Object.entries(roleFee)
+        .filter(([role, fee]) => fee > 0) // Only include roles where fee > 0
+        .map(([role, fee]) => ({
+          role: role === 'SPG' && gender.toLowerCase() === 'male' ? 'SPB' : role, // Update "SPG" to "SPB" if gender is male
+          fee: fee.toString(),
+        }))
       formData.append('fullName', fullName)
       formData.append('gender', gender)
       formData.append('dobYear', dob)
       formData.append('city', city)
+      formData.append('contact', `${selectedCountryCode.countryCode} ${contact}`)
       formData.append('email', email)
       formData.append('country', country)
       formData.append('height', height)
@@ -368,7 +396,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       formData.append('yoe', yoe)
       formData.append('previousSalaryAmount', salary)
       formData.append('previousSalaryCurrency', currency)
-      formData.append('contact', `${selectedCountryCode.countryCode} ${contact}`)
+      formData.append('fee', JSON.stringify(roleFee))
+      formData.append('categories', JSON.stringify(roleCategories))
       formData.append('race', race)
       formData.append('role', role)
       formData.append('photo1', photo1[0])
@@ -378,7 +407,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       if (!isFromRegister) {
         formData.append('code', profileData?.code)
       }
-      formData.append('events', eventCheckedItems)
+      formData.append('experiences', experienceCheckedItems)
       formData.append('brands', brandCheckedItems)
       formData.append('languages', languageCheckedItems)
       formData.append('introVideoUrl', introVideoUrl)
@@ -393,8 +422,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       axios
         .post(
           isFromRegister
-            ? 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/registerSPG'
-            : 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/updateSPG',
+            ? 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/registerPromoter'
+            : 'https://asia-southeast1-talentloka-35463.cloudfunctions.net/updatePromoter',
           formData,
           {
             headers: {
@@ -420,11 +449,13 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
   return (
     <>
       {isUpdateProfile ? (
-        <div className="mx-auto flex min-h-full max-w-3xl flex-1 flex-col justify-center px-6 py-6 lg:px-8">
-          <ArrowLeftIcon
-            onClick={() => setIsUpdateProfile(false)}
-            className="h-6 w-6 cursor-pointer text-stone-900"
-          />
+        <div className="mx-auto mb-12 flex min-h-full max-w-5xl flex-1 flex-col justify-center px-6 py-6 md:mb-0 lg:px-8">
+          {!isFromRegister && (
+            <ArrowLeftIcon
+              onClick={() => setIsUpdateProfile(false)}
+              className="h-6 w-6 cursor-pointer text-stone-900"
+            />
+          )}
           <h2 className="mx-auto text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
             {isFromRegister ? 'Submit Your Profile' : 'Update Profile'}
           </h2>
@@ -551,14 +582,16 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         <MenuButton
                           id="dropdown-phone-button"
                           data-dropdown-toggle="dropdown-phone"
-                          className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-2 px-3 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                          className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                           type="button">
                           <img
                             src={selectedCountryCode.flagUrl}
                             alt={selectedCountryCode.name}
                             className="h-5 w-5 rounded-full object-cover"
                           />
-                          <span className="ml-2 text-white">{selectedCountryCode.countryCode}</span>
+                          <span className="ml-2 text-base text-white">
+                            {selectedCountryCode.countryCode}
+                          </span>
                           <ChevronDownIcon
                             className="group-transition ml-1 mr-3 h-5 w-5 flex-shrink-0 text-white duration-300 hover:text-rose-500"
                             aria-hidden="true"
@@ -1085,10 +1118,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     data={accordions[0].data}
                     isOpen={accordions[0].isOpen}
                     child={checkbox(
-                      events,
+                      experiences,
                       handleChangeEventCheckbox,
                       handleCustomEventChange,
-                      eventCheckedItems,
+                      experienceCheckedItems,
                       'Event Experiences',
                       customEventText
                     )}
@@ -1177,6 +1210,63 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   <p className="mt-1 text-sm text-red-600">
                     {salary === '' && isSubmit ? errorEmptyMessage : ''}
                   </p>
+                </div>
+
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium leading-6 text-stone-900">
+                    Current Fee as SPG (0 if you are not SPG)
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="number"
+                      name="SPG"
+                      id="SPG"
+                      value={roleFee.SPG}
+                      onChange={handleRoleFeeChange}
+                      required
+                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium leading-6 text-stone-900">
+                    Current Fee as Usher (0 if you are not Usher)
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="number"
+                      name="USHER"
+                      id="USHER"
+                      value={roleFee.USHER}
+                      onChange={handleRoleFeeChange}
+                      required
+                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium leading-6 text-stone-900">
+                    Current Fee as Runner (0 if you are not Runner)
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="number"
+                      name="RUNNER"
+                      id="RUNNER"
+                      value={roleFee.RUNNER}
+                      onChange={handleRoleFeeChange}
+                      required
+                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
                 </div>
 
                 <div className="sm:col-span-3">
@@ -1469,14 +1559,6 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
         </div>
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8">
-          {/* <DocumentCheckIcon className="mx-auto h-32 w-32 text-rose-500" />
-          <h2 className="mt-8 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-            Profile Published
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
-            Your account has been verified and published. If you want to update your profile, please
-            click the update profile button below.
-          </p> */}
           <div className="m-auto max-w-xl border border-stone-900 bg-white p-4 text-center shadow-sm">
             <p className="text-4xl font-bold text-stone-900">
               {profileData?.fullName ? profileData.fullName.split(' ')[0] : ''}

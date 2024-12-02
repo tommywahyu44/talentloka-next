@@ -5,11 +5,13 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import LoginForm from '@/components/screen/auth/promotor/LoginForm'
 import Swal from 'sweetalert2'
 import AuthLayout from '@/components/layout/AuthLayout'
+import localStorageService from '@/utils/localStorageService'
 
 function signIn(email, password) {
   signInWithEmailAndPassword(fireAuth, email, password)
     .then(() => {
-      window.location.replace('/promotor/onboarding')
+      localStorageService.setEmailPromotor(email)
+      window.location.replace('/promotor/dashboard')
     })
     .catch((error) => {
       var errorMessage = error.message
@@ -30,7 +32,7 @@ function signIn(email, password) {
 export default function Login() {
   onAuthStateChanged(fireAuth, (user) => {
     if (user) {
-      window.location.replace('/promotor/onboarding')
+      window.location.replace('/promotor/dashboard')
     } else {
       // User is signed out
       // ...

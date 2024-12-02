@@ -37,7 +37,7 @@ export default function Events() {
 
   const fetchProfile = async (email) => {
     const db = getDatabase()
-    const spgRef = ref(db, `promotor_spg_unconfirmed/${email}`)
+    const spgRef = ref(db, `promoters/${email}`)
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       setUserData(data)
@@ -46,7 +46,7 @@ export default function Events() {
 
   const fetchEvents = async () => {
     const db = getDatabase()
-    const spgRef = ref(db, 'promotor_client_event/')
+    const spgRef = ref(db, 'events/')
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {

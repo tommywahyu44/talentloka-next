@@ -38,7 +38,7 @@ export default function PhoneInput({
                 alt={selectedCountry.name}
                 className="h-5 w-5 rounded-full object-cover"
               />
-              <span className="ml-2 text-white">{selectedCountry.countryCode}</span>
+              <span className="ml-2 text-base text-white">{selectedCountry.countryCode}</span>
               <ChevronDownIcon
                 className="group-transition ml-1 mr-3 h-5 w-5 flex-shrink-0 text-white duration-300 hover:text-rose-500"
                 aria-hidden="true"

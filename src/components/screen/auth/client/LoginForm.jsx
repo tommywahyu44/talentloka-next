@@ -23,13 +23,13 @@ export default function LoginForm({ signIn }) {
     signIn(email, password)
   }
 
-  useEffect(() => {
-    const earlyOnboardingClient = localStorage.getItem(localStorageKeys.earlyOnboardingClient)
-    if (earlyOnboardingClient) {
-      const earlyOnboardingData = JSON.parse(earlyOnboardingClient)
-      setEmail(earlyOnboardingData.email)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const earlyOnboardingClient = localStorage.getItem(localStorageKeys.earlyOnboardingClient)
+  //   if (earlyOnboardingClient) {
+  //     const earlyOnboardingData = JSON.parse(earlyOnboardingClient)
+  //     setEmail(earlyOnboardingData.email)
+  //   }
+  // }, [])
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">

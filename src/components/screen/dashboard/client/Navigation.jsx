@@ -1,10 +1,12 @@
 import { classNames } from '@/lib/helpers'
+import { usePathname } from 'next/navigation'
 import { fireAuth } from '@/plugins/firebase'
 import { signOut } from 'firebase/auth'
 
 import {
   CalendarDaysIcon,
   UserIcon,
+  UserGroupIcon,
   HomeIcon,
   ArrowRightStartOnRectangleIcon,
   CurrencyDollarIcon,
@@ -16,10 +18,6 @@ const navigationItems = [
     name: 'events',
     icon: CalendarDaysIcon,
   },
-  {
-    name: 'earnings',
-    icon: CurrencyDollarIcon,
-  },
   { name: 'profile', icon: UserIcon },
   { name: 'logout', icon: ArrowRightStartOnRectangleIcon },
 ]
@@ -28,7 +26,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
   const signout = () => {
     signOut(fireAuth)
       .then(() => {
-        window.location.replace('/promotor/login')
+        window.location.replace('/client/login')
       })
       .catch(() => {
         // An error happened.
@@ -37,7 +35,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
   return (
     <>
       <div className="flex h-full w-full items-center justify-center">
-        <div className="fixed left-4 top-4 my-auto hidden h-desktop-nav items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:flex">
+        <div className="h-desktop-nav fixed left-4 top-4 my-auto hidden items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:flex">
           <ul
             role="list"
             className="relative h-full w-10 flex-1 space-y-5 pt-20">
@@ -82,7 +80,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
         <div className="fixed bottom-2 z-10 flex h-20 w-[94%] items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:hidden">
           <ul
             role="list"
-            className="grid h-full w-full grid-cols-5 items-center justify-center gap-8">
+            className="grid h-full w-full grid-cols-4 items-center justify-center gap-8">
             {navigationItems.map((item) => (
               <li key={item.name}>
                 <a

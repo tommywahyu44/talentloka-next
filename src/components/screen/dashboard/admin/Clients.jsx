@@ -90,7 +90,7 @@ export default function Clients() {
 
   const fetchData = async () => {
     const db = getDatabase()
-    const clientRef = ref(db, 'promotor_client/')
+    const clientRef = ref(db, 'clients/')
     onValue(clientRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -102,11 +102,11 @@ export default function Clients() {
 
   const fetchSPG = async (code) => {
     const db = getDatabase()
-    const spgRef = ref(db, 'promotor_spg/' + code)
+    const spgRef = ref(db, 'promoters_public_info/' + code)
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
-        const spgInfoRef = ref(db, 'promotor_spg_info/' + code)
+        const spgInfoRef = ref(db, 'promoters_private_info/' + code)
         onValue(spgInfoRef, (snapshot) => {
           const dataInfo = snapshot.val()
           if (dataInfo) {

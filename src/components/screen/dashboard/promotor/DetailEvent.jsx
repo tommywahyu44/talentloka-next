@@ -59,7 +59,7 @@ export default function DetailEvent({ event, back }) {
                 {!event?.invitationStatus && event.type === 'Public' && (
                   <a
                     onClick={() => {
-                      apiService.spgUpdateInvitationEventPromotor(event, 'apply')
+                      apiService.promoterUpdateInvitationEvent(event, 'apply')
                     }}
                     className="cursor-pointer rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                     Apply
@@ -68,7 +68,7 @@ export default function DetailEvent({ event, back }) {
                 {event?.invitationStatus === 'INVITED' && (
                   <a
                     onClick={() => {
-                      apiService.spgUpdateInvitationEventPromotor(event, 'accept')
+                      apiService.promoterUpdateInvitationEvent(event, 'accept')
                     }}
                     className="cursor-pointer rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                     Accept
@@ -77,7 +77,7 @@ export default function DetailEvent({ event, back }) {
                 {event?.invitationStatus === 'INVITED' && (
                   <a
                     onClick={() => {
-                      apiService.spgUpdateInvitationEventPromotor(event, 'decline')
+                      apiService.promoterUpdateInvitationEvent(event, 'decline')
                     }}
                     className="cursor-pointer rounded-md bg-secondary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-secondary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600">
                     Decline

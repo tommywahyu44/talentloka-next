@@ -6,10 +6,13 @@ import { onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/aut
 import RegisterForm from '@/components/screen/auth/client/RegisterForm'
 import AuthLayout from '@/components/layout/AuthLayout'
 import Swal from 'sweetalert2'
+import localStorageService from '@/utils/localStorageService'
 
 function createUser(email, password) {
   createUserWithEmailAndPassword(fireAuth, email, password)
-    .then(() => {})
+    .then(() => {
+      localStorageService.setEmailClient(email)
+    })
     .catch((error) => {
       const errorMessage = error.message
       // ..

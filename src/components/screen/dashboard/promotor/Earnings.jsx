@@ -42,7 +42,7 @@ const transactions = [
   // More transactions...
 ]
 
-export default function Events() {
+export default function Earnings() {
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8">

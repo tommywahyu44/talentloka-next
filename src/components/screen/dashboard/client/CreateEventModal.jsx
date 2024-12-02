@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { Modal } from 'flowbite-react'
 import { TextInput, FileInput, DropdownInput } from '@/components/input/Input'
-import { limitFileSizeKb, limitFileSizeMb, dateAndTimeToUtc } from '@/lib/helpers'
+import { limitFileSizeMb, dateAndTimeToUtc } from '@/lib/helpers'
 import { apiService } from '@/lib/apiService'
 import Swal from 'sweetalert2'
 export default function CreateEventModal({
@@ -12,7 +12,6 @@ export default function CreateEventModal({
   method = 'create',
   data,
 }) {
-  console.log('excal open ', isOpenCreateEvent)
   const t = useTranslations('default')
   const listIndustry = ['Retail', 'Cosmetics', 'Automotive', 'Electronics']
   const listType = ['Public', 'Private']
@@ -27,7 +26,7 @@ export default function CreateEventModal({
     endDate: data?.endDate ?? '',
     startTime: data?.startTime ?? '',
     endTime: data?.endTime ?? '',
-    budget: data?.budget ?? 0,
+    maxFee: data?.maxFee ?? 0,
     bundlePackage: data?.bundlePackage ?? listPackage[0],
     listPromotor: data?.listPromotor ?? [],
   })
@@ -72,7 +71,7 @@ export default function CreateEventModal({
       endDate,
       startTime,
       endTime,
-      budget,
+      maxFee,
       bundlePackage,
     } = eventData
 
@@ -86,7 +85,7 @@ export default function CreateEventModal({
       endDate &&
       startTime &&
       endTime &&
-      budget &&
+      maxFee &&
       bundlePackage &&
       fileInputs.eventImage[0]
 
@@ -126,12 +125,12 @@ export default function CreateEventModal({
       var result = false
       switch (method) {
         case 'create':
-          result = await apiService.createEventPromotor(formSubmitData)
+          result = await apiService.createEvent(formSubmitData)
           if (result) closeCreateEvent()
           break
         case 'update':
           formSubmitData.append('id', data?.id)
-          result = await apiService.updateEventPromotor(formSubmitData)
+          result = await apiService.updateEvent(formSubmitData)
           if (result) closeCreateEvent()
           break
         default:
@@ -159,7 +158,7 @@ export default function CreateEventModal({
         endDate: data?.endDate ?? '',
         startTime: data?.startTime ?? '',
         endTime: data?.endTime ?? '',
-        budget: data?.budget ?? 0,
+        maxFee: data?.maxFee ?? 0,
         bundlePackage: data?.bundlePackage ?? listPackage[0],
         listPromotor: data?.listPromotor ?? [],
       })
@@ -176,9 +175,10 @@ export default function CreateEventModal({
       className="bg-opacity-40 pt-6"
       popup
       onClose={() => closeCreateEvent()}>
+      <Modal.Header></Modal.Header>
       <Modal.Body className="rounded-lg bg-white">
         <form
-          className="mt-10 space-y-6 sm:mx-auto sm:w-full sm:max-w-2xl"
+          className="space-y-6 sm:mx-auto sm:w-full sm:max-w-2xl"
           onSubmit={handleSubmit}>
           <h3 className="text-xl font-medium text-stone-900">
             {method === 'create' ? 'Create your event' : 'Update your event'}
@@ -277,9 +277,9 @@ export default function CreateEventModal({
               type="time"
             />
             <TextInput
-              label="Budget (IDR)"
-              id="budget"
-              value={eventData.budget}
+              label="Maximum Fee per User (IDR)"
+              id="maxFee"
+              value={eventData.maxFee}
               onChange={handleChange}
               errorEmptyMessage="Please fill out this field."
               isSubmit={isSubmit}

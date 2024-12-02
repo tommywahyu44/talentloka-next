@@ -67,7 +67,7 @@ export default function Spg(email) {
         Swal.showLoading()
         const data = { email: email, code: code, name: name }
         axios
-          .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/verifySPG', data)
+          .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/verifyPromoter', data)
           .then(() => {
             Swal.hideLoading()
             Swal.fire({
@@ -94,7 +94,7 @@ export default function Spg(email) {
 
   const fetchRegistered = async () => {
     const db = getDatabase()
-    const clientRef = ref(db, 'promotor_spg_unconfirmed/')
+    const clientRef = ref(db, 'promoters/')
     onValue(clientRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -106,7 +106,7 @@ export default function Spg(email) {
 
   const fetchAll = async () => {
     const db = getDatabase()
-    const clientRef = ref(db, 'promotor_spg/')
+    const clientRef = ref(db, 'promoters_public_info/')
     onValue(clientRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -123,7 +123,7 @@ export default function Spg(email) {
 
   const fetchAllInfo = async () => {
     const db = getDatabase()
-    const clientRef = ref(db, 'promotor_spg_info/')
+    const clientRef = ref(db, 'promoters_private_info/')
     onValue(clientRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -148,8 +148,6 @@ export default function Spg(email) {
       window.location.replace('/go-admin/login')
     }
   })
-
-  console.log('excal list spg unconfirmed', listSpg)
 
   //run hook useEffect
   useEffect(() => {
@@ -214,6 +212,7 @@ export default function Spg(email) {
           <SpgRegisteredTable
             listSpg={listSpg}
             setOpenModal={setOpenModal}
+            verifySPG={verifySPG}
           />
         )
       ) : (
@@ -234,7 +233,6 @@ export default function Spg(email) {
                       </h2>
                     </Modal.Header> */}
         <Modal.Body className="bg-white">
-          {console.log('data', openModal)}
           <div
             id="capture"
             className="bg-white p-4 text-center">

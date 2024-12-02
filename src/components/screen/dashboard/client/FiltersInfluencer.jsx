@@ -280,10 +280,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
   function updateRemovedFavorited(newFavorited) {
     const data = { email: email, favorited: newFavorited.join() }
     axios
-      .post(
-        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
-        data
-      )
+      .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/createEvent', data)
       .then(() => {})
       .catch((err) => {
         console.log('err ', err)
@@ -294,10 +291,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
     const data = { email: email, favorited: listFavorites.join() }
     Swal.showLoading()
     axios
-      .post(
-        'https://asia-southeast1-talentloka-35463.cloudfunctions.net/promotorUpdateFavorited',
-        data
-      )
+      .post('https://asia-southeast1-talentloka-35463.cloudfunctions.net/createEvent', data)
       .then(() => {
         Swal.hideLoading()
         Swal.fire({

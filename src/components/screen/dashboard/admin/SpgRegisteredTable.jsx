@@ -3,8 +3,6 @@ import { formatIndonesianNumber } from '@/lib/helpers'
 import { UserCircleIcon, CheckCircleIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
 export default function SpgRegisteredTable({ listSpg, setOpenModal, verifySPG }) {
-  console.log('excal list', listSpg)
-
   if (!listSpg) {
     return
   }

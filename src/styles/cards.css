@@ -1,12 +1,3 @@
-.section-cards {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 8px;
-}
 .card-item {
   width: 240px;
   height: 300px;
@@ -14,15 +5,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  filter: brightness(75%) grayscale(50%) saturate(75%);
 }
 
 .card-item:hover {
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transform: scale(1.05);
-  filter: brightness(90%) grayscale(0%) saturate(120%);
 }
 
 .card-item h2,

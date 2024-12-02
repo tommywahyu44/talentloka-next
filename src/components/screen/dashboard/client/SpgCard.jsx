@@ -104,7 +104,7 @@ export default function SpgCard({ card, index, listFavorites, setFavorite, setOp
         </div>
         <div className="card-event-brand z-10 col-span-12">
           <div className="flex gap-2 overflow-clip">
-            {card[1].events
+            {card[1].experiences
               .filter((e) => e !== '')
               .map((event) => (
                 <Badge

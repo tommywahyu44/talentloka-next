@@ -41,7 +41,6 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
     paymentCalculation(data?.promotorNumber ?? 0, paymentDp, method)
   const valid = proofImage && totalTransfer
 
-  console.log('dp', paymentDp, data?.paymentDp?.imageUrl, JSON.stringify(data))
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -54,7 +53,7 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
       formSubmitData.append('amount', totalTransfer)
       formSubmitData.append('eventId', data.id)
       formSubmitData.append('paymentType', method)
-      apiService.clientUploadPaymentProofPromotor(formSubmitData)
+      apiService.clientUploadPaymentProof(formSubmitData)
       closePayment()
     }
   }

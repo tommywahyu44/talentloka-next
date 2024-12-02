@@ -19,9 +19,10 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
       size="2xl"
       className="bg-opacity-40 pt-6"
       onClose={() => setOpenModal(cardEntity)}>
+      <Modal.Header className="border-b border-white"></Modal.Header>
       <Modal.Body
         id="scroll-div"
-        className="rounded-md bg-white">
+        className="rounded-md bg-white px-6 pb-6 pt-0">
         {isShowExperience ? (
           <div className="px-4 pb-8">
             <div className="px-4 sm:px-0">
@@ -32,7 +33,7 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
                 {t('dashboardClientTalentDetailsExperienceDesc')}
               </p>
             </div>
-            <div className="mt-6 border-t border-stone-100">
+            <div className="border-t border-stone-100">
               <dl className="divide-y divide-stone-100">
                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                   <dt className="text-sm font-medium leading-6 text-stone-900">
@@ -76,12 +77,12 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
         ) : (
           <div
             id="capture"
-            className="bg-white p-4 text-center">
+            className="bg-white px-4 pb-4 text-center">
             <p className="text-4xl font-bold text-stone-900">
               {openModal[1].name.replace(/[()]/g, '')}
             </p>
             <p className="mt-2 text-base text-rose-600">{openModal[0]}</p>
-            <div className="mt-1 flex items-center justify-center gap-2 text-center text-base">
+            <div className="mt-1 grid grid-cols-2 items-center justify-center gap-1 text-center text-base sm:gap-2 md:grid-cols-4">
               {textItemSmall(t('commonBirthYear'), openModal[1].dob)}
               {textItemSmall(t('commonWeight'), openModal[1].weightKg + ' kg')}
               {textItemSmall(t('commonHeight'), openModal[1].heightCm + ' cm')}
@@ -99,8 +100,8 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
             <div className="my-4 flex justify-between text-center text-lg">
               <img
                 src="/images/marketingo-logo.png"
-                className="w-28"></img>
-              <div className="my-auto text-base font-light text-rose-600">
+                className="w-14 md:w-20"></img>
+              <div className="my-auto text-sm font-light text-rose-600 sm:text-base md:text-lg">
                 Sales Promotion Staffing Solution
               </div>
             </div>

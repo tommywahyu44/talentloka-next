@@ -5,6 +5,7 @@ import { locales } from '../../navigation'
 import dynamic from 'next/dynamic'
 import { Nunito, Roboto } from 'next/font/google'
 import './globals.css'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -66,10 +67,13 @@ export default async function RootLayout({ children, params: { locale } }) {
         />
       </head>
       <CrispWithNoSSR />
+
       <NextIntlClientProvider
         locale={locale}
         messages={messages}>
-        <body>{children}</body>
+        <body>
+          <AuthProvider>{children}</AuthProvider>
+        </body>
       </NextIntlClientProvider>
     </html>
   )

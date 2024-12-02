@@ -60,11 +60,11 @@ export default function Events(email) {
   }
 
   const updateStatusEvent = (eventId, action) => {
-    apiService.adminUpdateStatusEventPromotor(eventId, email, action)
+    apiService.adminUpdateStatusEvent(eventId, email, action)
   }
 
   const cancelEvent = (data) => {
-    apiService.cancelEventPromotor(data?.id, email)
+    apiService.cancelEvent(data?.id, email)
   }
 
   const closeAddPromotor = () => {
@@ -83,7 +83,7 @@ export default function Events(email) {
 
   const fetchActiveEvents = async () => {
     const db = getDatabase()
-    const clientRef = ref(db, 'promotor_client_event/')
+    const clientRef = ref(db, 'events/')
     onValue(clientRef, (snapshot) => {
       const data = snapshot.val()
       if (data) {
@@ -119,7 +119,7 @@ export default function Events(email) {
 
   const fetchPromotor = async () => {
     const db = getDatabase()
-    const spgRef = ref(db, 'promotor_spg/')
+    const spgRef = ref(db, 'promoters_public_info/')
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
       if (data && listPromotor.length === 0) {

@@ -6,7 +6,10 @@ import { sampleEvents } from '@/lib/constants'
 import { classNames } from '@/lib/helpers'
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
 import { CurrencyDollarIcon, BuildingOfficeIcon, BanknotesIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useEffect, useState } from 'react'
+import { fireAuth } from '@/plugins/firebase'
+import { getDatabase, ref, onValue } from 'firebase/database'
 
 const stats = [
   {
@@ -40,6 +43,48 @@ const stats = [
 
 export default function Home() {
   const [detailEvent, setDetailEvent] = useState(null)
+  const [listEvents, setListEvents] = useState([])
+
+  const [userData, setUserData] = useState(null)
+
+  onAuthStateChanged(fireAuth, (user) => {
+    if (!user) {
+      window.location.replace('/promotor/login')
+    } else {
+      if (!userData) {
+        const email = user.email
+        const emailDoc = email.replaceAll('.', ',')
+        fetchProfile(emailDoc)
+      }
+    }
+  })
+
+  const fetchProfile = async (email) => {
+    const db = getDatabase()
+    const spgRef = ref(db, `promoters/${email}`)
+    onValue(spgRef, (snapshot) => {
+      const data = snapshot.val()
+      setUserData(data)
+    })
+  }
+
+  const fetchEvents = async () => {
+    const db = getDatabase()
+    const spgRef = ref(db, 'events/')
+    onValue(spgRef, (snapshot) => {
+      const data = snapshot.val()
+      if (data) {
+        setListEvents(Object.values(data))
+      }
+    })
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchEvents()
+    }, 1000)
+  }, [])
+
   return (
     <>
       {detailEvent ? (
@@ -107,14 +152,14 @@ export default function Home() {
             </dl>
           </div>
           <ListEvents
+            title="Public Events"
+            detailEvent={setDetailEvent}
+            events={listEvents.filter((item) => item.type === 'Public')}
+          />
+          <ListEvents
             title="Your Upcoming Events"
             detailEvent={setDetailEvent}
             events={sampleEvents.upcomingEvents}
-          />
-          <ListEvents
-            title="Your Past Events"
-            detailEvent={setDetailEvent}
-            events={sampleEvents.pastEvents}
           />
         </div>
       )}

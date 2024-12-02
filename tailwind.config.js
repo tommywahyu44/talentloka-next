@@ -54,6 +54,10 @@ module.exports = {
           950: '#7f0036',
         },
       },
+      height: {
+        'main-nav': 'calc(100vh - 18rem)',
+        'desktop-nav': 'calc(100vh - 2rem)', // Example: Full viewport height minus 4rem
+      },
     },
   },
   plugins: [flowbite.plugin()],

@@ -52,7 +52,7 @@ export default function AddPromotorDialog({
   const submitAddPromotor = () => {
     const listId = listInvitedPromotor.map((item) => item.id)
     const uniqueIdList = [...new Set(listId)].join(',')
-    apiService.inviteSPGToEventPromotor(uniqueIdList, data.id)
+    apiService.invitePromoterToEvent(uniqueIdList, data.id)
   }
 
   const mergedList = listPromotor.map((item) => {

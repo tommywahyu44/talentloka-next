@@ -5,10 +5,13 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import AuthLayout from '@/components/layout/AuthLayout'
 import LoginForm from '@/components/screen/auth/client/LoginForm'
 import Swal from 'sweetalert2'
+import localStorageService from '@/utils/localStorageService'
 
 function signIn(email, password) {
   signInWithEmailAndPassword(fireAuth, email, password)
-    .then(() => {})
+    .then(() => {
+      localStorageService.setEmailClient(email)
+    })
     .catch((error) => {
       var errorMessage = error.message
       if (errorMessage === 'Firebase: Error (auth/wrong-password).') {

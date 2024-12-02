@@ -1,15 +1,18 @@
-import CreateEventModal from './CreateEventModal'
+'use client'
+
+import CreateEventModal from '@/components/screen/dashboard/client/CreateEventModal'
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue } from 'firebase/database'
-import ListClientEvents from './ListClientEvents'
+import ListClientEvents from '@/components/screen/dashboard/client/ListClientEvents'
 import { apiService } from '@/lib/apiService'
-import AddPromotorDialog from './AddPromotorDialog'
+import AddPromotorDialog from '@/components/screen/dashboard/client//AddPromotorDialog'
 import { mapUpdateDateWithTime } from '@/lib/helpers'
-import { set } from 'date-fns'
-import PaymentModal from './PaymentModal'
-import PaymentHistoryModal from './PaymentHistoryModal'
+import PaymentModal from '@/components/screen/dashboard/client//PaymentModal'
+import PaymentHistoryModal from '@/components/screen/dashboard/client//PaymentHistoryModal'
+import localStorageService from '@/utils/localStorageService'
 
-export default function Events({ email }) {
+export default function Events() {
+  const email = localStorageService.getEmailClient()
   const [listEvents, setListEvents] = useState([])
   const [listPromotor, setListPromotor] = useState([])
   const [event, setEvent] = useState({
@@ -33,12 +36,11 @@ export default function Events({ email }) {
   })
   const fetchEvents = async () => {
     const db = getDatabase()
-    const spgRef = ref(db, 'events/')
+    const spgRef = ref(db, 'clients/' + email.replaceAll('.', ','))
     onValue(spgRef, (snapshot) => {
-      const data = Object.values(snapshot.val())
-      if (data && data.length > 0) {
-        const filteredEvents = data.filter((event) => event.email === email)
-        const events = mapUpdateDateWithTime(filteredEvents)
+      const data = snapshot.val()
+      if (data && data.events) {
+        const events = mapUpdateDateWithTime(data.events)
         setListEvents(events)
       }
     })
@@ -138,13 +140,13 @@ export default function Events({ email }) {
   }, [])
 
   return (
-    <div className="mt-8 px-4 md:px-0">
-      <div className="px-4 sm:px-6 lg:px-8">
+    <div>
+      <div className="mb-32 px-4 pt-6 sm:px-6 md:pt-0 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-base font-semibold leading-6 text-gray-900">Events</h1>
             <p className="mt-2 text-sm text-gray-700">
-              Stay organized and keep track of your events
+              You can track current, upcoming, and past events with detailed information.
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -156,38 +158,16 @@ export default function Events({ email }) {
             </button>
           </div>
         </div>
-        {listEvents.length > 0 ? (
-          <div className="mt-8 flow-root">
-            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                <ListClientEvents
-                  events={listEvents}
-                  cancelEvent={cancelEvent}
-                  updateEvent={updateEvent}
-                  openAddPromotor={openAddPromotor}
-                  openPayment={openPayment}
-                  openPaymentHistory={openPaymentHistory}
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <main className="grid min-h-full place-items-center bg-white px-6 py-12 sm:py-20 lg:px-8">
-            <div className="max-w-xl text-center">
-              <img
-                src="/images/empty-event.png"
-                className="mx-auto h-60 w-60 object-contain"
-              />
-              <h1 className="mt-4 text-balance text-2xl font-semibold tracking-tight text-gray-900">
-                Start Your First Event
-              </h1>
-              <p className="mt-2 text-pretty text-lg font-medium text-gray-500">
-                It seems like you haven’t created any events yet. Click the create event button to
-                start planning your event with us!
-              </p>
-            </div>
-          </main>
-        )}
+        <div className="mt-8 flow-root">
+          <ListClientEvents
+            events={listEvents}
+            cancelEvent={cancelEvent}
+            updateEvent={updateEvent}
+            openAddPromotor={openAddPromotor}
+            openPayment={openPayment}
+            openPaymentHistory={openPaymentHistory}
+          />
+        </div>
         {event.openCreateEvent && (
           <CreateEventModal
             isOpenCreateEvent={event.openCreateEvent}
