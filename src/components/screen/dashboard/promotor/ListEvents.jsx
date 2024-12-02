@@ -25,12 +25,12 @@ export default function ListEvents({ title, events, detailEvent }) {
       </div>
       <ul
         role="list"
-        className="flex flex-row space-x-4 overflow-x-auto">
+        className="flex flex-col overflow-x-auto md:flex-row md:space-x-4">
         {eventsData.map((event) => (
           <li
             key={event.id}
             onClick={() => detailEvent(event)}
-            className="relative flex w-72 scale-95 cursor-pointer flex-col rounded-xl border border-gray-200 hover:scale-100">
+            className="relative flex w-full scale-95 cursor-pointer flex-col rounded-xl border border-gray-200 hover:scale-100 md:w-72">
             <div
               className={classNames(
                 dateIsPast(event.startDate) ? 'bg-red-200' : 'bg-emerald-200',

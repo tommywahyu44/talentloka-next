@@ -7,6 +7,7 @@ import {
   dateIsPast,
   classNames,
   capitalizeFirstLetter,
+  mapUpdateDateWithTime,
 } from '@/lib/helpers'
 
 const statuses = {
@@ -17,6 +18,7 @@ const statuses = {
 }
 
 export default function GridEvents({ events, detailEvent, userData, type }) {
+  const eventsData = mapUpdateDateWithTime(events)
   const getEmptyTitle = () => {
     switch (type) {
       case 'Public':
@@ -48,11 +50,11 @@ export default function GridEvents({ events, detailEvent, userData, type }) {
   }
   return (
     <div className="pt-8">
-      {events.length > 0 ? (
+      {eventsData.length > 0 ? (
         <ul
           role="list"
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => {
+          {eventsData.map((event) => {
             const invitationStatus =
               event?.listPromotor?.filter((item) => item?.spgCode === userData?.code) ?? []
             return (
@@ -118,7 +120,7 @@ export default function GridEvents({ events, detailEvent, userData, type }) {
                 <dl className="divide-y divide-gray-100 text-xs">
                   <div className="flex flex-row space-x-3 px-3 pb-2">
                     <div className="flex justify-between space-x-1">
-                      <ClockIcon className="h-4 w-4" />
+                      <ClockIcon className="h-4 w-4 text-rose-600" />
                       <dd className="text-gray-700">
                         <div className="font-medium text-gray-900">
                           {event.startTime} - {event.endTime}
@@ -126,7 +128,7 @@ export default function GridEvents({ events, detailEvent, userData, type }) {
                       </dd>
                     </div>
                     <div className="flex justify-between space-x-1">
-                      <BuildingOfficeIcon className="h-4 w-4" />
+                      <BuildingOfficeIcon className="h-4 w-4 text-rose-600" />
                       <dd className="text-gray-700">
                         <div className="font-medium text-gray-900">
                           {capitalizeFirstLetter(event.industry)}

@@ -132,7 +132,7 @@ export default function Events() {
       ) : (
         <div>
           <div>
-            <div className="sm:hidden">
+            <div className="text-rose-500 sm:hidden">
               <label
                 htmlFor="tabs"
                 className="sr-only">
@@ -142,10 +142,17 @@ export default function Events() {
               <select
                 id="tabs"
                 name="tabs"
-                defaultValue={tabs[currentTab].name}
-                className="block w-full rounded-md border-gray-300 focus:border-rose-500 focus:ring-rose-500">
+                value={tabs[currentTab].name}
+                onChange={(e) =>
+                  setCurrentTab(tabs.findIndex((tab) => tab.name === e.target.value))
+                }
+                className="block w-full rounded-md border-rose-100 bg-rose-50 text-rose-600 outline-none focus:border-rose-200 focus:outline-none">
                 {tabs.map((tab) => (
-                  <option key={tab.name}>{tab.name}</option>
+                  <option
+                    key={tab.name}
+                    className="">
+                    {tab.name}
+                  </option>
                 ))}
               </select>
             </div>
