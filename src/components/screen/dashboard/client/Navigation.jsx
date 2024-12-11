@@ -35,7 +35,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
   return (
     <>
       <div className="flex h-full w-full items-center justify-center">
-        <div className="h-desktop-nav fixed left-4 top-4 my-auto hidden items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:flex">
+        <div className="fixed left-4 top-4 my-auto hidden h-desktop-nav items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:flex">
           <ul
             role="list"
             className="relative h-full w-10 flex-1 space-y-5 pt-20">

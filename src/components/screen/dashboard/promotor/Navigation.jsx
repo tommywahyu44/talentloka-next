@@ -113,7 +113,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
             ))}
           </ul>
         </div>
-        <div className="mb-auto flex-grow overflow-auto sm:px-8">{children}</div>
+        <div className="mb-auto flex-grow overflow-auto">{children}</div>
       </div>
     </>
   )

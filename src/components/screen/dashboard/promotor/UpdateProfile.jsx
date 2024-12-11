@@ -1193,7 +1193,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium leading-6 text-stone-900">
-                    Average Previous Salary Per Day
+                    Per Day Earnings
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">

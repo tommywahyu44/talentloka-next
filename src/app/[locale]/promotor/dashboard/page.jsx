@@ -54,7 +54,7 @@ function sendEmailNotification() {
     })
 }
 
-function getHomeUI(navigation, email, profileData) {
+function getHomeUI(navigation, setNavigation, email, profileData, listEvents) {
   switch (navigation) {
     case 'profile':
       return (
@@ -65,9 +65,18 @@ function getHomeUI(navigation, email, profileData) {
         />
       )
     case 'events':
-      return <Events></Events>
+      return (
+        <Events
+          profileData={profileData}
+          listEvents={listEvents}></Events>
+      )
     case 'home':
-      return <Home></Home>
+      return (
+        <Home
+          setNavigation={setNavigation}
+          profileData={profileData}
+          listEvents={listEvents}></Home>
+      )
     case 'earnings':
       return <Earnings></Earnings>
     default:
@@ -75,7 +84,7 @@ function getHomeUI(navigation, email, profileData) {
   }
 }
 
-function getDashboardUI(step, email, profileData, navigation) {
+function getDashboardUI(step, email, profileData, listEvents, navigation, setNavigation) {
   switch (step) {
     case 0:
       return (
@@ -134,7 +143,9 @@ function getDashboardUI(step, email, profileData, navigation) {
       )
     case 3:
       return (
-        <div className="mx-6 bg-white md:ml-28">{getHomeUI(navigation, email, profileData)}</div>
+        <div className="mx-6 bg-white md:ml-32">
+          {getHomeUI(navigation, setNavigation, email, profileData, listEvents)}
+        </div>
       )
     default:
       return (
@@ -157,6 +168,18 @@ export default function Dashboard() {
   const [profileData, setProfileData] = useState()
   const [navigation, setNavigation] = useState('home')
   const [step, setStep] = useState(-1)
+  const [listEvents, setListEvents] = useState([])
+
+  const fetchEvents = async () => {
+    const db = getDatabase()
+    const spgRef = ref(db, 'events/')
+    onValue(spgRef, (snapshot) => {
+      const data = snapshot.val()
+      if (data) {
+        setListEvents(Object.values(data))
+      }
+    })
+  }
 
   const fetchUserData = async (email) => {
     console.log('email => ', email)
@@ -182,6 +205,7 @@ export default function Dashboard() {
       } else if (isFirstTime) {
         isFirstTime = false
         fetchUserData(userData.email)
+        fetchEvents()
       }
     } else {
       window.location.replace('/promotor/login')
@@ -196,7 +220,7 @@ export default function Dashboard() {
           setNavigation={setNavigation}
           isOnboarded={step == 3}>
           <main>
-            <div className="m-auto my-6 max-w-screen-2xl">
+            <div className="m-auto my-6">
               {step < 3 && (
                 <Box sx={{ width: '100%' }}>
                   <Stepper
@@ -233,7 +257,14 @@ export default function Dashboard() {
                   </Stepper>
                 </Box>
               )}
-              {getDashboardUI(step, userData?.email ?? '', profileData, navigation)}
+              {getDashboardUI(
+                step,
+                userData?.email ?? '',
+                profileData,
+                listEvents,
+                navigation,
+                setNavigation
+              )}
             </div>
           </main>
         </Navigation>

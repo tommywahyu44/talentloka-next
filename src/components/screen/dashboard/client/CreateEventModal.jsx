@@ -13,7 +13,30 @@ export default function CreateEventModal({
   data,
 }) {
   const t = useTranslations('default')
-  const listIndustry = ['Retail', 'Cosmetics', 'Automotive', 'Electronics']
+  const listIndustry = [
+    'Automotive',
+    'Bank',
+    'Baby / kids care',
+    'Beauty tools',
+    'Fashion',
+    'Education',
+    'Food and beverages',
+    'Furniture',
+    'Franchise',
+    'Haircare',
+    'Homecare',
+    'Jewelry',
+    'Make up',
+    'Manufacturing goods',
+    'Medicine / healthcare',
+    'Perfume',
+    'Skincare',
+    'Sports',
+    'Technology',
+    'Tobacco / cigarettes',
+    'Watches',
+    'Wedding expo',
+  ]
   const listType = ['Public', 'Private']
   const listPackage = ['No Package', 'Bronze', 'Silver', 'Gold', 'Diamond']
   const [eventData, setEventData] = useState({

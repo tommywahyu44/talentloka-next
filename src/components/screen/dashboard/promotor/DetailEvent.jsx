@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { capitalizeFirstLetter, classNames, dateToDateFullname } from '@/lib/helpers'
+import { capitalizeFirstLetter, classNames, dateToDateFullname, moneyFormat } from '@/lib/helpers'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {
-  CalendarDaysIcon,
+  WalletIcon,
   CalendarIcon,
   CreditCardIcon,
   EllipsisVerticalIcon,
@@ -28,13 +28,16 @@ const statuses = {
 }
 
 import { apiService } from '@/lib/apiService'
+import { getStyleEventStatus, getTextEventStatus } from '@/lib/statusUtils'
+import Swal from 'sweetalert2'
 
-export default function DetailEvent({ event, back }) {
+export default function DetailEvent({ event, profileData, back }) {
+  console.log('event => ', event.invitationStatus)
   return (
     <>
       <div>
         <header className="relative isolate">
-          <div className="mx-auto mt-4 max-w-7xl bg-gradient-to-r from-rose-100 to-rose-50 px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mx-auto mt-4 px-4 py-10 sm:px-6 lg:px-8">
             <div className="mx-auto flex max-w-2xl items-center justify-between gap-x-8 lg:mx-0 lg:max-w-none">
               <div className="flex items-center gap-x-6">
                 <ChevronLeftIcon
@@ -59,7 +62,18 @@ export default function DetailEvent({ event, back }) {
                 {!event?.invitationStatus && event.type === 'Public' && (
                   <a
                     onClick={() => {
-                      apiService.promoterUpdateInvitationEvent(event, 'apply')
+                      if (event.maxFee >= profileData.fee.SPG) {
+                        apiService.promoterUpdateInvitationEvent(event, 'apply')
+                      } else {
+                        Swal.fire({
+                          text:
+                            'Sorry your fee is too high to join this event.\nMaximum fee is ' +
+                            moneyFormat(event.maxFee),
+                          icon: 'warning',
+                          confirmButtonText: 'Okay',
+                          confirmButtonColor: '#BE123C',
+                        })
+                      }
                     }}
                     className="cursor-pointer rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                     Apply
@@ -128,21 +142,22 @@ export default function DetailEvent({ event, back }) {
                 <dl className="flex flex-wrap">
                   <div className="flex-auto py-6 pl-6">
                     <dt className="text-sm font-semibold leading-6 text-gray-900">Description</dt>
-                    <dd className="mt-1 leading-6 text-gray-900">{event.description}</dd>
+                    <dd className="mt-1 text-sm leading-6 text-gray-900">{event.description}</dd>
                   </div>
+
                   {event.status !== '' ? (
-                    <div className="flex-none self-end px-6 pt-4">
+                    <div className="flex-none self-end border-t border-gray-900/5 px-6 pt-4">
                       <dt className="sr-only">Status</dt>
                       <dd
                         className={classNames(
-                          statuses[event.status],
+                          getStyleEventStatus(event.status),
                           'rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset'
                         )}>
-                        {event.status}
+                        {getTextEventStatus(event.status)}
                       </dd>
                     </div>
                   ) : null}
-                  <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
+                  <div className="flex w-full flex-none gap-x-4 px-6 pt-6">
                     <dt className="flex-none">
                       <span className="sr-only">Client</span>
                       <UserCircleIcon
@@ -186,13 +201,9 @@ export default function DetailEvent({ event, back }) {
                     </dd>
                   </div>
                   <div className="mb-6 mt-4 flex w-full flex-none gap-x-4 px-6">
-                    <dt className="flex-none">
-                      <CalendarDaysIcon
-                        aria-hidden="true"
-                        className="h-6 w-5 text-gray-400"
-                      />
-                    </dt>
-                    <dd className="text-sm leading-6 text-gray-700">{event.durationDays} days</dd>
+                    <dd className="text-sm leading-6 text-gray-700">
+                      Fee up to {moneyFormat(event.maxFee)}
+                    </dd>
                   </div>
                   {event.status === '' ? (
                     <a

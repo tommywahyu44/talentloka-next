@@ -16,44 +16,9 @@ const tabs = [
   { name: 'Past Events', href: '#' },
 ]
 
-export default function Events() {
+export default function Events({ profileData, listEvents }) {
   const [currentTab, setCurrentTab] = useState(0)
   const [detailEvent, setDetailEvent] = useState(null)
-  const [listEvents, setListEvents] = useState([])
-
-  const [userData, setUserData] = useState(null)
-
-  onAuthStateChanged(fireAuth, (user) => {
-    if (!user) {
-      window.location.replace('/promotor/login')
-    } else {
-      if (!userData) {
-        const email = user.email
-        const emailDoc = email.replaceAll('.', ',')
-        fetchProfile(emailDoc)
-      }
-    }
-  })
-
-  const fetchProfile = async (email) => {
-    const db = getDatabase()
-    const spgRef = ref(db, `promoters/${email}`)
-    onValue(spgRef, (snapshot) => {
-      const data = snapshot.val()
-      setUserData(data)
-    })
-  }
-
-  const fetchEvents = async () => {
-    const db = getDatabase()
-    const spgRef = ref(db, 'events/')
-    onValue(spgRef, (snapshot) => {
-      const data = snapshot.val()
-      if (data) {
-        setListEvents(Object.values(data))
-      }
-    })
-  }
 
   const getEventsUI = () => {
     switch (currentTab) {
@@ -62,7 +27,7 @@ export default function Events() {
           <GridEvents
             events={listEvents.filter((item) => item.type === 'Public')}
             detailEvent={setDetailEvent}
-            userData={userData}
+            profileData={profileData}
             type={'Public'}
           />
         )
@@ -72,10 +37,10 @@ export default function Events() {
             events={listEvents.filter(
               (item) =>
                 item?.listPromotor &&
-                item?.listPromotor?.find((item) => item?.spgCode === userData?.code)
+                item?.listPromotor?.find((item) => item?.spgCode === profileData?.code)
             )}
             detailEvent={setDetailEvent}
-            userData={userData}
+            profileData={profileData}
             type={'Invited'}
           />
         )
@@ -85,10 +50,10 @@ export default function Events() {
             events={listEvents.filter(
               (item) =>
                 item?.listPromotor &&
-                item?.listPromotor?.find((item) => item?.spgCode === userData?.code)
+                item?.listPromotor?.find((item) => item?.spgCode === profileData?.code)
             )}
             detailEvent={setDetailEvent}
-            userData={userData}
+            profileData={profileData}
             type={'Upcoming'}
           />
         )
@@ -98,10 +63,10 @@ export default function Events() {
             events={listEvents.filter(
               (item) =>
                 item?.listPromotor &&
-                item?.listPromotor?.find((item) => item?.spgCode === userData?.code)
+                item?.listPromotor?.find((item) => item?.spgCode === profileData?.code)
             )}
             detailEvent={setDetailEvent}
-            userData={userData}
+            profileData={profileData}
             type={'Past'}
           />
         )
@@ -110,23 +75,18 @@ export default function Events() {
           <GridEvents
             events={sampleEvents.publicEvents}
             detailEvent={setDetailEvent}
-            userData={userData}
+            profileData={profileData}
           />
         )
     }
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      fetchEvents()
-    }, 1000)
-  }, [])
 
   return (
     <>
       {detailEvent ? (
         <DetailEvent
           event={detailEvent}
+          profileData={profileData}
           back={() => setDetailEvent(null)}
         />
       ) : (

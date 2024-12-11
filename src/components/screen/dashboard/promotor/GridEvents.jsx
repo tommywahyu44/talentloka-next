@@ -17,7 +17,7 @@ const statuses = {
   INVITED: 'text-blue-700 bg-blue-50 ring-blue-600/10',
 }
 
-export default function GridEvents({ events, detailEvent, userData, type }) {
+export default function GridEvents({ events, detailEvent, profileData, type }) {
   const eventsData = mapUpdateDateWithTime(events)
   const getEmptyTitle = () => {
     switch (type) {
@@ -56,7 +56,7 @@ export default function GridEvents({ events, detailEvent, userData, type }) {
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {eventsData.map((event) => {
             const invitationStatus =
-              event?.listPromotor?.filter((item) => item?.spgCode === userData?.code) ?? []
+              event?.listPromotor?.filter((item) => item?.spgCode === profileData?.code) ?? []
             return (
               <li
                 key={event.id}
@@ -66,8 +66,8 @@ export default function GridEvents({ events, detailEvent, userData, type }) {
                   const detail = {
                     ...event,
                     invitationStatus: status,
-                    promotorEmail: userData?.email,
-                    promotorCode: userData?.code,
+                    promotorEmail: profileData?.email,
+                    promotorCode: profileData?.code,
                   }
                   return detailEvent(detail)
                 }}

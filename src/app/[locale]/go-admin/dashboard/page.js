@@ -63,15 +63,10 @@ export default function Example() {
     console.log('excal login', user)
     if (user) {
       if (user.email !== 'admin@talentloka.com') {
-        console.log('excal not admin', user.email)
         window.location.replace('/go-admin/login')
       } else {
-        console.log('excal admin', user.email)
         setUserData(user)
       }
-    } else {
-      console.log('excal kicked')
-      window.location.replace('/go-admin/login')
     }
   })
 
