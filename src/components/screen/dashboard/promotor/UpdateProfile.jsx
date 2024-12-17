@@ -464,7 +464,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
               ? 'Please complete your profile and we will verify it. Thank you!'
               : 'Update the profile information below and click submit to submit your update request.'}
           </p>
-          <div className="mt-10 w-full">
+          <div className="mb-24 mt-10 w-full sm:mb-0">
             <form
               className="space-y-6"
               onSubmit={handleSubmit}>
@@ -1558,13 +1558,13 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
           </div>
         </div>
       ) : (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8">
-          <div className="m-auto max-w-xl border border-stone-900 bg-white p-4 text-center shadow-sm">
-            <p className="text-4xl font-bold text-stone-900">
+        <div className="mb-24 flex min-h-full flex-1 flex-col justify-center sm:mb-0 sm:px-6 sm:py-6 lg:px-8">
+          <div className="m-auto max-w-xl bg-white text-center shadow-sm sm:border sm:border-stone-900 sm:p-4">
+            <p className="text-xl font-bold text-stone-900 sm:text-3xl md:text-4xl">
               {profileData?.fullName ? profileData.fullName.split(' ')[0] : ''}
             </p>
-            <p className="mt-2 text-base text-rose-600">{profileData?.code ?? ''}</p>
-            <div className="mt-1 flex items-center justify-center text-center text-base">
+            <p className="mt-2 text-sm text-rose-600 md:text-base">{profileData?.code ?? ''}</p>
+            <div className="mt-1 grid grid-cols-2 items-center justify-center text-left text-xs sm:flex sm:text-center sm:text-sm md:text-base">
               {textItemSmall(t('commonBirthYear'), profileData?.dob ?? '')}
               {textItemSmall(t('commonWeight'), profileData?.weightKg ?? '' + ' kg')}
               {textItemSmall(t('commonHeight'), profileData?.heightCm ?? '' + ' cm')}
@@ -1584,8 +1584,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
             <div className="my-4 flex justify-between text-center text-lg">
               <img
                 src="/images/marketingo-logo.png"
-                className="w-28"></img>
-              <div className="my-auto text-base font-light text-rose-600">
+                className="w-12 sm:w-28"></img>
+              <div className="my-auto text-sm font-light text-rose-600 sm:text-base">
                 Sales Promotion Staffing Solution
               </div>
             </div>
@@ -1593,7 +1593,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
           <div>
             <button
               type="submit"
-              className="mx-auto mt-12 flex w-48 justify-center rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+              className="mx-auto mt-4 flex w-48 justify-center rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 sm:mt-12"
               onClick={() => {
                 setIsUpdateProfile(true)
               }}>

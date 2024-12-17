@@ -1,117 +1,91 @@
 'use client'
 
-import { sampleEarnings } from '@/lib/constants'
-import { dateToDateName } from '@/lib/helpers'
+import { dateToDateName, moneyFormat } from '@/lib/helpers'
 
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  TransitionChild,
-} from '@headlessui/react'
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import {
-  Bars3Icon,
-  ChevronRightIcon,
-  ChevronUpDownIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/20/solid'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Wallet } from '@mui/icons-material'
+import { capitalize } from '@mui/material'
+import clsx from 'clsx'
 
-const transactions = [
-  {
-    id: 'AAPS0L',
-    company: 'Chase & Co.',
-    share: 'CAC',
-    commission: '+$4.37',
-    price: '$3,509.00',
-    quantity: '12.00',
-    netAmount: '$4,397.00',
-  },
-  // More transactions...
-]
+export default function Earnings({ profileData, listEvents }) {
+  const findEventTitle = (id) => {
+    const event = listEvents.find((event) => event.id === id)
+    return event ? event.title : 'Unknown Event'
+  }
 
-export default function Earnings() {
+  const transactions = [
+    ...profileData.events
+      .filter((item) => typeof item === 'object' && item !== null)
+      .map((payment) => {
+        return {
+          amount: payment.fee,
+          timestamp: payment.timestamp,
+          id: payment.id,
+          type: 'payment',
+          title: findEventTitle(payment.id),
+        }
+      }),
+    ...profileData.withdrawals
+      .filter((item) => typeof item === 'object' && item !== null)
+      .map((withdrawal) => {
+        return {
+          amount: withdrawal.amount,
+          timestamp: withdrawal.timestamp,
+          id: withdrawal.id,
+          type: 'withdrawal',
+          title: 'withdrawal',
+        }
+      }),
+  ]
+
   return (
     <>
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Earnings</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">Transactions</h1>
           </div>
-          <Menu
-            as="div"
-            className="relative">
-            <MenuButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-800">
-              Sort by
-              <ChevronUpDownIcon
-                aria-hidden="true"
-                className="h-5 w-5 text-gray-500"
-              />
-            </MenuButton>
-            <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2.5 w-40 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
-              <MenuItem>
-                <a
-                  href="#"
-                  className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
-                  Event name
-                </a>
-              </MenuItem>
-              <MenuItem>
-                <a
-                  href="#"
-                  className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
-                  Date
-                </a>
-              </MenuItem>
-              <MenuItem>
-                <a
-                  href="#"
-                  className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
-                  Fee
-                </a>
-              </MenuItem>
-            </MenuItems>
-          </Menu>
-          <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-none">
-            <button
-              type="button"
-              className="block rounded-md bg-rose-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-              Export
-            </button>
+          <div className="mt-4 flex max-w-40 flex-row items-center justify-center space-x-2 rounded-md bg-gradient-to-br from-rose-500 to-rose-600 p-2 text-white shadow-sm sm:mt-0">
+            <Wallet className="" />
+            <h3 className="text-sm font-bold sm:text-base">{moneyFormat(profileData.wallet)}</h3>
           </div>
         </div>
         <div className="mt-8 flow-root">
-          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full space-y-6 py-2 align-middle sm:px-6 lg:px-8">
-              {sampleEarnings.map((transaction) => (
-                <div
-                  key={transaction.id}
-                  className="rounded-xl bg-stone-100 p-4 shadow-sm">
-                  <div className="flex w-full flex-row justify-between">
-                    <h1>{transaction.event}</h1>
-                    <div>{dateToDateName(transaction.date)}</div>
-                  </div>
-                  <div className="mt-1 flex w-full flex-row justify-between">
-                    <div>{transaction.company}</div>
-                    <div className="text-green-500">Rp. {transaction.totalFee}</div>
+          <div className="inline-block min-w-full space-y-6 py-2 align-middle">
+            {transactions.map((transaction) => (
+              <div
+                key={transaction.id}
+                className="flex flex-row justify-between space-x-2 rounded-xl bg-gradient-to-br from-rose-50/70 to-rose-50/50 p-4 shadow-sm">
+                <div className="flex flex-col justify-center text-gray-700">
+                  {transaction.type === 'payment' && (
+                    <div className="line-clamp-1 text-sm font-semibold sm:text-lg">
+                      {transaction.title}
+                    </div>
+                  )}
+                  <div
+                    className={clsx(
+                      transaction.type === 'payment'
+                        ? 'text-xs sm:text-base'
+                        : 'text-sm font-semibold sm:text-lg'
+                    )}>
+                    {capitalize(transaction.type)}
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="mt-1 flex flex-col items-end text-gray-700">
+                  <div
+                    className={clsx(
+                      transaction.type === 'payment' ? 'text-green-600' : 'text-rose-600',
+                      'text-sm sm:text-lg'
+                    )}>
+                    {(transaction.type === 'payment' ? '' : '- ') + moneyFormat(transaction.amount)}
+                  </div>
+                  <div className="text-xs sm:text-base">
+                    {dateToDateName(parseInt(transaction.timestamp))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { PieChart } from '@mui/x-charts'
 import { useDrawingArea } from '@mui/x-charts/hooks'
 import { styled } from '@mui/material/styles'
 import Calendar from 'react-calendar'
+import CalendarEvent from './CalendarEvent'
 
 const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
@@ -66,6 +67,25 @@ export default function Home({ profileData, listEvents, setNavigation }) {
         return item?.spgCode === profileData?.code
       })
   )
+
+  const filteredEventsCalendar = listEvents
+    .filter(
+      (item) =>
+        item?.listPromotor &&
+        item?.listPromotor?.find((item) => item?.spgCode === profileData?.code)
+    )
+    .map((event) => {
+      const statusPromotor = event?.listPromotor?.find(
+        (item) => item?.spgCode === profileData?.code
+      )
+      return {
+        title: event?.title,
+        startDate: event?.startDate,
+        endDate: event?.endDate,
+        status: statusPromotor?.invitationStatus,
+      }
+    })
+
   // Count occurrences of each industry
   const industryCounts = filteredEvents.reduce((acc, event) => {
     acc[event.industry] = (acc[event.industry] || 0) + 1
@@ -137,9 +157,9 @@ export default function Home({ profileData, listEvents, setNavigation }) {
   // eslint-disable-next-line react/display-name
   const PieChartWidget = React.memo(({ data }) => {
     return (
-      <div className="items-center justify-center rounded-lg px-4 py-8 text-center shadow sm:px-8">
+      <div className="items-center justify-center rounded-lg py-8 pr-0 text-center shadow sm:px-8 md:pr-4 xl:pl-4">
         <h3 className="text-xl font-bold text-gray-800">Events Chart</h3>
-        <div className="hidden sm:block">
+        <div className="hidden sm:flex md:flex-row xl:flex-col">
           {data.length > 0 && (
             <PieChart
               series={[
@@ -159,8 +179,10 @@ export default function Home({ profileData, listEvents, setNavigation }) {
               <PieCenterLabel>{data.length} events</PieCenterLabel>
             </PieChart>
           )}
+
+          <CalendarEvent listEvents={filteredEventsCalendar} />
         </div>
-        <div className="block sm:hidden">
+        <div className="block space-y-8 sm:hidden">
           {data.length > 0 && (
             <PieChart
               series={[
@@ -187,6 +209,7 @@ export default function Home({ profileData, listEvents, setNavigation }) {
               <PieCenterLabelMobile>{data.length} events</PieCenterLabelMobile>
             </PieChart>
           )}
+          <CalendarEvent listEvents={filteredEventsCalendar} />
         </div>
       </div>
     )

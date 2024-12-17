@@ -32,7 +32,6 @@ import { getStyleEventStatus, getTextEventStatus } from '@/lib/statusUtils'
 import Swal from 'sweetalert2'
 
 export default function DetailEvent({ event, profileData, back }) {
-  console.log('event => ', event.invitationStatus)
   return (
     <>
       <div>

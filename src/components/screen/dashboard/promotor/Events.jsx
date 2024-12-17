@@ -8,6 +8,7 @@ import { getDatabase, ref, onValue } from 'firebase/database'
 import { sampleEvents } from '@/lib/constants'
 import { classNames } from '@/lib/helpers'
 import { useState, useEffect } from 'react'
+import CalendarEvent from './CalendarEvent'
 
 const tabs = [
   { name: 'Public Events', href: '#' },

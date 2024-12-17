@@ -78,7 +78,11 @@ function getHomeUI(navigation, setNavigation, email, profileData, listEvents) {
           listEvents={listEvents}></Home>
       )
     case 'earnings':
-      return <Earnings></Earnings>
+      return (
+        <Earnings
+          profileData={profileData}
+          listEvents={listEvents}></Earnings>
+      )
     default:
       return <Events email={email} />
   }
