@@ -1,3 +1,5 @@
+import { capitalize } from '@mui/material'
+
 export function getTextEventStatus(status) {
   switch (status.toUpperCase()) {
     case 'IN_REVIEW':
@@ -38,10 +40,31 @@ export function getTextInvitationStatus(status) {
       case 'EXPIRED':
         return 'Expired'
       default:
-        return status
+        return capitalize(status)
     }
   } else {
-    return ''
+    return 'Public'
+  }
+}
+
+export function getStyleInvitationStatus(status) {
+  if (status) {
+    switch (status.toUpperCase()) {
+      case 'INVITED':
+        return 'bg-indigo-500'
+      case 'APPLIED':
+        return 'bg-blue-500'
+      case 'APPROVED':
+        return 'bg-emerald-500'
+      case 'DECLINED':
+        return 'bg-red-500'
+      case 'EXPIRED':
+        return 'bg-gray-500'
+      default:
+        return 'bg-gray-300'
+    }
+  } else {
+    return 'bg-rose-500'
   }
 }
 

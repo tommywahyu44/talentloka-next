@@ -68,24 +68,6 @@ export default function Home({ profileData, listEvents, setNavigation }) {
       })
   )
 
-  const filteredEventsCalendar = listEvents
-    .filter(
-      (item) =>
-        item?.listPromotor &&
-        item?.listPromotor?.find((item) => item?.spgCode === profileData?.code)
-    )
-    .map((event) => {
-      const statusPromotor = event?.listPromotor?.find(
-        (item) => item?.spgCode === profileData?.code
-      )
-      return {
-        title: event?.title,
-        startDate: event?.startDate,
-        endDate: event?.endDate,
-        status: statusPromotor?.invitationStatus,
-      }
-    })
-
   // Count occurrences of each industry
   const industryCounts = filteredEvents.reduce((acc, event) => {
     acc[event.industry] = (acc[event.industry] || 0) + 1
@@ -157,9 +139,8 @@ export default function Home({ profileData, listEvents, setNavigation }) {
   // eslint-disable-next-line react/display-name
   const PieChartWidget = React.memo(({ data }) => {
     return (
-      <div className="items-center justify-center rounded-lg py-8 pr-0 text-center shadow sm:px-8 md:pr-4 xl:pl-4">
-        <h3 className="text-xl font-bold text-gray-800">Events Chart</h3>
-        <div className="hidden sm:flex md:flex-row xl:flex-col">
+      <div className="h-[28rem] items-center justify-center rounded-lg py-4 pr-0 text-center shadow sm:px-8 md:pr-4 xl:pl-4">
+        <div className="hidden h-full sm:flex md:flex-row xl:flex-col">
           {data.length > 0 && (
             <PieChart
               series={[
@@ -175,12 +156,15 @@ export default function Home({ profileData, listEvents, setNavigation }) {
               ]}
               width={400}
               height={300}
-              className="mx-auto">
+              className="m-auto">
               <PieCenterLabel>{data.length} events</PieCenterLabel>
             </PieChart>
           )}
 
-          <CalendarEvent listEvents={filteredEventsCalendar} />
+          <CalendarEvent
+            listEvents={listEvents}
+            profileData={profileData}
+          />
         </div>
         <div className="block space-y-8 sm:hidden">
           {data.length > 0 && (
@@ -209,20 +193,14 @@ export default function Home({ profileData, listEvents, setNavigation }) {
               <PieCenterLabelMobile>{data.length} events</PieCenterLabelMobile>
             </PieChart>
           )}
-          <CalendarEvent listEvents={filteredEventsCalendar} />
+          <CalendarEvent
+            listEvents={listEvents}
+            profileData={profileData}
+          />
         </div>
       </div>
     )
   })
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date)
-  }
-
-  const getEventsForDate = (date) => {
-    const formattedDate = date.toISOString().split('T')[0]
-    return events.filter((event) => event.date === formattedDate)
-  }
 
   useEffect(() => {
     fetchKpi()
@@ -305,26 +283,6 @@ export default function Home({ profileData, listEvents, setNavigation }) {
           </div>
           <div className="hidden xl:col-span-1 xl:block">
             <PieChartWidget data={pieChartData} />
-            {/* <div className="text-grey-800 mt-4">
-              <Calendar
-                onChange={handleDateChange}
-                value={selectedDate}
-              />
-              <div className="mt-4">
-                <h3>Events on {selectedDate.toLocaleDateString()}:</h3>
-                <div>
-                  {getEventsForDate(selectedDate).map((event, index) => (
-                    <div
-                      key={index}
-                      className="text-grey-800 mt-2 rounded border border-gray-300 p-2">
-                      <strong>{event.title}</strong>
-                      <p className="text-grey-800">{event.description}</p>
-                    </div>
-                  ))}
-                  {getEventsForDate(selectedDate).length === 0 && <p>No events on this day.</p>}
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       )}
