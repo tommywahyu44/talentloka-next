@@ -137,7 +137,7 @@ export default function Home({ profileData, listEvents, setNavigation }) {
   // eslint-disable-next-line react/display-name
   const PieChartWidget = React.memo(({ data }) => {
     return (
-      <div className="h-[28rem] items-center justify-center rounded-lg py-4 pr-0 text-center shadow sm:px-8 md:pr-4 xl:pl-4">
+      <div className="h-auto items-center justify-center rounded-lg py-4 pr-0 text-center shadow sm:px-8 md:pr-4 lg:h-[28rem] xl:h-auto xl:pl-4">
         <div className="hidden h-full sm:flex md:flex-row xl:flex-col">
           {data.length > 0 && (
             <PieChart

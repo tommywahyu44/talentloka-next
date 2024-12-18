@@ -122,7 +122,7 @@ export default function CalendarEvent({ listEvents, profileData }) {
 
       <div className="mt-4">
         {eventsForSelectedDate.length > 0 ? (
-          <ul className="mt-2 list-inside list-disc text-left text-xs text-gray-700">
+          <ul className="mt-2 list-inside list-disc text-center text-xs text-gray-700">
             {eventsForSelectedDate.map((event, index) => (
               <li
                 key={index}
