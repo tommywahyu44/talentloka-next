@@ -1,17 +1,17 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { useState, useEffect } from 'react'
-import Swal from 'sweetalert2'
-import axios from 'axios'
-import { Button, Modal } from 'flowbite-react'
 import { textItemSmall } from '@/lib/components.jsx'
-import { classNames, formatIndonesianNumber } from '@/lib/helpers'
-import SpgTable from './SpgTable'
+import { classNames } from '@/lib/helpers'
+import { fireAuth } from '@/plugins/firebase'
+import axios from 'axios'
+import { onAuthStateChanged } from 'firebase/auth'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { Button, Modal } from 'flowbite-react'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 import SpgRegisteredTable from './SpgRegisteredTable'
+import SpgTable from './SpgTable'
 
 const tabs = [
   { name: 'Registered Promotor', href: '#', current: true },

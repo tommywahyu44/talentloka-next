@@ -1,13 +1,13 @@
 'use client'
 
-import { useLocale, useTranslations } from 'next-intl'
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
 import LanguageChanger from '@/components/LanguageChanger'
 import { localStorageKeys } from '@/lib/constants'
+import { fireAuth } from '@/plugins/firebase'
+import { Dialog, DialogPanel } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useLocale, useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 const navigation = [
   { name: 'Solution', href: '#solution' },

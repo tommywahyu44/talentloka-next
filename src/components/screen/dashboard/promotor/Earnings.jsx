@@ -2,8 +2,6 @@
 
 import { dateToDateName, moneyFormat } from '@/lib/helpers'
 
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Wallet } from '@mui/icons-material'
 import { capitalize } from '@mui/material'
 import clsx from 'clsx'

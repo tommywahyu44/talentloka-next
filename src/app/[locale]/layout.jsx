@@ -1,11 +1,11 @@
-import { notFound } from 'next/navigation'
+import { AuthProvider } from '@/contexts/AuthContext'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { locales } from '../../navigation'
 import dynamic from 'next/dynamic'
 import { Nunito, Roboto } from 'next/font/google'
+import { notFound } from 'next/navigation'
+import { locales } from '../../navigation'
 import './globals.css'
-import { AuthProvider } from '@/contexts/AuthContext'
 
 const nunito = Nunito({
   subsets: ['latin'],

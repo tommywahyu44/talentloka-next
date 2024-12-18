@@ -1,6 +1,6 @@
-import { DataGrid } from '@mui/x-data-grid'
 import { formatIndonesianNumber } from '@/lib/helpers'
-import { UserCircleIcon, CheckCircleIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon, EnvelopeIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { DataGrid } from '@mui/x-data-grid'
 
 export default function SpgRegisteredTable({ listSpg, setOpenModal, verifySPG }) {
   if (!listSpg) {

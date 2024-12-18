@@ -1,7 +1,7 @@
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { checkOthersInArray } from '@/lib/helpers'
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Fragment } from 'react'
 
 export const textItemSmall = (title, desc) => {
   return (

@@ -1,7 +1,6 @@
 'use client'
 
-import { useRouter, usePathname } from '@/navigation'
-import Image from 'next/image'
+import { usePathname, useRouter } from '@/navigation'
 
 export default function LanguageChanger({ locale }) {
   const router = useRouter()

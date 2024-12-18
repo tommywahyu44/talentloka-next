@@ -1,15 +1,15 @@
 'use event'
 
-import { BuildingOfficeIcon, ClockIcon } from '@heroicons/react/24/outline'
 import {
-  dateToSimpleDate,
-  dateToDaysDifference,
-  dateIsPast,
-  classNames,
   capitalizeFirstLetter,
+  classNames,
+  dateIsPast,
+  dateToDaysDifference,
+  dateToSimpleDate,
   mapUpdateDateWithTime,
 } from '@/lib/helpers'
 import { getStyleEventStatus, getTextEventStatus } from '@/lib/statusUtils'
+import { BuildingOfficeIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 export default function ListEvents({ title, events, profileData, detailEvent, setNavigation }) {
   const eventsData = mapUpdateDateWithTime(events)

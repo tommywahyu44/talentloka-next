@@ -1,14 +1,14 @@
 'use event'
 
-import { BuildingOfficeIcon, ClockIcon } from '@heroicons/react/24/outline'
 import {
-  dateToSimpleDate,
-  dateToDaysDifference,
-  dateIsPast,
-  classNames,
   capitalizeFirstLetter,
+  classNames,
+  dateIsPast,
+  dateToDaysDifference,
+  dateToSimpleDate,
   mapUpdateDateWithTime,
 } from '@/lib/helpers'
+import { BuildingOfficeIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 const statuses = {
   APPROVED: 'text-green-700 bg-green-50 ring-green-600/20',

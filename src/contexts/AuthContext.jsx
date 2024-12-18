@@ -1,18 +1,17 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react'
+import { fireAuth, firestore } from '@/plugins/firebase'
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  sendEmailVerification,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
-  sendEmailVerification,
-  onAuthStateChanged,
-  User,
-  setPersistence,
-  browserLocalPersistence,
 } from 'firebase/auth'
-import { fireAuth, firestore } from '@/plugins/firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const AuthContext = createContext(null)
 

@@ -1,24 +1,24 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useState, Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
-import { useCountries } from 'use-react-countries'
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
-import { ChevronDownIcon, ArrowLeftIcon } from '@heroicons/react/20/solid'
-import axios from 'axios'
-import Swal from 'sweetalert2'
+import { checkbox } from '@/lib/components'
+import { textItemSmall } from '@/lib/components.jsx'
 import {
   classNames,
-  limitFileSizeMb,
-  getYoutubeVideoEmbed,
-  replaceCustomOthers,
   getOthersInArray,
+  getYoutubeVideoEmbed,
+  limitFileSizeMb,
+  replaceCustomOthers,
 } from '@/lib/helpers'
-import { checkbox } from '@/lib/components'
-import Accordion from '/src/components/list/Accordion.jsx'
-import { textItemSmall } from '@/lib/components.jsx'
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import { ArrowLeftIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import axios from 'axios'
 import clsx from 'clsx'
+import Swal from 'sweetalert2'
+import { useCountries } from 'use-react-countries'
+import Accordion from '/src/components/list/Accordion.jsx'
 
 export default function UpdateProfile({ email, profileData, isFromRegister }) {
   const t = useTranslations('default')

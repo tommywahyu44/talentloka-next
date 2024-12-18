@@ -1,10 +1,10 @@
 'use client'
 
+import AuthLayout from '@/components/layout/AuthLayout'
+import LoginForm from '@/components/screen/auth/admin/LoginForm'
 import { fireAuth } from '@/plugins/firebase'
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
-import LoginForm from '@/components/screen/auth/admin/LoginForm'
 import Swal from 'sweetalert2'
-import AuthLayout from '@/components/layout/AuthLayout'
 
 function signIn(email, password) {
   signInWithEmailAndPassword(fireAuth, email, password)

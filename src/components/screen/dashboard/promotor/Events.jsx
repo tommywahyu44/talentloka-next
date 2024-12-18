@@ -1,14 +1,10 @@
 'use client'
 
-import GridEvents from '@/components/screen/dashboard/promotor/GridEvents'
 import DetailEvent from '@/components/screen/dashboard/promotor/DetailEvent'
-import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
+import GridEvents from '@/components/screen/dashboard/promotor/GridEvents'
 import { sampleEvents } from '@/lib/constants'
 import { classNames } from '@/lib/helpers'
-import { useState, useEffect } from 'react'
-import CalendarEvent from './CalendarEvent'
+import { useState } from 'react'
 
 const tabs = [
   { name: 'Public Events', href: '#' },

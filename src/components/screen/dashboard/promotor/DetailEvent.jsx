@@ -1,24 +1,16 @@
 'use client'
 
-import { useState } from 'react'
 import { capitalizeFirstLetter, classNames, dateToDateFullname, moneyFormat } from '@/lib/helpers'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {
-  WalletIcon,
+  BuildingOfficeIcon,
   CalendarIcon,
-  CreditCardIcon,
-  EllipsisVerticalIcon,
-  UserCircleIcon,
   ChevronLeftIcon,
   ClockIcon,
-  BuildingOfficeIcon,
+  EllipsisVerticalIcon,
+  UserCircleIcon,
 } from '@heroicons/react/20/solid'
-import {
-  BellIcon,
-  XMarkIcon as XMarkIconOutline,
-  HeartIcon,
-  ShareIcon,
-} from '@heroicons/react/24/outline'
+import { HeartIcon, ShareIcon } from '@heroicons/react/24/outline'
 
 const statuses = {
   Paid: 'text-green-700 bg-green-50 ring-green-600/20',

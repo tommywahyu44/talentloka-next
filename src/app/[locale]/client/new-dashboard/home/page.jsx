@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
-import { Filter, Search, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useModels } from '@/hooks/useModels'
 import ModelCard from '@/components/card/ModelCard.jsx'
 import FilterDrawer from '@/components/screen/dashboard/client/FilterDrawer.jsx'
+import { useModels } from '@/hooks/useModels'
 import localStorageService from '@/utils/localStorageService'
+import { ChevronLeft, ChevronRight, Filter, Search } from 'lucide-react'
+import React, { useMemo, useState } from 'react'
 
 const ITEMS_PER_PAGE = 20
 

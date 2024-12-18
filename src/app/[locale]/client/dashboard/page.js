@@ -1,40 +1,21 @@
 'use client'
 
-import { useLocale } from 'next-intl'
-import { Fragment, useState } from 'react'
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Transition,
-} from '@headlessui/react'
-import OnboardingForm from '@/components/screen/dashboard/client/OnboardingForm'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import Navigation from '@/components/screen/dashboard/client/Navigation'
+import OnboardingForm from '@/components/screen/dashboard/client/OnboardingForm'
 import { lottieFiles } from '@/lib/constants'
-import { classNames } from '@/lib/helpers'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import { useLocale } from 'next-intl'
+import { useState } from 'react'
 
-import {
-  Bars3Icon,
-  BellIcon,
-  XMarkIcon,
-  DocumentMagnifyingGlassIcon,
-  EnvelopeIcon,
-} from '@heroicons/react/24/outline'
+import { DocumentMagnifyingGlassIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
-import Filters from '@/components/screen/dashboard/client/Filters'
 import Events from '@/components/screen/dashboard/client/Events'
+import Filters from '@/components/screen/dashboard/client/Filters'
 import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
+import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth'
+import { getDatabase, onValue, ref } from 'firebase/database'
 
 import Swal from 'sweetalert2'
-import LanguageChanger from '@/components/LanguageChanger'
-import { clientDashboard } from '@/lib/constants'
 
 function sendEmailNotification() {
   Swal.showLoading()

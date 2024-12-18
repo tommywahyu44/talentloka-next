@@ -1,18 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
-import {
-  X,
-  MapPin,
-  Download,
-  Eye,
-  Calendar,
-  Ruler,
-  Weight,
-  Building2,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react'
 import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
+import { Calendar, ChevronLeft, ChevronRight, MapPin, Ruler, Weight, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const TalentDetailsModal = ({ isOpen, onClose, model }) => {
   const [selectedImage, setSelectedImage] = useState(0)

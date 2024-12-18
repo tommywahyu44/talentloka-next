@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function RegistrationForm({ createUser }) {
   const t = useTranslations('default')

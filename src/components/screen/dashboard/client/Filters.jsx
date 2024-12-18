@@ -1,14 +1,12 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { lottieFiles } from '@/lib/constants'
 import { classNames } from '@/lib/helpers'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import axios from 'axios'
+import { useTranslations } from 'next-intl'
+import Swal from 'sweetalert2'
 
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { Fragment, useState, useEffect } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -22,25 +20,25 @@ import {
   Transition,
   TransitionChild,
 } from '@headlessui/react'
-import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { Badge } from 'flowbite-react'
 import {
-  ChevronDownIcon,
   AdjustmentsHorizontalIcon,
-  BarsArrowUpIcon,
-  MinusIcon,
-  PlusIcon,
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
+  BarsArrowUpIcon,
   CheckCircleIcon,
+  MinusIcon,
+  PlusIcon,
 } from '@heroicons/react/20/solid'
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { Badge } from 'flowbite-react'
+import { Fragment, useEffect, useState } from 'react'
 
-import '@/styles/cards.css'
-import TalentDetailModal from './TalentDetailModal'
-import CreateEventModal from './CreateEventModal'
-import { clientDashboard } from '@/lib/constants'
-import SpgCard from './SpgCard'
 import { ModelCard } from '@/components/card/Card'
+import { clientDashboard } from '@/lib/constants'
+import '@/styles/cards.css'
+import CreateEventModal from './CreateEventModal'
+import TalentDetailModal from './TalentDetailModal'
 
 var listSpg = []
 var listData = []
@@ -466,7 +464,7 @@ export default function Filters({ email, listInitFavorites }) {
                     autoplay
                   />
                 ) : queryResults.length > 0 ? (
-                  <div className="h-main-nav grid grid-cols-2 gap-4 overflow-auto sm:h-[75vh] md:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid h-main-nav grid-cols-2 gap-4 overflow-auto sm:h-[75vh] md:grid-cols-3 lg:grid-cols-4">
                     {queryResults.map((card, index) => {
                       return (
                         <ModelCard

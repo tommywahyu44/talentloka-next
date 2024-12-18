@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
-import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth'
-import RegisterForm from '@/components/screen/auth/client/RegisterForm'
 import AuthLayout from '@/components/layout/AuthLayout'
-import Swal from 'sweetalert2'
+import RegisterForm from '@/components/screen/auth/client/RegisterForm'
+import { fireAuth } from '@/plugins/firebase'
 import localStorageService from '@/utils/localStorageService'
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import Swal from 'sweetalert2'
 
 function createUser(email, password) {
   createUserWithEmailAndPassword(fireAuth, email, password)

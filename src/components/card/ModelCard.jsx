@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { MapPin, Briefcase } from 'lucide-react'
 import TalentDetailsModal from '@/components/screen/dashboard/client/TalentDetailsModal'
+import { Briefcase, MapPin } from 'lucide-react'
+import { useState } from 'react'
 
 const ModelCard = ({ model }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)

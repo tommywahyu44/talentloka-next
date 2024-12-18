@@ -1,15 +1,15 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { apiService } from '@/lib/apiService'
+import { classNames, mapUpdateDateWithTime } from '@/lib/helpers'
 import { fireAuth } from '@/plugins/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { useState, useEffect } from 'react'
-import { classNames, mapUpdateDateWithTime } from '@/lib/helpers'
-import ListEvents from './ListEvents'
-import CreateEventModal from '../client/CreateEventModal'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 import AddPromotorDialog from '../client/AddPromotorDialog'
-import { apiService } from '@/lib/apiService'
+import CreateEventModal from '../client/CreateEventModal'
+import ListEvents from './ListEvents'
 
 const tabs = [
   { name: 'Active', href: '#', current: true },

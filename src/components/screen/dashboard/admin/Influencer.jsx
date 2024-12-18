@@ -1,14 +1,13 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
 import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { useState, useEffect } from 'react'
-import Swal from 'sweetalert2'
 import axios from 'axios'
+import { onAuthStateChanged } from 'firebase/auth'
+import { getDatabase, onValue, ref } from 'firebase/database'
 import { Button, Modal } from 'flowbite-react'
-import { textItemSmall } from '@/lib/components.jsx'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 function verifyInfluencer(email, code, name) {
   Swal.fire({

@@ -1,8 +1,8 @@
-import { Button, Modal, Badge } from 'flowbite-react'
-import * as htmlToImage from 'html-to-image'
-import download from 'downloadjs'
-import { useState } from 'react'
 import { textItemSmall } from '@/lib/components.jsx'
+import download from 'downloadjs'
+import { Badge, Button, Modal } from 'flowbite-react'
+import * as htmlToImage from 'html-to-image'
+import { useState } from 'react'
 export default function TalentDetailModal({ openModal, setOpenModal, cardEntity, t }) {
   const [isShowExperience, setShowExperience] = useState(false)
 

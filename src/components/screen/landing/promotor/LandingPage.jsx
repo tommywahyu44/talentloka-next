@@ -4,7 +4,7 @@ import Feature from './Feature'
 import Footer from './Footer'
 import Header from './Header'
 import Hero from './Hero'
-import Testimonials from './Testimonials'
 import LogoPartners from './LogoPartners'
+import Testimonials from './Testimonials'
 
-export { CTA, Faqs, Feature, Footer, Header, Hero, Testimonials, LogoPartners }
+export { CTA, Faqs, Feature, Footer, Header, Hero, LogoPartners, Testimonials }

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { X, ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 const FilterDrawer = ({ isOpen, onClose, initialFilters, onApply }) => {
   const [expandedSection, setExpandedSection] = useState(null)

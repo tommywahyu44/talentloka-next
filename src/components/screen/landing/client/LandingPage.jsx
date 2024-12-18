@@ -3,4 +3,4 @@ import CTA from './CTA'
 import Footer from './Footer'
 import Header from './Header'
 
-export { Contents, CTA, Footer, Header }
+export { CTA, Contents, Footer, Header }

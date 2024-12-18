@@ -1,12 +1,12 @@
-import { capitalizeFirstLetter, classNames, moneyFormat, dateToTwoDateRange } from '@/lib/helpers'
-import { getStyleEventStatus, getTextEventStatus, getStyleEventType } from '@/lib/statusUtils'
+import { capitalizeFirstLetter, classNames, dateToTwoDateRange, moneyFormat } from '@/lib/helpers'
+import { getStyleEventStatus, getStyleEventType, getTextEventStatus } from '@/lib/statusUtils'
 import {
-  UserGroupIcon,
+  CheckIcon,
   LockClosedIcon,
   PencilIcon,
-  XMarkIcon,
+  UserGroupIcon,
   UserPlusIcon,
-  CheckIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
 
 export default function ListEvents({

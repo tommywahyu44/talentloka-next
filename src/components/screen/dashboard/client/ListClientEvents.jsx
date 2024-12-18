@@ -1,30 +1,30 @@
 import {
+  BanknotesIcon,
+  BuildingOfficeIcon,
   CalendarDaysIcon,
   ClockIcon,
-  BuildingOfficeIcon,
+  LockClosedIcon,
+  PencilIcon,
   TicketIcon,
   UserGroupIcon,
-  UsersIcon,
-  LockClosedIcon,
-  WalletIcon,
-  PencilIcon,
-  XMarkIcon,
   UserPlusIcon,
-  BanknotesIcon,
+  UsersIcon,
+  WalletIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
 
 import {
+  calculateHourDifference,
   capitalizeFirstLetter,
   classNames,
-  moneyFormat,
-  dateToTwoDateRange,
   dateDaysUntil,
-  calculateHourDifference,
+  dateToTwoDateRange,
+  moneyFormat,
   paymentCalculation,
 } from '@/lib/helpers'
 import {
-  getStyleEventStatus,
   getStyleBundlePackage,
+  getStyleEventStatus,
   getStyleEventType,
   getTextEventStatus,
 } from '@/lib/statusUtils'

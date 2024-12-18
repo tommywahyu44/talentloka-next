@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { useCountries } from 'use-react-countries'
 
 export default function PhoneInput({

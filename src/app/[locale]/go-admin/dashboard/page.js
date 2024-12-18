@@ -1,21 +1,21 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { Fragment, useState } from 'react'
 import Clients from '@/components/screen/dashboard/admin/Clients'
-import Spg from '@/components/screen/dashboard/admin/Spg'
 import Events from '@/components/screen/dashboard/admin/Events'
+import Spg from '@/components/screen/dashboard/admin/Spg'
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
 import {
   Bars3Icon,
   CalendarIcon,
   ChartPieIcon,
-  UserGroupIcon,
   HomeIcon,
+  TicketIcon,
+  UserGroupIcon,
   UsersIcon,
   XMarkIcon,
-  TicketIcon,
 } from '@heroicons/react/24/outline'
+import { useTranslations } from 'next-intl'
+import { Fragment, useState } from 'react'
 
 import { fireAuth } from '@/plugins/firebase'
 import { onAuthStateChanged } from 'firebase/auth'

@@ -1,4 +1,4 @@
-import { format, addDays, differenceInDays, isBefore } from 'date-fns'
+import { addDays, differenceInDays, format, isBefore } from 'date-fns'
 
 export const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')

@@ -1,6 +1,6 @@
-import { DataGrid } from '@mui/x-data-grid'
 import { formatIndonesianNumber } from '@/lib/helpers'
 import { UserCircleIcon } from '@heroicons/react/24/outline'
+import { DataGrid } from '@mui/x-data-grid'
 
 export default function SpgTable({ listSpg, setOpenModal }) {
   const columns = [

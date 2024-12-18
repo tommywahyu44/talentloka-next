@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { moneyFormat } from '@/lib/helpers'
+import { useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 
 import { ArrowDownIcon } from '@heroicons/react/24/outline'

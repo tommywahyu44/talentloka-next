@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFunctions } from 'firebase/functions'
-import { getFirestore } from 'firebase/firestore'
 import { getDatabase } from 'firebase/database'
+import { getFirestore } from 'firebase/firestore'
+import { getFunctions } from 'firebase/functions'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,4 +27,4 @@ const functions = getFunctions(firebase, 'asia-southeast1')
 const firestore = getFirestore(firebase)
 const database = getDatabase(firebase)
 
-export { fireAuth, firebase, functions, firestore, database }
+export { database, fireAuth, firebase, firestore, functions }

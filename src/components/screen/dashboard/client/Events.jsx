@@ -1,13 +1,12 @@
-import CreateEventModal from './CreateEventModal'
-import { useState, useEffect } from 'react'
-import { getDatabase, ref, onValue } from 'firebase/database'
-import ListClientEvents from './ListClientEvents'
 import { apiService } from '@/lib/apiService'
-import AddPromotorDialog from './AddPromotorDialog'
 import { mapUpdateDateWithTime } from '@/lib/helpers'
-import { set } from 'date-fns'
-import PaymentModal from './PaymentModal'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { useEffect, useState } from 'react'
+import AddPromotorDialog from './AddPromotorDialog'
+import CreateEventModal from './CreateEventModal'
+import ListClientEvents from './ListClientEvents'
 import PaymentHistoryModal from './PaymentHistoryModal'
+import PaymentModal from './PaymentModal'
 
 export default function Events({ email }) {
   const [listEvents, setListEvents] = useState([])

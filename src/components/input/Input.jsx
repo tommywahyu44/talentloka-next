@@ -1,6 +1,6 @@
-import TextInput from './TextInput'
+import DropdownInput from './DropdownInput'
 import FileInput from './FileInput'
 import PhoneInput from './PhoneInput'
-import DropdownInput from './DropdownInput'
+import TextInput from './TextInput'
 
-export { TextInput, FileInput, PhoneInput, DropdownInput }
+export { DropdownInput, FileInput, PhoneInput, TextInput }

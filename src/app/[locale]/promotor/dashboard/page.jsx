@@ -1,28 +1,21 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { Fragment, useState } from 'react'
 import UpdateProfile from '@/components/screen/dashboard/promotor/UpdateProfile'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { lottieFiles } from '@/lib/constants'
-import { classNames } from '@/lib/helpers'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import Box from '@mui/material/Box'
-import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
+import Stepper from '@mui/material/Stepper'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
-import {
-  Bars3Icon,
-  BellIcon,
-  XMarkIcon,
-  DocumentMagnifyingGlassIcon,
-  EnvelopeIcon,
-} from '@heroicons/react/24/outline'
+import { DocumentMagnifyingGlassIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
-import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth'
-import { getDatabase, ref, onValue } from 'firebase/database'
 import Navigation from '@/components/screen/dashboard/promotor/Navigation'
+import { fireAuth } from '@/plugins/firebase'
+import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth'
+import { getDatabase, onValue, ref } from 'firebase/database'
 
 const stepsInfo = [
   { id: 'Step 1', name: 'Email Verification', href: '#' },
@@ -30,10 +23,10 @@ const stepsInfo = [
   { id: 'Step 3', name: 'Admin Approval', href: '#' },
 ]
 
-import Swal from 'sweetalert2'
+import Earnings from '@/components/screen/dashboard/promotor/Earnings'
 import Events from '@/components/screen/dashboard/promotor/Events'
 import Home from '@/components/screen/dashboard/promotor/Home'
-import Earnings from '@/components/screen/dashboard/promotor/Earnings'
+import Swal from 'sweetalert2'
 
 function sendEmailNotification() {
   const actionCodeSettings = {

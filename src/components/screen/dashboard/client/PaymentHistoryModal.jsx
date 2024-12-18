@@ -1,11 +1,7 @@
-import { useTranslations } from 'next-intl'
-import { useState, useEffect } from 'react'
+import { dateToGoodDay, moneyFormat } from '@/lib/helpers'
 import { Dialog, DialogContent } from '@mui/material'
-import { dateToGoodDay, moneyFormat, paymentCalculation } from '@/lib/helpers'
-import { apiService } from '@/lib/apiService'
-import { CopyButton } from '@/components/button/Button'
-import DropZoneInput from '@/components/input/DropZoneInput'
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 
 const bankAccounts = [
   {

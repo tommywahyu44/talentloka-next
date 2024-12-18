@@ -1,13 +1,13 @@
-import * as React from 'react'
-import dayjs from 'dayjs'
+import { getStyleInvitationStatus, getTextInvitationStatus } from '@/lib/statusUtils'
 import Badge from '@mui/material/Badge'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { PickersDay } from '@mui/x-date-pickers/PickersDay'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { PickersDay } from '@mui/x-date-pickers/PickersDay'
 import clsx from 'clsx'
-import { getStyleInvitationStatus, getTextInvitationStatus } from '@/lib/statusUtils'
+import dayjs from 'dayjs'
+import * as React from 'react'
 
 export default function CalendarEvent({ listEvents, profileData }) {
   const [selectedDate, setSelectedDate] = React.useState(dayjs()) // State for selected date
@@ -46,12 +46,12 @@ export default function CalendarEvent({ listEvents, profileData }) {
               <span
                 className={clsx(
                   getStyleInvitationStatus(event.status),
-                  'absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75'
+                  'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75'
                 )}></span>
               <span
                 className={clsx(
                   getStyleInvitationStatus(event.status),
-                  'relative inline-flex h-3 w-3 rounded-full bg-rose-500'
+                  'relative inline-flex h-3 w-3 rounded-full'
                 )}></span>
             </span>
           )

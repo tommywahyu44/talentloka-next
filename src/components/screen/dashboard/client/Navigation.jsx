@@ -1,15 +1,12 @@
 import { classNames } from '@/lib/helpers'
-import { usePathname } from 'next/navigation'
 import { fireAuth } from '@/plugins/firebase'
 import { signOut } from 'firebase/auth'
 
 import {
-  CalendarDaysIcon,
-  UserIcon,
-  UserGroupIcon,
-  HomeIcon,
   ArrowRightStartOnRectangleIcon,
-  CurrencyDollarIcon,
+  CalendarDaysIcon,
+  HomeIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline'
 
 const navigationItems = [

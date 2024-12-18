@@ -1,12 +1,12 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
+import AuthLayout from '@/components/layout/AuthLayout'
 import { fireAuth } from '@/plugins/firebase'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import Swal from 'sweetalert2'
-import AuthLayout from '@/components/layout/AuthLayout'
 
 function sendForgotPassword(email) {
   sendPasswordResetEmail(fireAuth, email)

@@ -2,14 +2,12 @@
 
 import DetailEvent from '@/components/screen/dashboard/promotor/DetailEvent'
 import ListEvents from '@/components/screen/dashboard/promotor/ListEvents'
-import { sampleEvents } from '@/lib/constants'
 import { classNames, moneyFormat } from '@/lib/helpers'
-import { CurrencyDollarIcon, WalletIcon, BanknotesIcon } from '@heroicons/react/24/outline'
-import React, { useEffect, useState } from 'react'
+import { BanknotesIcon, CurrencyDollarIcon, WalletIcon } from '@heroicons/react/24/outline'
+import { styled } from '@mui/material/styles'
 import { PieChart } from '@mui/x-charts'
 import { useDrawingArea } from '@mui/x-charts/hooks'
-import { styled } from '@mui/material/styles'
-import Calendar from 'react-calendar'
+import React, { useEffect, useState } from 'react'
 import CalendarEvent from './CalendarEvent'
 
 const StyledText = styled('text')(({ theme }) => ({

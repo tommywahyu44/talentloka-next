@@ -1,8 +1,7 @@
 'use client'
 
-import { localStorageKeys } from '@/lib/constants'
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function RegistrationForm({ createUser }) {
   const t = useTranslations('default')

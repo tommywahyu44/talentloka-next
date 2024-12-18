@@ -1,9 +1,9 @@
 import { textItem } from '@/lib/components.jsx'
 import {
-  MapPinIcon,
+  ArrowsUpDownIcon,
   CakeIcon,
   CalculatorIcon,
-  ArrowsUpDownIcon,
+  MapPinIcon,
   UserPlusIcon,
 } from '@heroicons/react/24/outline'
 import { UserIcon } from '@heroicons/react/24/solid'

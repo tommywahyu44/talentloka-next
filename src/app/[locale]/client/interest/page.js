@@ -1,15 +1,15 @@
 'use client'
 
-import EarlyOnboardingLayout from '@/components/layout/EarlyOnboardingLayout'
-import { SelectButton, DropdownButton, RangeSliderButton } from '@/components/button/Button'
+import LoadingSpinner from '@/components/animation/LoadingSpinner'
+import { DropdownButton, RangeSliderButton, SelectButton } from '@/components/button/Button'
 import { PhoneInput } from '@/components/input/Input'
-import { useState } from 'react'
-import { Label } from 'flowbite-react'
+import EarlyOnboardingLayout from '@/components/layout/EarlyOnboardingLayout'
+import { localStorageKeys } from '@/lib/constants'
 import { StarIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
-import LoadingSpinner from '@/components/animation/LoadingSpinner'
-import { localStorageKeys } from '@/lib/constants'
 import { Crisp } from 'crisp-sdk-web'
+import { Label } from 'flowbite-react'
+import { useState } from 'react'
 
 const questions = [
   {

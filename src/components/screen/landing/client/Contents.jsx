@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl'
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { useTranslations } from 'next-intl'
 
 const tiers = [
   {

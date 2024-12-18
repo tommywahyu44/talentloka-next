@@ -1,15 +1,15 @@
 'use client'
 
+import AddPromotorDialog from '@/components/screen/dashboard/client//AddPromotorDialog'
+import PaymentHistoryModal from '@/components/screen/dashboard/client//PaymentHistoryModal'
+import PaymentModal from '@/components/screen/dashboard/client//PaymentModal'
 import CreateEventModal from '@/components/screen/dashboard/client/CreateEventModal'
-import { useState, useEffect } from 'react'
-import { getDatabase, ref, onValue } from 'firebase/database'
 import ListClientEvents from '@/components/screen/dashboard/client/ListClientEvents'
 import { apiService } from '@/lib/apiService'
-import AddPromotorDialog from '@/components/screen/dashboard/client//AddPromotorDialog'
 import { mapUpdateDateWithTime } from '@/lib/helpers'
-import PaymentModal from '@/components/screen/dashboard/client//PaymentModal'
-import PaymentHistoryModal from '@/components/screen/dashboard/client//PaymentHistoryModal'
 import localStorageService from '@/utils/localStorageService'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { useEffect, useState } from 'react'
 
 export default function Events() {
   const email = localStorageService.getEmailClient()
