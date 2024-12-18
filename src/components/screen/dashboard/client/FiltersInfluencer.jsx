@@ -1,17 +1,15 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { lottieFiles } from '@/lib/constants'
-import * as htmlToImage from 'html-to-image'
-import download from 'downloadjs'
-import { classNames } from '@/lib/helpers'
 import { textItem, textItemSmall } from '@/lib/components.jsx'
+import { lottieFiles } from '@/lib/constants'
+import { classNames } from '@/lib/helpers'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import axios from 'axios'
+import download from 'downloadjs'
+import * as htmlToImage from 'html-to-image'
+import { useTranslations } from 'next-intl'
+import Swal from 'sweetalert2'
 
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { Fragment, useState, useEffect } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -26,25 +24,25 @@ import {
   TransitionChild,
 } from '@headlessui/react'
 import {
-  XMarkIcon,
-  MapPinIcon,
-  CakeIcon,
-  CalculatorIcon,
-  ArrowsUpDownIcon,
-  UserPlusIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline'
-import { UserIcon } from '@heroicons/react/24/solid'
-import { Button, Modal, Badge } from 'flowbite-react'
-import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon,
+  CheckCircleIcon,
   ChevronDownIcon,
   FunnelIcon,
   MinusIcon,
   PlusIcon,
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-  CheckCircleIcon,
 } from '@heroicons/react/20/solid'
+import {
+  CakeIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  UserPlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
+import { UserIcon } from '@heroicons/react/24/solid'
+import { getDatabase, onValue, ref } from 'firebase/database'
+import { Badge, Button, Modal } from 'flowbite-react'
+import { Fragment, useEffect, useState } from 'react'
 
 import '@/styles/cards.css'
 

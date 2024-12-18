@@ -1,5 +1,6 @@
 import TalentDetailsModal from '@/components/screen/dashboard/client/TalentDetailsModal'
-import { Briefcase, MapPin } from 'lucide-react'
+import clsx from 'clsx'
+import { Briefcase, Crown, MapPin } from 'lucide-react'
 import { useState } from 'react'
 
 const ModelCard = ({ model }) => {
@@ -14,15 +15,43 @@ const ModelCard = ({ model }) => {
   return (
     <>
       <div
-        className="group relative min-h-96 cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
+        className={clsx(
+          model.tier === 1 && 'border-4 border-yellow-300',
+          model.tier === 2 && 'border-4 border-blue-500',
+          model.tier === 3 && 'border-4 border-gray-500',
+          'group relative min-h-48 cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl sm:min-h-96'
+        )}
         onClick={() => setIsModalOpen(true)}>
+        {model.tier === 1 && (
+          <div className="absolute -right-10 top-0 z-10 rotate-45 px-12 py-1.5">
+            <Crown
+              className="h-6 w-6 animate-pulse text-yellow-300 sm:h-8 sm:w-8"
+              style={{ fill: 'currentColor' }}
+            />
+          </div>
+        )}
+        {model.tier === 1 && (
+          <div className="absolute -left-12 top-5 z-10 -rotate-45 bg-gradient-to-r from-yellow-300 to-yellow-400 px-12 py-0.5 sm:py-1.5">
+            <div className="flex items-center justify-center gap-1 text-xs font-medium text-white sm:text-sm">
+              Most Popular
+            </div>
+          </div>
+        )}
+        {model.tier === 2 && (
+          <div className="absolute -right-10 top-0 z-10 rotate-45 px-12 py-1.5">
+            <Crown
+              className="h-4 w-4 animate-pulse text-blue-500 sm:h-6 sm:w-6"
+              style={{ fill: 'currentColor' }}
+            />
+          </div>
+        )}
         <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
           <img
             src={getProfileImage()}
             alt={model.name}
             className="h-full w-full object-cover object-center transition-all duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>
 
         <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4">

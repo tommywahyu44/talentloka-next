@@ -22,8 +22,6 @@ import {
 } from '@headlessui/react'
 import {
   AdjustmentsHorizontalIcon,
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
   BarsArrowUpIcon,
   CheckCircleIcon,
   MinusIcon,
@@ -37,13 +35,13 @@ import { Fragment, useEffect, useState } from 'react'
 import { ModelCard } from '@/components/card/Card'
 import { clientDashboard } from '@/lib/constants'
 import '@/styles/cards.css'
+import { Pagination } from '@mui/material'
 import CreateEventModal from './CreateEventModal'
 import TalentDetailModal from './TalentDetailModal'
 
 var listSpg = []
-var listData = []
 var selectedFilter = ['Female', 'All', 'All', 'Indonesia', 'SPG', 'All', 'All']
-var selectedSort = { value: 'code', type: 'asc' }
+var selectedSort = { value: 'name', type: 'asc' }
 
 export default function Filters({ email, listInitFavorites }) {
   const t = useTranslations('default')
@@ -58,6 +56,7 @@ export default function Filters({ email, listInitFavorites }) {
   const [listIndex, setListIndex] = useState(0)
   const [listFavorites, setFavorite] = useState(listInitFavorites)
   const [loading, setLoading] = useState(false)
+  const [listData, setListData] = useState([])
 
   const openCreateEvent = () => {
     setCreateEvent({ openCreateEvent: true, method: 'create', data: {} })
@@ -147,6 +146,18 @@ export default function Filters({ email, listInitFavorites }) {
       : b[1][selectedSort.value] - a[1][selectedSort.value]
   }
 
+  function sortByTier(a, b) {
+    const tierOrder = [0, 3, 2, 1]
+
+    const tierA = a[1][selectedSort.value]
+    const tierB = b[1][selectedSort.value]
+
+    const tierIndexA = tierOrder.indexOf(tierA)
+    const tierIndexB = tierOrder.indexOf(tierB)
+
+    return selectedSort.type === 'asc' ? tierIndexA - tierIndexB : tierIndexB - tierIndexA
+  }
+
   function sortByString(a, b) {
     return selectedSort.type === 'asc'
       ? a[1][selectedSort.value].localeCompare(b[1][selectedSort.value])
@@ -192,17 +203,18 @@ export default function Filters({ email, listInitFavorites }) {
         filteredData.sort(sortByString)
       } else if (selectedSort.value === 'brands' || selectedSort.value === 'events') {
         filteredData.sort(sortByArray)
+      } else if (selectedSort.value === 'tier') {
+        filteredData.sort(sortByTier)
       } else {
         filteredData.sort(sortByNumber)
       }
-      const maxPage = Math.ceil(filteredData.length / 100)
-      listData = []
+      const maxPage = Math.ceil(filteredData.length / 20)
+      let newList = []
       for (let i = 1; i <= maxPage; i++) {
-        listData.push(
-          filteredData.slice(i * 100 - 100, i == maxPage ? filteredData.length : i * 100)
-        )
+        newList.push(filteredData.slice(i * 20 - 20, i == maxPage ? filteredData.length : i * 20))
       }
-      setQueryResults(listData[0])
+      setListData(newList)
+      setQueryResults(newList[0])
     } else {
       setQueryResults([])
     }
@@ -403,9 +415,10 @@ export default function Filters({ email, listInitFavorites }) {
                 as="div"
                 className="relative inline-block text-left">
                 <div>
-                  <MenuButton className="group inline-flex justify-center font-medium text-stone-700 transition duration-300 hover:text-rose-600">
+                  <MenuButton className="group flex flex-row items-center justify-center space-x-2 rounded-md bg-rose-500 px-3 py-1.5 text-sm font-medium text-white transition duration-300 hover:text-rose-600">
+                    Sort
                     <BarsArrowUpIcon
-                      className="mt-2 h-7 w-7"
+                      className="ml-2 h-5 w-5"
                       aria-hidden="true"
                     />
                   </MenuButton>
@@ -419,7 +432,7 @@ export default function Filters({ email, listInitFavorites }) {
                   leave="transition ease-in duration-75"
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95">
-                  <MenuItems className="absolute left-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <MenuItems className="absolute left-0 z-20 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                       {clientDashboard.sortOptions.map((option) => (
                         <MenuItem key={option.name}>
@@ -445,11 +458,12 @@ export default function Filters({ email, listInitFavorites }) {
               </Menu>
               <button
                 type="button"
-                className="-m-2 ml-4 p-2 text-stone-700 transition duration-300 hover:text-rose-500 sm:ml-6"
+                className="-m-2 ml-4 flex flex-row items-center justify-center space-x-2 rounded-md bg-rose-500 px-3 py-1.5 text-sm text-white transition duration-300 sm:ml-6"
                 onClick={() => setMobileFiltersOpen(true)}>
                 <span className="sr-only">Filters</span>
+                Filter{' '}
                 <AdjustmentsHorizontalIcon
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                   aria-hidden="true"
                 />
               </button>
@@ -464,7 +478,7 @@ export default function Filters({ email, listInitFavorites }) {
                     autoplay
                   />
                 ) : queryResults.length > 0 ? (
-                  <div className="grid h-main-nav grid-cols-2 gap-4 overflow-auto sm:h-[75vh] md:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid h-main-nav grid-cols-2 gap-4 overflow-auto sm:h-[75vh] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                     {queryResults.map((card, index) => {
                       return (
                         <ModelCard
@@ -497,57 +511,27 @@ export default function Filters({ email, listInitFavorites }) {
                 data={createEvent.data}
                 method={createEvent.method}
               />
-              <nav className="flex items-center justify-between border-t border-stone-200 px-4 sm:px-0">
-                <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 transition duration-300">
-                  <a
-                    onClick={() => {
-                      if (listIndex > 0) {
-                        setListIndex(listIndex - 1)
-                        setQueryResults(listData[listIndex - 1])
-                        window.scrollTo(0, 0)
-                      }
-                    }}
-                    className="inline-flex cursor-pointer items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
-                    <ArrowLongLeftIcon
-                      className="hover:text-rose-5000 mr-3 h-5 w-5 text-stone-400 transition duration-300"
-                      aria-hidden="true"
-                    />
-                    Previous
-                  </a>
-                </div>
-                <div className="hidden md:-mt-px md:flex">
-                  {listData.map((card, index) => (
-                    <a
-                      onClick={() => {
-                        setListIndex(index)
-                        setQueryResults(listData[index])
-                        window.scrollTo(0, 0)
-                      }}
-                      key={index}
-                      className={`inline-flex cursor-pointer items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium transition duration-300 hover:border-rose-300 hover:text-rose-500 ${
-                        listIndex == index ? 'border-rose-500 text-rose-500' : 'text-stone-500'
-                      }`}>
-                      {index + 1}
-                    </a>
-                  ))}
-                </div>
-                <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 justify-end transition duration-300">
-                  <a
-                    onClick={() => {
-                      if (listIndex < listData.length - 1) {
-                        setListIndex(listIndex + 1)
-                        setQueryResults(listData[listIndex + 1])
-                        window.scrollTo(0, 0)
-                      }
-                    }}
-                    className="inline-flex cursor-pointer items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
-                    Next
-                    <ArrowLongRightIcon
-                      className="hover:text-rose-5000 ml-3 h-5 w-5 text-stone-400 transition duration-300"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </div>
+              <nav className="mt-4 flex items-center justify-center">
+                <Pagination
+                  count={listData.length}
+                  page={listIndex + 1}
+                  onChange={(value, index) => {
+                    setListIndex(index - 1)
+                    setQueryResults(listData[index - 1])
+                    window.scrollTo(0, 0)
+                  }}
+                  sx={{
+                    '& .MuiPaginationItem-root.Mui-selected': {
+                      backgroundColor: '#f43f5e',
+                      color: '#fff',
+                    },
+                    '& .MuiPaginationItem-root.Mui-selected:hover': {
+                      backgroundColor: '#f43f5e',
+                      color: '#fff',
+                    },
+                    '& .MuiPaginationItem-root': {},
+                  }}
+                />
               </nav>
             </div>
           </section>

@@ -10,32 +10,16 @@ export const lottieFiles = {
 /// Client Dashboard
 export const clientDashboard = {
   sortOptions: [
-    { name: 'Code (A-Z)', href: '', value: 'code', type: 'asc' },
-    { name: 'Code (Z-A)', href: '', value: 'code', type: 'desc' },
-    { name: 'Name (A-Z)', href: '', value: 'name', type: 'asc' },
-    { name: 'Name (Z-A)', href: '', value: 'name', type: 'desc' },
-    { name: 'Height (A-Z)', href: '#', value: 'heightCm', type: 'asc' },
-    { name: 'Height (Z-A)', href: '', value: 'heightCm', type: 'desc' },
-    { name: 'Weight (A-Z)', href: '', value: 'weightKg', type: 'asc' },
-    { name: 'Weight (Z-A)', href: '', value: 'weightKg', type: 'desc' },
-    { name: 'Date of Birth (A-Z)', href: '', value: 'dobYear', type: 'asc' },
-    { name: 'Date of Birth (Z-A)', href: '', value: 'dobYear', type: 'desc' },
-    { name: 'Industry (A-Z)', href: '', value: 'brands', type: 'asc' },
-    { name: 'Industry (Z-A)', href: '', value: 'brands', type: 'desc' },
-    { name: 'Product Field (A-Z)', href: '', value: 'events', type: 'asc' },
-    { name: 'Product Field (Z-A)', href: '', value: 'events', type: 'desc' },
-    {
-      name: 'Average Fee (A-Z)',
-      href: '',
-      value: 'previousSalaryAmount',
-      type: 'asc',
-    },
-    {
-      name: 'Average Fee (Z-A)',
-      href: '',
-      value: 'previousSalaryAmount',
-      type: 'desc',
-    },
+    { name: 'Name ↑', href: '', value: 'name', type: 'asc' },
+    { name: 'Name ↓', href: '', value: 'name', type: 'desc' },
+    { name: 'Height ↑', href: '#', value: 'heightCm', type: 'asc' },
+    { name: 'Height ↓', href: '', value: 'heightCm', type: 'desc' },
+    { name: 'Weight ↑', href: '', value: 'weightKg', type: 'asc' },
+    { name: 'Weight ↓', href: '', value: 'weightKg', type: 'desc' },
+    { name: 'Date of Birth ↑', href: '', value: 'dobYear', type: 'asc' },
+    { name: 'Date of Birth ↓', href: '', value: 'dobYear', type: 'desc' },
+    { name: 'Tier ↑', href: '', value: 'tier', type: 'asc' },
+    { name: 'Tier ↓', href: '', value: 'tier', type: 'desc' },
   ],
   filters: [
     {

@@ -1,14 +1,11 @@
-import html2canvas from 'html2canvas'
-import { jsPDF } from 'jspdf'
+import clsx from 'clsx'
+import domtoimage from 'dom-to-image'
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Ruler, Weight, X } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const TalentDetailsModal = ({ isOpen, onClose, model }) => {
   const [selectedImage, setSelectedImage] = useState(0)
-  const [showExperiences, setShowExperiences] = useState(false)
   const [loadedImages, setLoadedImages] = useState(new Set())
-  const compCardRef = useRef(null)
-  const imagesContainerRef = useRef(null)
 
   const getImages = () => {
     if (!model.profilePicture)
@@ -41,35 +38,42 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
     setSelectedImage(newIndex)
   }
 
-  const downloadCompCard = async () => {
-    if (!compCardRef.current) return
-
-    try {
-      const canvas = await html2canvas(compCardRef.current)
-      const imgData = canvas.toDataURL('image/jpeg', 1.0)
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'px',
-        format: [canvas.width, canvas.height],
+  const downloadCompCard = () => {
+    const node = document.getElementById('compcard')
+    console.log('excal compcard')
+    domtoimage
+      .toPng(node)
+      .then((dataUrl) => {
+        console.log('excal trying')
+        const link = document.createElement('a')
+        link.download = `compcard-${model.code}-${model.name}.png`
+        link.href = dataUrl
+        link.click()
       })
-
-      pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height)
-      pdf.save(`${model.name.toLowerCase().replace(/\s+/g, '-')}-compcard.pdf`)
-    } catch (error) {
-      console.error('Error generating comp card:', error)
-    }
+      .catch((error) => {
+        console.error('Error capturing image:', error)
+      })
   }
 
   if (!isOpen) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/30 p-2"
+      className={clsx('fixed inset-0 z-50 overflow-y-auto bg-black/30 p-2')}
       onClick={onClose}>
       <div
         className="flex min-h-screen items-center justify-center"
         onClick={(e) => e.stopPropagation()}>
-        <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-2 shadow-2xl md:max-w-3xl">
+        <div
+          id="compcard"
+          className={clsx(
+            model.tier === 1 && 'border-4 border-yellow-300',
+
+            model.tier === 2 && 'border-4 border-blue-500',
+
+            model.tier === 3 && 'border-4 border-gray-500',
+            'relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-2 shadow-2xl md:max-w-3xl'
+          )}>
           <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-rose-500/5" />
 
           <button
@@ -81,9 +85,7 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
           <div className="relative grid gap-8 p-2 md:grid-cols-2 md:p-4">
             {/* Left Column - Images */}
             <div className="space-y-6">
-              <div
-                ref={imagesContainerRef}
-                className="group relative aspect-[5/6] overflow-hidden rounded-2xl bg-gray-100">
+              <div className="group relative aspect-[5/6] overflow-hidden rounded-2xl bg-gray-100">
                 {/* Loading skeleton */}
                 {!loadedImages.has(selectedImage) && (
                   <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
@@ -124,9 +126,7 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={`relative aspect-square overflow-hidden rounded-xl transition-transform hover:scale-105 ${
-                      selectedImage === index
-                        ? 'ring-2 ring-rose-500 ring-offset-2'
-                        : 'hover:ring-2 hover:ring-rose-300 hover:ring-offset-1'
+                      selectedImage === index ? 'ring-2 ring-rose-500 ring-offset-2' : ''
                     }`}>
                     {!loadedImages.has(index) && (
                       <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
@@ -249,45 +249,12 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
                 </div>
               </div>
 
-              {/* Book Now Button */}
               <div className="flex flex-row space-x-2">
-                <button className="w-full rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 px-4 py-2 text-sm text-white shadow-lg transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl sm:px-8 sm:py-4">
+                <button
+                  onClick={() => downloadCompCard()}
+                  className="w-full rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 px-4 py-2 text-sm text-white shadow-lg transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl sm:px-8 sm:py-4">
                   Download
                 </button>
-                {/* <button className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 px-8 py-4 text-sm text-white shadow-lg transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl">
-                  Experiences
-                </button> */}
-              </div>
-            </div>
-          </div>
-
-          {/* Hidden Comp Card Template for Download */}
-          <div className="hidden">
-            <div
-              ref={compCardRef}
-              className="h-[1200px] w-[800px] bg-white p-8">
-              <div className="grid h-full grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <img
-                    src={images[0]}
-                    alt={model.name}
-                    className="h-[80%] w-full rounded-lg object-cover object-center"
-                  />
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold">{model.name}</h2>
-                    <div className="text-rose-500">{model.id}</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {images.slice(1).map((img, index) => (
-                    <img
-                      key={index}
-                      src={img}
-                      alt={`${model.name} - ${index + 2}`}
-                      className="aspect-[3/4] w-full rounded-lg object-cover object-center"
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           </div>

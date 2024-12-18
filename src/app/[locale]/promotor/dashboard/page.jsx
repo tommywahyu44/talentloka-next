@@ -243,9 +243,8 @@ export default function Dashboard() {
                             borderColor: '#9f1239',
                           },
                           '.MuiStepIcon-root': {
-                            width: 30, // Increase the width of the circle
-                            height: 30, // Increase the height of the circle
-                            fontSize: '2rem', // Increase the icon font size if needed
+                            width: 30,
+                            height: 30, // Increase the icon font size if needed
                           },
                         }}>
                         <StepLabel>{label.name}</StepLabel>

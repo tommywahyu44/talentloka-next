@@ -269,9 +269,9 @@ export default function Dashboard() {
         <Navigation
           navigation={navigation}
           setNavigation={setNavigation}
-          isOnboarded={onboardingStatus === 'verified'}>
+          isOnboarded={onboardingStatus >= 3}>
           <main>
-            <div className="m-auto my-4 md:pl-24">
+            <div className="m-auto my-4">
               {onboardingStatus < 3 && (
                 <Box sx={{ width: '100%' }}>
                   <Stepper
