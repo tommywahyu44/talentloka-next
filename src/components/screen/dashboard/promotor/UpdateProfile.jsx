@@ -365,7 +365,6 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
       height &&
       weight &&
       shirt &&
-      shoes &&
       contact &&
       selectedCountryCode &&
       race &&
@@ -810,7 +809,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium leading-6 text-stone-900">
-                    Shoes (EU)<span className="text-red-600">*</span>
+                    Shoes (EU)
                   </label>
                   <div className="mt-2">
                     <input
@@ -819,13 +818,9 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       id="shoes"
                       value={shoes}
                       onChange={handleShoesChange}
-                      required
                       className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
-                  <p className="mt-1 text-sm text-red-600">
-                    {shoes === '' && isSubmit ? errorEmptyMessage : ''}
-                  </p>
                 </div>
 
                 <div className="sm:col-span-3">
@@ -1212,7 +1207,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   </p>
                 </div>
 
-                <div className="sm:col-span-3">
+                {/* <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium leading-6 text-stone-900">
@@ -1267,7 +1262,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="sm:col-span-3">
                   <label
