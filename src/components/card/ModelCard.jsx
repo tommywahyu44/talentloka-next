@@ -1,9 +1,9 @@
 import TalentDetailsModal from '@/components/screen/dashboard/client/TalentDetailsModal'
 import clsx from 'clsx'
-import { Briefcase, Crown, MapPin } from 'lucide-react'
+import { Briefcase, Crown, Heart, MapPin } from 'lucide-react'
 import { useState } from 'react'
 
-const ModelCard = ({ model }) => {
+const ModelCard = ({ code, model, favorites, setListFavorites }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const getProfileImage = () => {
@@ -16,12 +16,21 @@ const ModelCard = ({ model }) => {
     <>
       <div
         className={clsx(
-          model.tier === 1 && 'border-4 border-yellow-300',
-          model.tier === 2 && 'border-4 border-blue-500',
-          model.tier === 3 && 'border-4 border-gray-500',
+          favorites.includes(code) && 'border-8 border-rose-500/50',
+          model.tier === 1 && !favorites.includes(code) && 'border-4 border-yellow-300/50',
+          model.tier === 2 && !favorites.includes(code) && 'border-4 border-blue-500/50',
+          model.tier === 3 && !favorites.includes(code) && 'border-4 border-emerald-500/50',
           'group relative min-h-48 cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl sm:min-h-96'
         )}
         onClick={() => setIsModalOpen(true)}>
+        {favorites.includes(code) && (
+          <div className="absolute right-0 top-0 z-10 rotate-45 px-12 py-1.5">
+            <Heart
+              className="h-6 w-6 animate-pulse text-rose-600 sm:h-8 sm:w-8"
+              style={{ fill: 'currentColor' }}
+            />
+          </div>
+        )}
         {model.tier === 1 && (
           <div className="absolute -right-10 top-0 z-10 rotate-45 px-12 py-1.5">
             <Crown
@@ -41,6 +50,14 @@ const ModelCard = ({ model }) => {
           <div className="absolute -right-10 top-0 z-10 rotate-45 px-12 py-1.5">
             <Crown
               className="h-4 w-4 animate-pulse text-blue-500 sm:h-6 sm:w-6"
+              style={{ fill: 'currentColor' }}
+            />
+          </div>
+        )}
+        {model.tier === 3 && (
+          <div className="absolute -right-10 top-0 z-10 rotate-45 px-12 py-1.5">
+            <Crown
+              className="h-3 w-3 animate-pulse text-emerald-500 sm:h-4 sm:w-4"
               style={{ fill: 'currentColor' }}
             />
           </div>
@@ -89,7 +106,10 @@ const ModelCard = ({ model }) => {
       <TalentDetailsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        code={code}
         model={model}
+        favorites={favorites}
+        setListFavorites={setListFavorites}
       />
     </>
   )

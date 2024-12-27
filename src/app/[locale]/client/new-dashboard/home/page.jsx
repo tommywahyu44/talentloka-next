@@ -175,7 +175,7 @@ const NewDashboard = () => {
         ) : (
           paginatedModels.map((model) => (
             <ModelCard
-              key={model.id}
+              code={model.id}
               model={model}
             />
           ))

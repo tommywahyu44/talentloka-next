@@ -148,6 +148,44 @@ export const apiService = {
       })
     }
   },
+  checkCoupon: async (email, code, amount) => {
+    Swal.showLoading()
+    try {
+      const payload = {
+        email: email,
+        code: code.toLowerCase(),
+        amount: amount,
+      }
+      const response = await axios.post(API_BASE_URL + '/checkCoupon', payload)
+      Swal.hideLoading()
+      if (response.data.status === 'success') {
+        Swal.fire({
+          text: 'Coupon successfully applied!',
+          icon: 'success',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#BE123C',
+        })
+        return response.data
+      } else {
+        Swal.fire({
+          text: response.data.errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#BE123C',
+        })
+        return response.data
+      }
+    } catch (err) {
+      Swal.hideLoading()
+      Swal.fire({
+        text: 'Unknown error',
+        icon: 'error',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: '#BE123C',
+      })
+      return { status: 'error', errorMessage: 'Unknown error' }
+    }
+  },
   /// SPG
   promoterUpdateInvitationEvent: async (data, action) => {
     var actionSuccessText = 'Invitation successfully accepted!'

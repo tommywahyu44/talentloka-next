@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth'
 import {
   ArrowRightStartOnRectangleIcon,
   CalendarDaysIcon,
+  CurrencyDollarIcon,
   HomeIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
@@ -14,6 +15,10 @@ const navigationItems = [
   {
     name: 'events',
     icon: CalendarDaysIcon,
+  },
+  {
+    name: 'transactions',
+    icon: CurrencyDollarIcon,
   },
   { name: 'profile', icon: UserIcon },
   { name: 'logout', icon: ArrowRightStartOnRectangleIcon },
@@ -77,7 +82,7 @@ export default function Navigation({ children, navigation, setNavigation, isOnbo
         <div className="fixed bottom-2 z-10 flex h-16 w-[94%] items-center rounded-full bg-gradient-to-br from-rose-600 via-rose-500 to-rose-600 px-5 md:hidden">
           <ul
             role="list"
-            className="grid h-full w-full grid-cols-4 items-center justify-center gap-8">
+            className="mt-4 grid h-full w-full grid-cols-4 items-center justify-center gap-8">
             {navigationItems.map((item) => (
               <li key={item.name}>
                 <a

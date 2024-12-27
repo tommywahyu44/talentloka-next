@@ -23,27 +23,34 @@ import {
 import {
   AdjustmentsHorizontalIcon,
   BarsArrowUpIcon,
-  CheckCircleIcon,
   MinusIcon,
   PlusIcon,
 } from '@heroicons/react/20/solid'
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { getDatabase, onValue, ref } from 'firebase/database'
-import { Badge } from 'flowbite-react'
 import { Fragment, useEffect, useState } from 'react'
 
 import { ModelCard } from '@/components/card/Card'
 import { clientDashboard } from '@/lib/constants'
+import { moneyFormat } from '@/lib/helpers'
+import clientFavoriteService from '@/services/clientFavoriteService'
 import '@/styles/cards.css'
-import { Pagination } from '@mui/material'
+import { Favorite } from '@mui/icons-material'
+import { Badge, capitalize, Fab, Pagination } from '@mui/material'
+import clsx from 'clsx'
 import CreateEventModal from './CreateEventModal'
 import TalentDetailModal from './TalentDetailModal'
 
-var listSpg = []
-var selectedFilter = ['Female', 'All', 'All', 'Indonesia', 'SPG', 'All', 'All']
-var selectedSort = { value: 'name', type: 'asc' }
+var selectedFilter = ['Female', 'All', 'All', 'Indonesia', 'SPG', 'All', 'All', 'All']
+var selectedSort = { value: 'tier', type: 'desc' }
 
-export default function Filters({ email, listInitFavorites }) {
+export default function Filters({
+  email,
+  listInitFavorites,
+  favorites,
+  setListFavorites,
+  userProfile,
+}) {
   const t = useTranslations('default')
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [queryResults, setQueryResults] = useState([])
@@ -56,10 +63,14 @@ export default function Filters({ email, listInitFavorites }) {
   const [listIndex, setListIndex] = useState(0)
   const [listFavorites, setFavorite] = useState(listInitFavorites)
   const [loading, setLoading] = useState(false)
-  const [listData, setListData] = useState([])
+  const [listData, setListData] = useState({ data: [], filteredData: [] })
 
   const openCreateEvent = () => {
-    setCreateEvent({ openCreateEvent: true, method: 'create', data: {} })
+    setCreateEvent({
+      openCreateEvent: true,
+      method: 'create',
+      data: { listPromotor: favorites.join(',') },
+    })
   }
 
   const closeCreateEvent = () => {
@@ -82,16 +93,20 @@ export default function Filters({ email, listInitFavorites }) {
       selectedFilter[5] = value
     } else if (name == 'product') {
       selectedFilter[6] = value
+    } else if (name == 'tier') {
+      selectedFilter[7] = value
     }
     setListIndex(0)
     updateDataCards(
+      listData.data,
       selectedFilter[0],
       selectedFilter[1],
       selectedFilter[2],
       selectedFilter[3],
       selectedFilter[4],
       selectedFilter[5],
-      selectedFilter[6]
+      selectedFilter[6],
+      selectedFilter[7]
     )
   }
 
@@ -100,13 +115,15 @@ export default function Filters({ email, listInitFavorites }) {
     selectedSort.type = type
     setListIndex(0)
     updateDataCards(
+      listData.data,
       selectedFilter[0],
       selectedFilter[1],
       selectedFilter[2],
       selectedFilter[3],
       selectedFilter[4],
       selectedFilter[5],
-      selectedFilter[6]
+      selectedFilter[6],
+      selectedFilter[7]
     )
   }
 
@@ -174,7 +191,17 @@ export default function Filters({ email, listInitFavorites }) {
     return selectedSort.type === 'asc' ? a[0].localeCompare(b[0]) : b[0].localeCompare(a[0])
   }
 
-  const updateDataCards = async (gender, city, race, country, role, industry, product) => {
+  const updateDataCards = async (
+    listSpg,
+    gender,
+    city,
+    race,
+    country,
+    role,
+    industry,
+    product,
+    tier
+  ) => {
     var filter = {
       gender: gender,
       city: city,
@@ -183,12 +210,13 @@ export default function Filters({ email, listInitFavorites }) {
       role: role,
       brands: industry,
       events: product,
+      tier: tier,
     }
 
     var filteredData = listSpg.filter((item) => {
       for (var key in filter) {
         if (
-          (item[1][key] === undefined || !item[1][key].includes(filter[key])) &&
+          (item[1][key] === undefined || !item[1][key].toString().includes(filter[key])) &&
           filter[key] !== 'All'
         )
           return false
@@ -213,7 +241,7 @@ export default function Filters({ email, listInitFavorites }) {
       for (let i = 1; i <= maxPage; i++) {
         newList.push(filteredData.slice(i * 20 - 20, i == maxPage ? filteredData.length : i * 20))
       }
-      setListData(newList)
+      setListData({ data: listSpg, filteredData: newList })
       setQueryResults(newList[0])
     } else {
       setQueryResults([])
@@ -221,16 +249,59 @@ export default function Filters({ email, listInitFavorites }) {
     setLoading(false)
   }
 
-  const fetchDataCards = async (gender, city, race, country, role, industry, product) => {
+  const handleSubmitWhatsApp = async () => {
+    try {
+      const listFavorites = listData.data.filter((spg) => favorites.includes(spg[0]))
+      let subtotal = 0
+      const message = `
+Hi Talentloka!
+Nama: ${userProfile.name}
+Email: ${userProfile.email}
+
+${listFavorites
+  .map((item) => {
+    let price = 0
+    switch (item[1].tier) {
+      case 1:
+        price = 499000
+        break
+      case 2:
+        price = 799000
+        break
+      case 3:
+        price = 999000
+        break
+      default:
+        price = 0
+        break
+    }
+    subtotal += price // Add price to subtotal
+    return `• ${item[1].name} (${item[0]}) Fee ${moneyFormat(price)}`
+  })
+  .join('\n')}
+
+Kupon: LAUNCH10%
+Diskon: ${moneyFormat(subtotal * 0.1)}
+Total: ${moneyFormat(subtotal * 0.9)}/day
+`
+
+      const encodedMessage = encodeURIComponent(message)
+      window.open(`https://wa.me/6281299880745?text=${encodedMessage}`, '_blank')
+      localStorage.removeItem('userLocation')
+    } catch (error) {
+      console.error('Error processing checkout:', error)
+    }
+  }
+
+  const fetchDataCards = async (gender, city, race, country, role, industry, product, tier) => {
     setLoading(true)
-    listSpg = []
     const db = getDatabase()
     const spgRef = ref(db, 'promoters_public_info/')
     onValue(spgRef, (snapshot) => {
       const data = snapshot.val()
-      if (data && listSpg.length === 0) {
-        listSpg = Object.entries(data)
-        updateDataCards(gender, city, race, country, role, industry, product)
+      if (data && listData.data.length === 0) {
+        const listSpg = Object.entries(data)
+        updateDataCards(listSpg, gender, city, race, country, role, industry, product, tier)
       }
     })
   }
@@ -245,7 +316,8 @@ export default function Filters({ email, listInitFavorites }) {
       selectedFilter[3],
       selectedFilter[4],
       selectedFilter[5],
-      selectedFilter[6]
+      selectedFilter[6],
+      selectedFilter[7]
     )
   }, [])
 
@@ -262,7 +334,27 @@ export default function Filters({ email, listInitFavorites }) {
 
   return (
     <div>
-      <div>
+      <div className="relative">
+        {/* FAB for favorited SPG */}
+        {favorites.length > 0 && (
+          <Badge
+            badgeContent={favorites.length}
+            color="error"
+            onClick={() => setMobileFiltersOpen(true)}
+            className="z-50"
+            sx={{
+              position: 'absolute',
+              bottom: 24,
+              right: 24,
+            }}>
+            <Fab
+              aria-label="like"
+              size="large"
+              color="error">
+              <Favorite className="h-8 w-8 text-white" />
+            </Fab>
+          </Badge>
+        )}
         {/* Mobile filter dialog */}
         <Transition
           show={mobileFiltersOpen}
@@ -282,7 +374,7 @@ export default function Filters({ email, listInitFavorites }) {
                 leaveTo="translate-x-full">
                 <DialogPanel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="text-lg font-medium text-stone-900">Filters</h2>
+                    <h2 className="text-lg font-medium text-stone-900"></h2>
                     <button
                       type="button"
                       className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-stone-400"
@@ -295,9 +387,78 @@ export default function Filters({ email, listInitFavorites }) {
                     </button>
                   </div>
 
+                  {favorites.length > 0 ? (
+                    <div className="ml-4">
+                      <h3 className="mb-2 mt-4 flow-root">
+                        <span className="text-sm font-medium text-stone-900">Hired</span>
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {listData.data.length > 0 &&
+                          listData.data
+                            .filter((spgData) => favorites.includes(spgData[0]))
+                            .sort((a, b) => a[1].tier - b[1].tier)
+                            .map((spgData) => {
+                              return listData.data.length > 0 ? (
+                                <div
+                                  key={spgData[0]}
+                                  className={clsx(
+                                    spgData[1].tier === 1 && 'border-yellow-300 bg-yellow-300/10',
+                                    spgData[1].tier === 2 && 'border-blue-500 bg-blue-500/10',
+                                    spgData[1].tier === 3 && 'border-emerald-500 bg-emerald-500/10',
+                                    'flex items-center justify-center rounded-full border text-center'
+                                  )}
+                                  onClick={() => {
+                                    // var newFavorited = listFavorites.filter((e) => e !== fav)
+                                    // updateRemovedFavorited(newFavorited)
+                                    // setFavorite([...newFavorited])
+                                    const newFavorites = clientFavoriteService.remove(
+                                      spgData[1].code
+                                    )
+                                    setListFavorites(newFavorites)
+                                  }}>
+                                  {spgData[1]?.profilePicture && (
+                                    <img
+                                      loading="lazy"
+                                      className="my-auto mr-2 h-8 w-8 rounded-l-full object-cover"
+                                      src={spgData[1].profilePicture[0]}
+                                    />
+                                  )}
+                                  <div className="text-xs">{spgData[1].name}</div>
+                                  <img
+                                    loading="lazy"
+                                    className="mx-2 my-auto h-3 w-3"
+                                    src={
+                                      spgData[1].gender === 'Female'
+                                        ? '/images/female-gender.png'
+                                        : '/images/male-gender.png'
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div></div>
+                              )
+                            })}
+                      </div>
+                      <a
+                        onClick={() => openCreateEvent()}
+                        type="button"
+                        className="mt-4 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-xs font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+                        Create Event
+                      </a>
+                      <a
+                        onClick={handleSubmitWhatsApp}
+                        type="button"
+                        className="ml-2 mt-4 inline-flex cursor-pointer items-center gap-x-2 rounded-md border border-rose-500 bg-white px-3.5 py-2.5 text-xs font-semibold text-rose-600 shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                        Send WhatsApp
+                      </a>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+
                   {/* Filters */}
                   <form className="mt-4 border-t border-stone-200">
-                    <h3 className="sr-only">Categories</h3>
+                    <h2 className="ml-4 mt-4 text-lg font-medium text-stone-900">Filters</h2>
                     {clientDashboard.filters.map((section, index) => (
                       <Disclosure
                         as="div"
@@ -308,7 +469,9 @@ export default function Filters({ email, listInitFavorites }) {
                             <h3 className="-my-3 flow-root">
                               <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-stone-400 transition duration-300 hover:text-rose-500">
                                 <span className="font-medium text-stone-900">
-                                  {t(section.name)}
+                                  {section.name.toLowerCase() !== 'tier'
+                                    ? t(section.name)
+                                    : capitalize(section.name)}
                                 </span>
 
                                 <span className="ml-6 flex items-center">
@@ -359,40 +522,6 @@ export default function Filters({ email, listInitFavorites }) {
                         )}
                       </Disclosure>
                     ))}
-                    {listFavorites.length > 0 ? (
-                      <div>
-                        <h3 className="mb-2 mt-4 flow-root">
-                          <span className="text-sm font-medium text-stone-900">Hired</span>
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {listFavorites.map((fav) => (
-                            <Badge
-                              key={fav}
-                              className="cursor-pointer bg-pink-50 pr-2 text-rose-600"
-                              icon={XMarkIcon}
-                              onClick={() => {
-                                var newFavorited = listFavorites.filter((e) => e !== fav)
-                                updateRemovedFavorited(newFavorited)
-                                setFavorite([...newFavorited])
-                              }}>
-                              {fav}
-                            </Badge>
-                          ))}
-                        </div>
-                        <a
-                          onClick={() => openCreateEvent()}
-                          type="button"
-                          className="mt-8 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                          <CheckCircleIcon
-                            className="-ml-0.5 h-5 w-5"
-                            aria-hidden="true"
-                          />
-                          SUBMIT!
-                        </a>
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
                   </form>
                 </DialogPanel>
               </TransitionChild>
@@ -403,7 +532,7 @@ export default function Filters({ email, listInitFavorites }) {
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-stone-200 py-3 sm:py-5">
             <h1 className="mr-4 text-lg font-bold tracking-tight text-stone-900 md:text-3xl">
-              <span className="text-rose-600">Discover</span> Your Perfect Talent
+              <span className="text-rose-600">Find </span> the Perfect Talent for Your Event
             </h1>
           </div>
 
@@ -482,8 +611,10 @@ export default function Filters({ email, listInitFavorites }) {
                     {queryResults.map((card, index) => {
                       return (
                         <ModelCard
-                          key={card[0]}
+                          code={card[0]}
                           model={card[1]}
+                          favorites={favorites}
+                          setListFavorites={setListFavorites}
                         />
                       )
                     })}
@@ -513,11 +644,11 @@ export default function Filters({ email, listInitFavorites }) {
               />
               <nav className="mt-4 flex items-center justify-center">
                 <Pagination
-                  count={listData.length}
+                  count={listData.filteredData.length}
                   page={listIndex + 1}
                   onChange={(value, index) => {
                     setListIndex(index - 1)
-                    setQueryResults(listData[index - 1])
+                    setQueryResults(listData.filteredData[index - 1])
                     window.scrollTo(0, 0)
                   }}
                   sx={{

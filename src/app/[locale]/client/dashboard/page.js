@@ -15,6 +15,9 @@ import { fireAuth } from '@/plugins/firebase'
 import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth'
 import { getDatabase, onValue, ref } from 'firebase/database'
 
+import Profile from '@/components/screen/dashboard/client/Profile'
+import Transactions from '@/components/screen/dashboard/client/Transactions'
+import clientFavoriteService from '@/services/clientFavoriteService'
 import { Box, Step, StepLabel, Stepper } from '@mui/material'
 import clsx from 'clsx'
 import Swal from 'sweetalert2'
@@ -47,22 +50,53 @@ function sendEmailNotification() {
     })
 }
 
-function getHomeUI(navigation, email, listInitFavorites) {
+function getHomeUI(navigation, email, listInitFavorites, favorites, setListFavorites, userProfile) {
   switch (navigation) {
     case 'events':
-      return <Events email={email} />
+      return (
+        <Events
+          email={email}
+          favorites={favorites}
+        />
+      )
     case 'home':
       return (
         <Filters
           email={email}
-          listInitFavorites={listInitFavorites}></Filters>
+          listInitFavorites={listInitFavorites}
+          favorites={favorites}
+          setListFavorites={setListFavorites}
+          userProfile={userProfile}></Filters>
+      )
+    case 'transactions':
+      return <Transactions email={email}></Transactions>
+    case 'profile':
+      return (
+        <Profile
+          email={email}
+          userProfile={userProfile}
+        />
       )
     default:
-      return <Events email={email} />
+      return (
+        <Events
+          email={email}
+          favorites={favorites}
+        />
+      )
   }
 }
 
-function getDashboardUI(status, email, navigation, businessType, handleBusinessTypeChange) {
+function getDashboardUI(
+  userProfile,
+  status,
+  email,
+  navigation,
+  businessType,
+  handleBusinessTypeChange,
+  favorites,
+  setListFavorites
+) {
   switch (status) {
     case 0:
       return (
@@ -201,7 +235,18 @@ function getDashboardUI(status, email, navigation, businessType, handleBusinessT
         </div>
       )
     case 3:
-      return <div className="md:ml-24">{getHomeUI(navigation, email, listInitFavorites)}</div>
+      return (
+        <div className="md:ml-24">
+          {getHomeUI(
+            navigation,
+            email,
+            listInitFavorites,
+            favorites,
+            setListFavorites,
+            userProfile
+          )}
+        </div>
+      )
     default:
       return (
         <div className="mx-auto w-72">
@@ -223,11 +268,11 @@ var isFirstTime = true
 export default function Dashboard() {
   const locale = useLocale()
   const [onboardingStatus, setOnboardingStatus] = useState(-1)
-  const [profileImage, setProfileImage] = useState(
-    'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg'
-  )
+  const [userProfile, setUserProfile] = useState(null)
   const [navigation, setNavigation] = useState('home')
   const [businessType, setBusinessType] = useState({ selected: 'PT', isSelected: false })
+  const favoritesStorage = clientFavoriteService.get()
+  const [favorites, setListFavorites] = useState(favoritesStorage ?? [])
   const handleBusinessTypeChange = (selected, isSelected) => {
     setBusinessType({ selected: selected, isSelected: isSelected })
   }
@@ -241,7 +286,7 @@ export default function Dashboard() {
       if (data) {
         isVerified = data.isVerified
         listInitFavorites = data.favorited.length == 0 ? [] : data.favorited.split(',')
-        setProfileImage(data.companyLogo)
+        setUserProfile(data)
         setOnboardingStatus(isVerified ? 3 : 2)
       } else {
         setOnboardingStatus(1)
@@ -308,11 +353,14 @@ export default function Dashboard() {
                 </Box>
               )}
               {getDashboardUI(
+                userProfile,
                 onboardingStatus,
                 userData?.email ?? '',
                 navigation,
                 businessType,
-                handleBusinessTypeChange
+                handleBusinessTypeChange,
+                favorites,
+                setListFavorites
               )}
             </div>
           </main>

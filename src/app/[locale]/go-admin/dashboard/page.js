@@ -60,7 +60,6 @@ export default function Example() {
   }
 
   onAuthStateChanged(fireAuth, (user) => {
-    console.log('excal login', user)
     if (user) {
       if (user.email !== 'admin@talentloka.com') {
         window.location.replace('/go-admin/login')

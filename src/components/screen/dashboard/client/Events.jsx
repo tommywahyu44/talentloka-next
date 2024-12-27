@@ -8,7 +8,7 @@ import ListClientEvents from './ListClientEvents'
 import PaymentHistoryModal from './PaymentHistoryModal'
 import PaymentModal from './PaymentModal'
 
-export default function Events({ email }) {
+export default function Events({ email, favorites }) {
   const [listEvents, setListEvents] = useState([])
   const [listPromotor, setListPromotor] = useState([])
   const [event, setEvent] = useState({
@@ -30,6 +30,7 @@ export default function Events({ email }) {
     data: null,
     method: null,
   })
+
   const fetchEvents = async () => {
     const db = getDatabase()
     const spgRef = ref(db, 'events/')
@@ -115,7 +116,7 @@ export default function Events({ email }) {
     setEvent({
       openCreateEvent: true,
       method: 'create',
-      data: {},
+      data: { listPromotor: favorites.join(',') },
     })
   }
 

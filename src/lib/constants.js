@@ -147,6 +147,16 @@ export const clientDashboard = {
         { value: 'Seminar', label: 'Seminar', checked: false },
       ],
     },
+    {
+      id: 'tier',
+      name: 'tier',
+      options: [
+        { value: 'All', label: 'All', checked: true },
+        { value: '1', label: 'Elite Proferssionals', checked: false },
+        { value: '2', label: 'Tier 2', checked: false },
+        { value: '3', label: 'Tier 3', checked: false },
+      ],
+    },
   ],
   cardEntity: [
     '',

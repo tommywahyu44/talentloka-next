@@ -189,7 +189,7 @@ export default function OnboardingForm({ email, businessType }) {
               isSubmit={isSubmit}
             />
           )}
-          <FileInput
+          {/* <FileInput
             label="Company / Brand Logo"
             limitDesc="PNG, JPG or JPEG (Max 200 KB)"
             id="companyLogo"
@@ -203,7 +203,7 @@ export default function OnboardingForm({ email, businessType }) {
             id="logo-preview"
             className={`h-32 w-auto rounded-lg sm:col-span-6 ${fileInputs.companyLogo[0] ? '' : 'hidden'}`}
             alt="Logo Preview"
-          />
+          /> */}
           {(businessType === 'PT' || businessType === 'PP') && (
             <TextInput
               label="Single Business Number"
@@ -225,11 +225,28 @@ export default function OnboardingForm({ email, businessType }) {
               isSubmit={isSubmit}
             />
           )}
+          <TextInput
+            label="Nomor KTP"
+            id="directorIdCard"
+            value={formData.directorIdCard}
+            onChange={handleChange}
+            errorEmptyMessage="Please fill out this field."
+            isSubmit={isSubmit}
+          />
+          <FileInput
+            label="Upload KTP"
+            limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
+            id="directorIdCard"
+            value={fileInputs.directorIdCard}
+            onChange={(e) => handleFileChange('directorIdCard', 2, e)}
+            errorEmptyMessage="Please fill out this field."
+            isSubmit={isSubmit}
+          />
           {(businessType === 'PT' || businessType === 'PP') && (
             <TextInput
-              label="Director ID Card Number"
-              id="directorIdCard"
-              value={formData.directorIdCard}
+              label="Employer Tax ID Number"
+              id="employerTaxId"
+              value={formData.employerTaxId}
               onChange={handleChange}
               errorEmptyMessage="Please fill out this field."
               isSubmit={isSubmit}
@@ -237,32 +254,15 @@ export default function OnboardingForm({ email, businessType }) {
           )}
           {(businessType === 'PT' || businessType === 'PP') && (
             <FileInput
-              label="Upload Director ID Card"
+              label="Upload Employer Tax ID"
               limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
-              id="directorIdCard"
-              value={fileInputs.directorIdCard}
-              onChange={(e) => handleFileChange('directorIdCard', 2, e)}
+              id="employerTaxId"
+              value={fileInputs.employerTaxId}
+              onChange={(e) => handleFileChange('employerTaxId', 2, e)}
               errorEmptyMessage="Please fill out this field."
               isSubmit={isSubmit}
             />
           )}
-          <TextInput
-            label="Employer Tax ID Number"
-            id="employerTaxId"
-            value={formData.employerTaxId}
-            onChange={handleChange}
-            errorEmptyMessage="Please fill out this field."
-            isSubmit={isSubmit}
-          />
-          <FileInput
-            label="Upload Employer Tax ID"
-            limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
-            id="employerTaxId"
-            value={fileInputs.employerTaxId}
-            onChange={(e) => handleFileChange('employerTaxId', 2, e)}
-            errorEmptyMessage="Please fill out this field."
-            isSubmit={isSubmit}
-          />
         </div>
         <div>
           <button

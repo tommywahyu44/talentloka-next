@@ -1,9 +1,10 @@
+import clientFavoriteService from '@/services/clientFavoriteService'
 import clsx from 'clsx'
 import domtoimage from 'dom-to-image'
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Ruler, Weight, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-const TalentDetailsModal = ({ isOpen, onClose, model }) => {
+const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFavorites }) => {
   const [selectedImage, setSelectedImage] = useState(0)
   const [loadedImages, setLoadedImages] = useState(new Set())
 
@@ -40,11 +41,9 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
 
   const downloadCompCard = () => {
     const node = document.getElementById('compcard')
-    console.log('excal compcard')
     domtoimage
       .toPng(node)
       .then((dataUrl) => {
-        console.log('excal trying')
         const link = document.createElement('a')
         link.download = `compcard-${model.code}-${model.name}.png`
         link.href = dataUrl
@@ -53,6 +52,16 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
       .catch((error) => {
         console.error('Error capturing image:', error)
       })
+  }
+
+  const handleFavorites = () => {
+    if (favorites.includes(code)) {
+      const newFavorites = clientFavoriteService.remove(code)
+      setListFavorites(newFavorites)
+    } else {
+      const newFavorites = clientFavoriteService.add(code)
+      setListFavorites(newFavorites)
+    }
   }
 
   if (!isOpen) return null
@@ -67,11 +76,10 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
         <div
           id="compcard"
           className={clsx(
-            model.tier === 1 && 'border-4 border-yellow-300',
-
-            model.tier === 2 && 'border-4 border-blue-500',
-
-            model.tier === 3 && 'border-4 border-gray-500',
+            favorites.includes(code) && 'border-8 border-rose-500/50',
+            model.tier === 1 && !favorites.includes(code) && 'border-4 border-yellow-300/50',
+            model.tier === 2 && !favorites.includes(code) && 'border-4 border-blue-500/50',
+            model.tier === 3 && !favorites.includes(code) && 'border-4 border-gray-500/50',
             'relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-2 shadow-2xl md:max-w-3xl'
           )}>
           <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-rose-500/5" />
@@ -150,7 +158,7 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
                 <h2 className="bg-clip-text text-xl font-bold text-gray-900 md:text-4xl">
                   {model.name}
                 </h2>
-                <div className="mt-1 font-medium text-gray-800">{model.id}</div>
+                <div className="mt-1 font-medium text-gray-800">{code}</div>
               </div>
 
               {/* Stats Grid */}
@@ -250,10 +258,20 @@ const TalentDetailsModal = ({ isOpen, onClose, model }) => {
               </div>
 
               <div className="flex flex-row space-x-2">
-                <button
+                {/* <button
                   onClick={() => downloadCompCard()}
                   className="w-full rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 px-4 py-2 text-sm text-white shadow-lg transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl sm:px-8 sm:py-4">
                   Download
+                </button> */}
+                <button
+                  onClick={() => handleFavorites()}
+                  className={clsx(
+                    favorites.includes(code)
+                      ? 'border border-rose-500 bg-white text-rose-600'
+                      : 'bg-gradient-to-r from-rose-500 to-rose-600 text-white',
+                    'w-full rounded-xl px-4 py-2 text-sm shadow-sm transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl sm:px-8 sm:py-4'
+                  )}>
+                  {favorites.includes(code) ? 'Remove -' : 'Hire +'}
                 </button>
               </div>
             </div>

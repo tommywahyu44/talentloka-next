@@ -55,7 +55,7 @@ module.exports = {
         },
       },
       height: {
-        'main-nav': 'calc(100vh - 18rem)',
+        'main-nav': 'calc(100vh - 16rem)',
         'desktop-nav': 'calc(100vh - 2rem)', // Example: Full viewport height minus 4rem
       },
     },

@@ -16,7 +16,7 @@ export default function TextInput({
 }) {
   const getInput = () => {
     if (!editable) {
-      return <h5 className="text-xs font-semibold">{value}</h5>
+      return <h5 className="text-sm font-semibold sm:text-base">{value}</h5>
     } else if (type === 'textarea') {
       return (
         <textarea
