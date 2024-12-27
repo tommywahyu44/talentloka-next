@@ -179,7 +179,6 @@ export default function Dashboard() {
   }
 
   const fetchUserData = async (email) => {
-    console.log('email => ', email)
     const emailDoc = email.replaceAll('.', ',')
     const db = getDatabase()
     const spgRef = ref(db, `promoters/${emailDoc}`)

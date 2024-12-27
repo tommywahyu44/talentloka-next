@@ -39,25 +39,10 @@ function PieCenterLabelMobile({ children }) {
   )
 }
 
-const events = [
-  {
-    date: '2024-12-02',
-    title: 'Automotive Event',
-    description: 'The Future of Automotive Innovation.',
-  },
-  {
-    date: '2024-12-05',
-    title: 'Tech Expo',
-    description: 'Exploring Cutting-Edge Technology in Electronics.',
-  },
-  { date: '2024-12-10', title: 'Beauty Expo', description: 'The Ultimate Cosmetic Showcase.' },
-]
-
 const colors = ['#fb7185', '#db2777', '#991b1b', '#ef4444', '#be185d', '#881337']
 
 export default function Home({ profileData, listEvents, setNavigation }) {
   const [detailEvent, setDetailEvent] = useState(null)
-  const [selectedDate, setSelectedDate] = useState(new Date())
   const filteredEvents = listEvents.filter(
     (event) =>
       event?.listPromotor &&
