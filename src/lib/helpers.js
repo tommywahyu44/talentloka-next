@@ -183,6 +183,11 @@ export const datetimeUtcToDate = (dateString) => {
   return `${year}-${month}-${day}`
 }
 
+export const calculateAge = (birthYear) => {
+  const currentYear = new Date().getFullYear() // Mendapatkan tahun sekarang
+  return currentYear - birthYear // Menghitung umur
+}
+
 // Function to format the time as "hour:minutes"
 export const datetimeUtcToTime = (dateString) => {
   const date = new Date(dateString)

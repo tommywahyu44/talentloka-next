@@ -66,7 +66,7 @@ export default function CreateEventModal({
     totalFee: 0,
     bundlingDiscount: 0,
   })
-  const [coupon, setCoupon] = useState('')
+  const [coupon, setCoupon] = useState(data?.coupon ?? '')
   const [couponDetail, setCouponDetail] = useState(null)
 
   const [fileInputs, setFileInputs] = useState({
@@ -139,7 +139,7 @@ export default function CreateEventModal({
 
   const fetchCouponDetail = async (coupon) => {
     const db = getDatabase() // Initialize the database
-    const couponRef = ref(db, 'coupons/' + coupon.toLowerCase()) // Replace with your database path
+    const couponRef = ref(db, 'coupons/' + coupon.toUpperCase()) // Replace with your database path
     try {
       const snapshot = await get(couponRef)
       if (snapshot.exists()) {
@@ -268,6 +268,7 @@ export default function CreateEventModal({
         listPromotor: data?.listPromotor ?? [],
         coupon: data?.coupon ?? '',
       })
+      setCoupon(data?.coupon ?? '')
       setFileInputs({
         eventImage: [data?.image ?? null, ''],
       })
@@ -315,7 +316,9 @@ export default function CreateEventModal({
   }, [eventData.listPromotor, listPromotor])
 
   useEffect(() => {
+    console.log('fetch coupon detail', eventData.coupon)
     if (eventData.coupon !== '') {
+      console.log('fetching')
       fetchCouponDetail(eventData.coupon)
     }
   }, [eventData.coupon])

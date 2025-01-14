@@ -35,7 +35,7 @@ import { clientDashboard } from '@/lib/constants'
 import { moneyFormat } from '@/lib/helpers'
 import clientFavoriteService from '@/services/clientFavoriteService'
 import '@/styles/cards.css'
-import { Favorite } from '@mui/icons-material'
+import { Favorite, WhatsApp } from '@mui/icons-material'
 import { Badge, capitalize, Fab, Pagination } from '@mui/material'
 import clsx from 'clsx'
 import CreateEventModal from './CreateEventModal'
@@ -301,7 +301,9 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
       const data = snapshot.val()
       if (data && listData.data.length === 0) {
         const listSpg = Object.entries(data)
-        updateDataCards(listSpg, gender, city, race, country, role, industry, product, tier)
+        const filteredList = listSpg.filter((spg) => spg[1].tier !== 0)
+        console.log('excal spg', listSpg.length, filteredList.length)
+        updateDataCards(filteredList, gender, city, race, country, role, industry, product, tier)
       }
     })
   }
@@ -332,6 +334,10 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
     })
   }
 
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/6281299880745`, '_blank')
+  }
+
   return (
     <div>
       <div className="relative">
@@ -345,16 +351,29 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
             sx={{
               position: 'absolute',
               bottom: 24,
-              right: 24,
+              left: 24,
             }}>
             <Fab
               aria-label="like"
-              size="large"
               color="error">
               <Favorite className="h-8 w-8 text-white" />
             </Fab>
           </Badge>
         )}
+        <Fab
+          aria-label="like"
+          onClick={handleWhatsAppClick}
+          sx={{
+            position: 'absolute',
+            backgroundColor: '#25D366',
+            bottom: 24,
+            right: 24,
+            '&:hover': {
+              backgroundColor: '#1DA851',
+            },
+          }}>
+          <WhatsApp className="h-8 w-8 text-white" />
+        </Fab>
         {/* Mobile filter dialog */}
         <Transition
           show={mobileFiltersOpen}
@@ -611,6 +630,7 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
                     {queryResults.map((card, index) => {
                       return (
                         <ModelCard
+                          key={index}
                           code={card[0]}
                           model={card[1]}
                           favorites={favorites}

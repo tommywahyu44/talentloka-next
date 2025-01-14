@@ -148,7 +148,6 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
 
   const countTier1 = listInvitedPromotor.data.filter((spg) => spg[1].tier === 1).length
   const countTier2 = listInvitedPromotor.data.filter((spg) => spg[1].tier === 2).length
-  const countTier3 = listInvitedPromotor.data.filter((spg) => spg[1].tier === 3).length
   return (
     <Dialog
       onClose={closePayment}
@@ -190,14 +189,6 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
                     </dt>
                     <dd className="text-base font-medium text-gray-900 dark:text-white">
                       {moneyFormat(countTier2 * 799000)}
-                    </dd>
-                  </dl>
-                  <dl className="ml-4 flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-700 dark:text-gray-400">
-                      - {countTier3 ?? 0} Budget Friendly Solutions promotor
-                    </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      {moneyFormat(countTier3 * 499000)}
                     </dd>
                   </dl>
 

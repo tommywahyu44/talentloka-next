@@ -36,14 +36,14 @@ export default function PaymentHistoryModal({
   data,
 }) {
   const t = useTranslations('default')
-  var history = []
+  var history = [null, null]
   const paymentDp = data?.paymentDp?.amount ?? 0
   const paymentFull = data?.paymentFull?.amount ?? 0
   if (paymentDp > 0) {
-    history.push(data.paymentDp)
+    history[0] = data.paymentDp
   }
   if (paymentFull > 0) {
-    history.push(data.paymentFull)
+    history[1] = data.paymentFull
   }
 
   return (
@@ -61,40 +61,49 @@ export default function PaymentHistoryModal({
             <ul
               role="list"
               className="mt-4 grid grid-cols-1 gap-x-3 gap-y-4">
-              {history.map((payment) => (
-                <li
-                  key={payment.id}
-                  className="flex flex-row justify-center overflow-hidden rounded-xl border border-gray-200">
-                  <img
-                    src={payment.imageUrl}
-                    className="h-72 w-72 flex-none rounded-lg bg-white object-contain p-2"
-                  />
-                  <dl className="-my-3 justify-center space-y-6 px-6 py-6 text-base">
-                    <div className="mt-4 flex flex-row items-center justify-between">
-                      <div>
-                        <dt className="text-gray-500">Amount</dt>
-                        <dd className="mt-1 text-gray-700">{moneyFormat(payment.amount)}</dd>
-                      </div>
-                    </div>
-                    <div>
-                      <dt className="text-gray-500">Status</dt>
-                      <dd
-                        className={clsx(
-                          payment.status === 'PENDING' ? 'bg-amber-500' : 'bg-green-500',
-                          'mt-1 w-20 justify-center rounded-full py-1 text-center text-sm font-semibold text-white'
-                        )}>
-                        {payment.status}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-gray-500">Transfer Time</dt>
-                      <dd className="mt-1 font-semibold text-gray-700">
-                        {dateToGoodDay(payment.timestamp)}
-                      </dd>
-                    </div>
-                  </dl>
-                </li>
-              ))}
+              {history.map(
+                (payment, index) =>
+                  payment && (
+                    <li
+                      key={index}
+                      className="flex flex-row justify-center overflow-hidden rounded-xl border border-gray-200">
+                      <img
+                        src={payment.imageUrl}
+                        className="h-72 w-72 flex-none rounded-lg bg-white object-contain p-2"
+                      />
+                      <dl className="-my-3 justify-center space-y-6 px-6 py-6 text-base">
+                        <div className="mt-4 flex flex-row items-center justify-between">
+                          <div>
+                            <dt className="text-gray-500">Amount</dt>
+                            <dd className="mt-1 text-gray-700">{moneyFormat(payment.amount)}</dd>
+                          </div>
+                        </div>
+                        <div className="mt-4 flex flex-row items-center justify-between">
+                          <div>
+                            <dt className="text-gray-500">Type</dt>
+                            <dd>{index === 0 ? 'DP' : 'Full Payment'}</dd>
+                          </div>
+                          <div>
+                            <dt className="text-gray-500">Status</dt>
+                            <dd
+                              className={clsx(
+                                payment.status === 'PENDING' ? 'bg-amber-500' : 'bg-green-500',
+                                'mt-1 w-20 justify-center rounded-full py-1 text-center text-sm font-semibold text-white'
+                              )}>
+                              {payment.status}
+                            </dd>
+                          </div>
+                        </div>
+                        <div>
+                          <dt className="text-gray-500">Transfer Time</dt>
+                          <dd className="mt-1 font-semibold text-gray-700">
+                            {dateToGoodDay(payment.timestamp)}
+                          </dd>
+                        </div>
+                      </dl>
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         </div>

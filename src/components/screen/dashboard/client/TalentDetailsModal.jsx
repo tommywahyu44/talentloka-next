@@ -78,8 +78,8 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
           className={clsx(
             favorites.includes(code) && 'border-8 border-rose-500/50',
             model.tier === 1 && !favorites.includes(code) && 'border-4 border-yellow-300/50',
-            model.tier === 2 && !favorites.includes(code) && 'border-4 border-blue-500/50',
-            model.tier === 3 && !favorites.includes(code) && 'border-4 border-gray-500/50',
+            // model.tier === 2 && !favorites.includes(code) && 'border-4 border-blue-500/50',
+            // model.tier === 3 && !favorites.includes(code) && 'border-4 border-gray-500/50',
             'relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-2 shadow-2xl md:max-w-3xl'
           )}>
           <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-rose-500/5" />
@@ -271,7 +271,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                       : 'bg-gradient-to-r from-rose-500 to-rose-600 text-white',
                     'w-full rounded-xl px-4 py-2 text-sm shadow-sm transition-colors hover:from-rose-600 hover:to-rose-700 hover:shadow-xl sm:px-8 sm:py-4'
                   )}>
-                  {favorites.includes(code) ? 'Remove -' : 'Hire +'}
+                  {favorites.includes(code) ? 'Remove from the Event' : 'Hire for the Event'}
                 </button>
               </div>
             </div>

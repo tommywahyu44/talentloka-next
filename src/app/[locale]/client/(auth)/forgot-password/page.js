@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import { AuthButton } from '@/components/button/Button'
+import { AuthInput } from '@/components/input/Input'
 import AuthLayout from '@/components/layout/AuthLayout'
 import { fireAuth } from '@/plugins/firebase'
 import { sendPasswordResetEmail } from 'firebase/auth'
@@ -60,32 +62,21 @@ export default function ForgotPassword() {
           <form
             className="space-y-6"
             onSubmit={handleSubmit}>
+            <AuthInput
+              id="email"
+              name="email"
+              type="email"
+              required
+              label={t('authEmailAddress')}
+              placeholder="Enter your Email"
+              value={email}
+              onChange={handleEmailChange}
+            />
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-stone-900">
-                {t('authEmailAddress')}
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  required
-                  className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-rose-600 px-2 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                {t('commonSend')}
-              </button>
+              <AuthButton type="submit">{t('commonSend')}</AuthButton>
             </div>
           </form>
+
           <p className="mt-10 text-center text-sm text-stone-500">
             {t('authForgotPasswordLabelQuestion')}{' '}
             <a

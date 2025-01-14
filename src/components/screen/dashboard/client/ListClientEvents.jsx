@@ -22,12 +22,7 @@ import {
   moneyFormat,
   paymentCalculation,
 } from '@/lib/helpers'
-import {
-  getStyleBundlePackage,
-  getStyleEventStatus,
-  getStyleEventType,
-  getTextEventStatus,
-} from '@/lib/statusUtils'
+import { getStyleEventStatus, getStyleEventType, getTextEventStatus } from '@/lib/statusUtils'
 
 export default function ListClientEvents({
   events,
@@ -74,21 +69,22 @@ export default function ListClientEvents({
                   <div
                     className={classNames(
                       getStyleEventStatus(eventStatus),
-                      'rounded-md px-2 py-1.5 text-xs font-medium ring-1 ring-inset'
+                      'rounded-md px-2 pb-1 pt-1.5 text-xs font-medium ring-1 ring-inset'
                     )}>
                     {getTextEventStatus(eventStatus)}
                   </div>
-                  <div
-                    className={classNames(
-                      getStyleBundlePackage(event.bundlePackage),
-                      'rounded-md px-2 py-1.5 text-xs font-medium ring-1 ring-inset'
-                    )}>
-                    {event.bundlePackage}
-                  </div>
+                  {event.coupon && (
+                    <div
+                      className={classNames(
+                        'rounded-md border border-rose-500 bg-rose-50 px-2 pb-1 pt-1.5 text-xs font-medium text-rose-600 outline-none'
+                      )}>
+                      {event.coupon}
+                    </div>
+                  )}
                   <div
                     className={classNames(
                       getStyleEventType(event.type),
-                      'rounded-md px-2 py-1.5 text-xs font-medium ring-1 ring-inset'
+                      'rounded-md px-2 pb-1 pt-1.5 text-xs font-medium ring-1 ring-inset'
                     )}>
                     {event.type === 'Private' ? (
                       <LockClosedIcon
