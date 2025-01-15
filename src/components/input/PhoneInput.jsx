@@ -31,14 +31,14 @@ export default function PhoneInput({
             <MenuButton
               id="dropdown-phone-button"
               data-dropdown-toggle="dropdown-phone"
-              className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-3 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+              className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-3 py-2.5 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               type="button">
               <img
                 src={selectedCountry.flagUrl}
                 alt={selectedCountry.name}
                 className="h-5 w-5 rounded-full object-cover"
               />
-              <span className="ml-2 text-base text-white">{selectedCountry.countryCode}</span>
+              <span className="ml-2 text-sm text-white">{selectedCountry.countryCode}</span>
               <ChevronDownIcon
                 className="group-transition ml-1 mr-3 h-5 w-5 flex-shrink-0 text-white duration-300 hover:text-rose-500"
                 aria-hidden="true"
@@ -63,7 +63,7 @@ export default function PhoneInput({
                       <MenuItem key={index}>
                         <button
                           type="button"
-                          className="inline-flex w-full px-2 px-4 py-1 text-sm text-stone-700 transition duration-300 hover:bg-stone-100 hover:bg-stone-600 hover:text-white dark:text-stone-200 dark:transition"
+                          className="inline-flex w-full px-2 py-1 text-sm text-stone-700 transition duration-300 hover:bg-stone-600 hover:text-white dark:text-stone-200 dark:transition"
                           role="menuitem"
                           onClick={() => {
                             setSelectedCountry({
@@ -72,7 +72,7 @@ export default function PhoneInput({
                               countryCode: countryCallingCode,
                             })
                           }}>
-                          <div className="inline-flex items-center text-white">
+                          <div className="inline-flex items-center text-sm text-white">
                             <img
                               src={flags.svg}
                               alt={name}
@@ -88,14 +88,14 @@ export default function PhoneInput({
             </MenuItems>
           </Transition>
         </Menu>
-        <div className="relative mt-1.5 w-full">
+        <div className="relative mt-2 w-full">
           <input
             type="number"
             name={id}
             id={id}
             value={contact}
             onChange={onChange}
-            className="block w-full rounded-e-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-e-md border-0 px-2 py-2 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
             placeholder="812-345-6789"
             required
           />

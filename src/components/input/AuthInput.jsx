@@ -43,7 +43,7 @@ export default function AuthInput({ InputProps, type, ...props }) {
           '&:hover:not(.Mui-disabled):before': { borderBottom: '1px solid #E5E7EB' },
         },
         '& .MuiInputBase-input': {
-          py: 1.5,
+          py: 1,
           '&::placeholder': {
             color: '#9CA3AF',
             opacity: 1,

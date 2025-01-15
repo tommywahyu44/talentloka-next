@@ -1,5 +1,7 @@
 'use client'
 
+import { AuthBackButton } from '@/components/button/AuthBackButton'
+import { AuthButton } from '@/components/button/AuthButton'
 import { FileInput, PhoneInput, TextInput } from '@/components/input/Input'
 import { limitFileSizeKb, limitFileSizeMb } from '@/lib/helpers'
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline'
@@ -14,7 +16,7 @@ const defaultCountry = {
   countryCode: '+62',
 }
 
-export default function OnboardingForm({ email, businessType }) {
+export default function OnboardingForm({ email, businessType, handleBusinessTypeChange }) {
   const t = useTranslations('default')
   const [formData, setFormData] = useState({
     name: '',
@@ -155,14 +157,17 @@ export default function OnboardingForm({ email, businessType }) {
           <TextInput
             label="Name"
             id="name"
+            placeholder="Enter your full name"
             value={formData.name}
             onChange={handleChange}
             errorEmptyMessage="Please fill out this field."
             isSubmit={isSubmit}
           />
+
           <PhoneInput
             label="Phone Number"
             id="contact"
+            placeholder="Enter your phone number"
             value={formData.contact}
             onChange={handleChange}
             selectedCountry={formData.selectedCountry}
@@ -170,18 +175,21 @@ export default function OnboardingForm({ email, businessType }) {
             errorEmptyMessage="Please fill out this field."
             isSubmit={isSubmit}
           />
+
           <TextInput
             label="Company"
             id="company"
+            placeholder="Enter your company name"
             value={formData.company}
             onChange={handleChange}
             errorEmptyMessage="Please fill out this field."
             isSubmit={isSubmit}
           />
+
           {businessType === 'PT' && (
             <FileInput
               label="Deed of Establishment (PDF)"
-              limitDesc="PDF, PNG, JPG or JPEG (Max 5 MB)"
+              limitDesc="PDF, PNG, JPG, or JPEG (Max 5 MB)"
               id="deedOfEstablishment"
               value={fileInputs.deedOfEstablishment}
               onChange={(e) => handleFileChange('deedOfEstablishment', 5, e)}
@@ -189,35 +197,23 @@ export default function OnboardingForm({ email, businessType }) {
               isSubmit={isSubmit}
             />
           )}
-          {/* <FileInput
-            label="Company / Brand Logo"
-            limitDesc="PNG, JPG or JPEG (Max 200 KB)"
-            id="companyLogo"
-            value={fileInputs.companyLogo}
-            onChange={(e) => handleFileChange('companyLogo', 200, e)}
-            errorEmptyMessage="Please fill out this field."
-            isSubmit={isSubmit}
-            isFullWidth={businessType === 'PT' ? true : false}
-          />
-          <img
-            id="logo-preview"
-            className={`h-32 w-auto rounded-lg sm:col-span-6 ${fileInputs.companyLogo[0] ? '' : 'hidden'}`}
-            alt="Logo Preview"
-          /> */}
+
           {(businessType === 'PT' || businessType === 'PP') && (
             <TextInput
               label="Single Business Number"
               id="singleBusinessNumber"
+              placeholder="Enter your single business number"
               value={formData.singleBusinessNumber}
               onChange={handleChange}
               errorEmptyMessage="Please fill out this field."
               isSubmit={isSubmit}
             />
           )}
+
           {(businessType === 'PT' || businessType === 'PP') && (
             <FileInput
               label="Upload Single Business Number"
-              limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
+              limitDesc="PDF, PNG, JPG, or JPEG (Max 2 MB)"
               id="singleBusinessNumber"
               value={fileInputs.singleBusinessNumber}
               onChange={(e) => handleFileChange('singleBusinessNumber', 2, e)}
@@ -225,37 +221,43 @@ export default function OnboardingForm({ email, businessType }) {
               isSubmit={isSubmit}
             />
           )}
+
           <TextInput
             label="Nomor KTP"
             id="directorIdCard"
+            placeholder="Enter your KTP number"
             value={formData.directorIdCard}
             onChange={handleChange}
             errorEmptyMessage="Please fill out this field."
             isSubmit={isSubmit}
           />
+
           <FileInput
             label="Upload KTP"
-            limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
+            limitDesc="PDF, PNG, JPG, or JPEG (Max 2 MB)"
             id="directorIdCard"
             value={fileInputs.directorIdCard}
             onChange={(e) => handleFileChange('directorIdCard', 2, e)}
             errorEmptyMessage="Please fill out this field."
             isSubmit={isSubmit}
           />
+
           {(businessType === 'PT' || businessType === 'PP') && (
             <TextInput
               label="Employer Tax ID Number"
               id="employerTaxId"
+              placeholder="Enter your employer tax ID number"
               value={formData.employerTaxId}
               onChange={handleChange}
               errorEmptyMessage="Please fill out this field."
               isSubmit={isSubmit}
             />
           )}
+
           {(businessType === 'PT' || businessType === 'PP') && (
             <FileInput
               label="Upload Employer Tax ID"
-              limitDesc="PDF, PNG, JPG or JPEG (Max 2 MB)"
+              limitDesc="PDF, PNG, JPG, or JPEG (Max 2 MB)"
               id="employerTaxId"
               value={fileInputs.employerTaxId}
               onChange={(e) => handleFileChange('employerTaxId', 2, e)}
@@ -264,12 +266,11 @@ export default function OnboardingForm({ email, businessType }) {
             />
           )}
         </div>
-        <div>
-          <button
-            type="submit"
-            className="mt-12 flex w-full justify-center rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-            {t('commonSubmit')}
-          </button>
+        <div className="mt-auto flex flex-row space-x-3 pt-12">
+          <AuthBackButton onClick={() => handleBusinessTypeChange(businessType.selected, false)} />
+          <div className="grow space-y-4">
+            <AuthButton type="submit">{t('commonSubmit')}</AuthButton>
+          </div>
         </div>
       </form>
     </div>

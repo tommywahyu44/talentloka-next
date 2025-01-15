@@ -6,17 +6,17 @@ export const AuthButton = (props) => {
     <Button
       {...props}
       sx={{
-        borderRadius: '8px',
+        borderRadius: '999px',
         textTransform: 'none',
-        fontSize: '18px',
+        fontSize: '16px',
         boxShadow: 'none',
         backgroundColor: '#ef4444',
-        marginTop: '12px',
+        marginTop: props.marginTop ?? 0,
       }}
       fullWidth
       variant="contained"
       className={clsx(
-        'flex h-11 flex-shrink-0 items-center justify-center gap-2 self-stretch px-5 py-4 font-medium hover:bg-rose-800',
+        'flex h-11 flex-shrink-0 items-center justify-center gap-2 self-stretch px-3 py-4 font-medium hover:bg-rose-700',
         props.color
           ? props.color === 'secondary'
             ? 'bg-gray-200 text-gray-900 hover:text-white'

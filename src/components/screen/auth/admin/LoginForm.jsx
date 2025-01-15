@@ -43,7 +43,7 @@ export default function LoginForm({ signIn }) {
           <AuthInput
             required
             label={t('authEmailAddress')}
-            placeholder="Enter your Email"
+            placeholder={t('commonPlaceholderEmail')}
             type="email"
             value={email}
             onChange={handleEmailChange}
@@ -51,13 +51,17 @@ export default function LoginForm({ signIn }) {
           <AuthInput
             required
             label={t('authPassword')}
-            placeholder="Enter your Password"
+            placeholder={t('commonPlaceholderPassword')}
             type="password"
             value={password}
             onChange={handlePasswordChange}
           />
           <div>
-            <AuthButton type="submit">{t('commonSignin')}</AuthButton>
+            <AuthButton
+              marginTop={4}
+              type="submit">
+              {t('commonSignin')}
+            </AuthButton>
           </div>
         </form>
       </div>

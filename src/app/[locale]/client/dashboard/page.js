@@ -1,7 +1,6 @@
 'use client'
 
 import Navigation from '@/components/screen/dashboard/client/Navigation'
-import OnboardingForm from '@/components/screen/dashboard/client/OnboardingForm'
 import { lottieFiles } from '@/lib/constants'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { useLocale } from 'next-intl'
@@ -19,8 +18,8 @@ import Profile from '@/components/screen/dashboard/client/Profile'
 import Transactions from '@/components/screen/dashboard/client/Transactions'
 import clientFavoriteService from '@/services/clientFavoriteService'
 import { Box, Step, StepLabel, Stepper } from '@mui/material'
-import clsx from 'clsx'
 import Swal from 'sweetalert2'
+import { BusinessTypeStep } from './BusinessTypeStep'
 
 const stepsInfo = [
   { id: 'Step 1', name: 'Email Verification', href: '#' },
@@ -124,98 +123,11 @@ function getDashboardUI(
       )
     case 1:
       return (
-        <div className="bg-white">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto mb-20 max-w-3xl text-center sm:mb-0">
-              {businessType.isSelected && (
-                <OnboardingForm
-                  email={email}
-                  businessType={businessType.selected}
-                />
-              )}
-              {!businessType.isSelected && (
-                <div className="mt-16 h-full items-center justify-center sm:mt-32 lg:mt-48">
-                  <div className="mb-10 text-xl font-semibold leading-6 md:mb-14 lg:mb-20">
-                    <span
-                      id="comments-description"
-                      className="text-stone-700">
-                      What type of business entity do you represent?
-                    </span>
-                  </div>
-                  <div>
-                    <div className="mt-3 flex flex-col space-y-4">
-                      <div
-                        onClick={() => handleBusinessTypeChange('PT', false)}
-                        className={clsx(
-                          'flex h-14 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          businessType.selected == 'PT' ? 'border-rose-500' : 'border-stone-200'
-                        )}>
-                        <input
-                          id="radio-business-pt"
-                          name="radio-business"
-                          type="radio"
-                          checked={businessType.selected == 'PT'}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
-                          disabled
-                        />
-                        <label
-                          htmlFor="radio-business-yes"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
-                          Limited Liability Company
-                        </label>
-                      </div>
-                      <div
-                        onClick={() => handleBusinessTypeChange('PP', false)}
-                        className={clsx(
-                          'flex h-14 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          businessType.selected == 'PP' ? 'border-rose-500' : 'border-stone-200'
-                        )}>
-                        <input
-                          id="radio-business-pp"
-                          name="radio-business"
-                          type="radio"
-                          checked={businessType.selected == 'PP'}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
-                          disabled
-                        />
-                        <label
-                          htmlFor="radio-business-no"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
-                          Sole Proprietorship
-                        </label>
-                      </div>
-                      <div
-                        onClick={() => handleBusinessTypeChange('ID', false)}
-                        className={clsx(
-                          'flex h-14 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          businessType.selected == 'ID' ? 'border-rose-500' : 'border-stone-200'
-                        )}>
-                        <input
-                          id="radio-business-id"
-                          name="radio-business"
-                          type="radio"
-                          checked={businessType.selected == 'ID'}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
-                          disabled
-                        />
-                        <label
-                          htmlFor="radio-business-no"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
-                          Individual Business
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    className="mx-auto mt-12 flex w-48 justify-center rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
-                    onClick={() => handleBusinessTypeChange(businessType.selected, true)}>
-                    Next
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <BusinessTypeStep
+          email={email}
+          businessType={businessType}
+          handleBusinessTypeChange={handleBusinessTypeChange}
+        />
       )
     case 2:
       return (

@@ -52,7 +52,7 @@ export default function RegistrationForm({ createUser }) {
           <AuthInput
             required
             label={t('authEmailAddress')}
-            placeholder="Enter your Email"
+            placeholder={t('commonPlaceholderEmail')}
             value={email}
             onChange={handleEmailChange}
           />
@@ -60,7 +60,7 @@ export default function RegistrationForm({ createUser }) {
             required
             label={t('authPassword')}
             type="password"
-            placeholder="Enter your Password"
+            placeholder={t('commonPlaceholderPassword')}
             value={password}
             onChange={handlePasswordChange}
           />
@@ -68,12 +68,16 @@ export default function RegistrationForm({ createUser }) {
             required
             label={t('authConfirmPassword')}
             type="password"
-            placeholder="Confirm your Password"
+            placeholder={t('commonPlaceholderConfirmPassword')}
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
           <div>
-            <AuthButton type="submit">{t('commonRegister')}</AuthButton>
+            <AuthButton
+              marginTop={4}
+              type="submit">
+              {t('commonRegister')}
+            </AuthButton>
           </div>
         </form>
 

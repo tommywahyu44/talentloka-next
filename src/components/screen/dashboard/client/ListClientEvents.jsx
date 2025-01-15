@@ -155,7 +155,7 @@ export default function ListClientEvents({
                 <div className="text-sm">
                   <div className="grid grid-cols-1 items-center gap-1.5 text-gray-700">
                     <Tooltip
-                      title="Edit button"
+                      title="Edit"
                       arrow>
                       <PencilIcon
                         onClick={() => updateEvent(event)}
@@ -165,7 +165,7 @@ export default function ListClientEvents({
                     </Tooltip>
 
                     <Tooltip
-                      title="Cancel button"
+                      title="Cancel"
                       arrow>
                       <XMarkIcon
                         onClick={() => cancelEvent(event)}
@@ -204,7 +204,7 @@ export default function ListClientEvents({
 
                     {(event?.paymentDp?.amount > 0 || event?.paymentFull?.amount > 0) && (
                       <Tooltip
-                        title="View Payment History"
+                        title="View Payment"
                         arrow>
                         <ClockIcon
                           onClick={() => openPaymentHistory(event, eventStatus)}

@@ -68,12 +68,16 @@ export default function ForgotPassword() {
               type="email"
               required
               label={t('authEmailAddress')}
-              placeholder="Enter your Email"
+              placeholder={t('commonPlaceholderEmail')}
               value={email}
               onChange={handleEmailChange}
             />
             <div>
-              <AuthButton type="submit">{t('commonSend')}</AuthButton>
+              <AuthButton
+                marginTop={4}
+                type="submit">
+                {t('commonSend')}
+              </AuthButton>
             </div>
           </form>
 

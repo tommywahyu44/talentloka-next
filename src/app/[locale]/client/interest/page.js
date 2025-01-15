@@ -1,7 +1,12 @@
 'use client'
 
 import LoadingSpinner from '@/components/animation/LoadingSpinner'
-import { DropdownButton, RangeSliderButton, SelectButton } from '@/components/button/Button'
+import {
+  AuthButton,
+  DropdownButton,
+  RangeSliderButton,
+  SelectButton,
+} from '@/components/button/Button'
 import { PhoneInput } from '@/components/input/Input'
 import EarlyOnboardingLayout from '@/components/layout/EarlyOnboardingLayout'
 import { localStorageKeys } from '@/lib/constants'
@@ -192,13 +197,12 @@ export default function Interest() {
                   .
                 </div>
               </div>
-              <button
-                className="relative mx-auto mt-8 flex w-full justify-center rounded-full border-2 border-rose-500 py-2 text-sm font-semibold leading-6 text-rose-600 shadow-sm transition duration-300 hover:bg-rose-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
-                type="submit"
-                disabled={isSubmit}
-                onClick={handleSubmit}>
+              <AuthButton
+                onClick={handleSubmit}
+                marginTop={8}
+                disabled={isSubmit}>
                 {isSubmit ? <LoadingSpinner /> : t('commonSubmit')}
-              </button>
+              </AuthButton>
             </div>
           </div>
         )

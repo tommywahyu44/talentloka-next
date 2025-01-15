@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { AuthButton } from './AuthButton'
 
 export default function RangeSliderButton({ onClick }) {
   const t = useTranslations('default')
@@ -29,11 +30,11 @@ export default function RangeSliderButton({ onClick }) {
           className="range mt-8 h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-rose-500"
         />
       </div>
-      <button
-        className="relative mx-auto mt-12 flex w-full justify-center rounded-full border-2 border-rose-500 py-2 text-sm font-semibold leading-6 text-rose-600 shadow-sm transition duration-300 hover:bg-rose-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
-        onClick={() => onClick(value)}>
+      <AuthButton
+        onClick={() => onClick(value)}
+        marginTop={8}>
         {t('commonContinue')}
-      </button>
+      </AuthButton>
     </>
   )
 }
