@@ -48,7 +48,7 @@ export default function ForgotPassword() {
   return (
     <>
       <AuthLayout url={'/images/background/bg-auth-spg.jpeg'}>
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto sm:w-full">
           <img
             className="mx-auto h-20 w-auto"
             src="/images/marketingo-logo.png"
@@ -58,7 +58,7 @@ export default function ForgotPassword() {
             {t('authForgotPasswordTitle')}
           </h2>
         </div>
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 sm:mx-auto sm:w-full">
           <form
             className="space-y-6"
             onSubmit={handleSubmit}>

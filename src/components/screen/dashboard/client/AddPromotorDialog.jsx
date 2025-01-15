@@ -14,6 +14,7 @@ import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import { pink, red } from '@mui/material/colors'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 
 const theme = createTheme({
@@ -30,6 +31,7 @@ export default function AddPromotorDialog({
   listPromotor,
   email,
 }) {
+  const t = useTranslations('default')
   var listInvitedPromotor = []
   const getChipColor = (status) => {
     if (status) {
@@ -180,7 +182,7 @@ export default function AddPromotorDialog({
             <Button
               onClick={submitAddPromotor}
               type="submit">
-              Submit
+              {t('commonSubmit')}
             </Button>
           </DialogActions>
         </Dialog>

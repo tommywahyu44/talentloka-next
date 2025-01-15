@@ -35,7 +35,7 @@ import { clientDashboard } from '@/lib/constants'
 import { moneyFormat } from '@/lib/helpers'
 import clientFavoriteService from '@/services/clientFavoriteService'
 import '@/styles/cards.css'
-import { Favorite, WhatsApp } from '@mui/icons-material'
+import { CloseRounded, Favorite } from '@mui/icons-material'
 import { Badge, capitalize, Fab, Pagination } from '@mui/material'
 import clsx from 'clsx'
 import CreateEventModal from './CreateEventModal'
@@ -215,7 +215,15 @@ export default function Filters({
 
     var filteredData = listSpg.filter((item) => {
       for (var key in filter) {
-        if (
+        if (key === 'role') {
+          if (filter[key] === 'All') return true
+          return (
+            item[1].categories &&
+            item[1].categories.some(
+              (category) => category.role.toUpperCase() === filter[key].toUpperCase()
+            )
+          )
+        } else if (
           (item[1][key] === undefined || !item[1][key].toString().includes(filter[key])) &&
           filter[key] !== 'All'
         )
@@ -301,8 +309,7 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
       const data = snapshot.val()
       if (data && listData.data.length === 0) {
         const listSpg = Object.entries(data)
-        const filteredList = listSpg.filter((spg) => spg[1].tier !== 0)
-        console.log('excal spg', listSpg.length, filteredList.length)
+        const filteredList = listSpg.filter((spg) => spg[1].tier !== 0 && spg[1].tier)
         updateDataCards(filteredList, gender, city, race, country, role, industry, product, tier)
       }
     })
@@ -333,11 +340,6 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
       return 0
     })
   }
-
-  const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/6281299880745`, '_blank')
-  }
-
   return (
     <div>
       <div className="relative">
@@ -349,9 +351,9 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
             onClick={() => setMobileFiltersOpen(true)}
             className="z-50"
             sx={{
-              position: 'absolute',
-              bottom: 24,
-              left: 24,
+              position: 'fixed',
+              bottom: { xs: '5.5rem', sm: '4rem' },
+              left: { xs: '1rem', sm: '9rem' },
             }}>
             <Fab
               aria-label="like"
@@ -360,20 +362,6 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
             </Fab>
           </Badge>
         )}
-        <Fab
-          aria-label="like"
-          onClick={handleWhatsAppClick}
-          sx={{
-            position: 'absolute',
-            backgroundColor: '#25D366',
-            bottom: 24,
-            right: 24,
-            '&:hover': {
-              backgroundColor: '#1DA851',
-            },
-          }}>
-          <WhatsApp className="h-8 w-8 text-white" />
-        </Fab>
         {/* Mobile filter dialog */}
         <Transition
           show={mobileFiltersOpen}
@@ -425,16 +413,7 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
                                     spgData[1].tier === 2 && 'border-blue-500 bg-blue-500/10',
                                     spgData[1].tier === 3 && 'border-emerald-500 bg-emerald-500/10',
                                     'flex items-center justify-center rounded-full border text-center'
-                                  )}
-                                  onClick={() => {
-                                    // var newFavorited = listFavorites.filter((e) => e !== fav)
-                                    // updateRemovedFavorited(newFavorited)
-                                    // setFavorite([...newFavorited])
-                                    const newFavorites = clientFavoriteService.remove(
-                                      spgData[1].code
-                                    )
-                                    setListFavorites(newFavorites)
-                                  }}>
+                                  )}>
                                   {spgData[1]?.profilePicture && (
                                     <img
                                       loading="lazy"
@@ -442,15 +421,28 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
                                       src={spgData[1].profilePicture[0]}
                                     />
                                   )}
-                                  <div className="text-xs">{spgData[1].name}</div>
                                   <img
                                     loading="lazy"
-                                    className="mx-2 my-auto h-3 w-3"
+                                    className="my-auto mr-1 h-3 w-3"
                                     src={
                                       spgData[1].gender === 'Female'
                                         ? '/images/female-gender.png'
                                         : '/images/male-gender.png'
                                     }
+                                  />
+                                  <div className="mx-1 text-xs">{spgData[1].name}</div>
+                                  <CloseRounded
+                                    onClick={() => {
+                                      // var newFavorited = listFavorites.filter((e) => e !== fav)
+                                      // updateRemovedFavorited(newFavorited)
+                                      // setFavorite([...newFavorited])
+                                      const newFavorites = clientFavoriteService.remove(
+                                        spgData[1].code
+                                      )
+                                      setListFavorites(newFavorites)
+                                    }}
+                                    sx={{ fontSize: '1rem' }}
+                                    className="mr-2 h-1 w-1 cursor-pointer text-xs text-gray-800 hover:text-rose-500"
                                   />
                                 </div>
                               ) : (
@@ -620,11 +612,14 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
             <div className="mt-2">
               <section>
                 {loading ? (
-                  <DotLottieReact
-                    src={lottieFiles.loading}
-                    loop
-                    autoplay
-                  />
+                  <div className="h-[70vh] w-full items-center justify-center">
+                    <DotLottieReact
+                      src={lottieFiles.loading}
+                      loop
+                      autoplay
+                      className="m-auto h-full w-72"
+                    />
+                  </div>
                 ) : queryResults.length > 0 ? (
                   <div className="grid h-main-nav grid-cols-2 gap-4 overflow-auto sm:h-[75vh] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                     {queryResults.map((card, index) => {

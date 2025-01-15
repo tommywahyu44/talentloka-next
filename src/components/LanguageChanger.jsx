@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from '@/navigation'
+import { MenuItem, Select } from '@mui/material'
 
 export default function LanguageChanger({ locale }) {
   const router = useRouter()
@@ -11,25 +12,40 @@ export default function LanguageChanger({ locale }) {
   }
 
   const options = [
-    { value: 'en', label: 'EN', image: '/images/ic-flag-united-states.png', flag: '🇺🇸' },
-    { value: 'id', label: 'ID', image: '/images/ic-flag-indonesia.png', flag: '🇮🇩' },
-    { value: 'ms', label: 'MY', image: '/images/ic-flag-malaysia.png', flag: '🇲🇾' },
-    { value: 'th', label: 'TH', image: '/images/ic-flag-thailand.png', flag: '🇹🇭' },
-    { value: 'vi', label: 'VN', image: '/images/ic-flag-vietnam.png', flag: '🇻🇳' },
+    { value: 'en', label: 'EN', image: '/images/ic-flag-indonesia.png', flag: '🇺🇸' },
+    { value: 'id', label: 'ID', image: '/images/ic-flag-united-states.png', flag: '🇮🇩' },
   ]
 
   return (
-    <select
+    <Select
+      labelId="language-select-label"
+      aria-label="language-select-label"
       value={locale}
       onChange={handleChange}
-      className="w-18 block rounded-lg border border-stone-300 bg-stone-50 py-2.5 pl-2 text-sm text-stone-900 focus:outline-none">
-      {options.map((option, i) => (
-        <option
+      label="Language"
+      sx={{
+        '& .MuiOutlinedInput-input': {
+          padding: '6px 8px',
+        },
+      }}>
+      {options.map((option) => (
+        <MenuItem
           key={option.value}
           value={option.value}>
-          {`${option.flag} ${option.label}`}
-        </option>
+          <div className="mt-1 flex flex-row items-center justify-center">
+            <img
+              src={option.image}
+              alt={option.label}
+              style={{
+                width: 16,
+                height: 16,
+                marginRight: 8,
+              }}
+            />
+            <div className="text-xs">{`${option.label}`}</div>
+          </div>
+        </MenuItem>
       ))}
-    </select>
+    </Select>
   )
 }

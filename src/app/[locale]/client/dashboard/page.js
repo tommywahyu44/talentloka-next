@@ -315,55 +315,57 @@ export default function Dashboard() {
           navigation={navigation}
           setNavigation={setNavigation}
           isOnboarded={onboardingStatus >= 3}>
-          <main>
-            <div className="m-auto my-4">
-              {onboardingStatus < 3 && (
-                <Box sx={{ width: '100%' }}>
-                  <Stepper
-                    activeStep={onboardingStatus}
-                    alternativeLabel>
-                    {stepsInfo.map((label, index) => (
-                      <Step
-                        key={label.name}
-                        sx={{
-                          '& .MuiStepLabel-root .Mui-completed': {
-                            color: '#9f1239',
-                          },
-                          '& .MuiStepLabel-root .Mui-active': {
-                            color: '#e11d48',
-                          },
-                          '& .MuiStepConnector-line': {
-                            borderWidth: 2,
-                          },
-                          '& .MuiStepConnector-root.Mui-active .MuiStepConnector-line': {
-                            borderColor: '#e11d48',
-                          },
-                          '& .MuiStepConnector-root.Mui-completed .MuiStepConnector-line': {
-                            borderColor: '#9f1239',
-                          },
-                          '.MuiStepIcon-root': {
-                            width: 30,
-                            height: 30, // Increase the icon font size if needed
-                          },
-                        }}>
-                        <StepLabel>{label.name}</StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </Box>
-              )}
-              {getDashboardUI(
-                userProfile,
-                onboardingStatus,
-                userData?.email ?? '',
-                navigation,
-                businessType,
-                handleBusinessTypeChange,
-                favorites,
-                setListFavorites
-              )}
-            </div>
-          </main>
+          {onboardingStatus >= 0 && (
+            <main>
+              <div className="m-auto my-4">
+                {onboardingStatus < 3 && (
+                  <Box sx={{ width: '100%' }}>
+                    <Stepper
+                      activeStep={onboardingStatus}
+                      alternativeLabel>
+                      {stepsInfo.map((label, index) => (
+                        <Step
+                          key={label.name}
+                          sx={{
+                            '& .MuiStepLabel-root .Mui-completed': {
+                              color: '#9f1239',
+                            },
+                            '& .MuiStepLabel-root .Mui-active': {
+                              color: '#e11d48',
+                            },
+                            '& .MuiStepConnector-line': {
+                              borderWidth: 2,
+                            },
+                            '& .MuiStepConnector-root.Mui-active .MuiStepConnector-line': {
+                              borderColor: '#e11d48',
+                            },
+                            '& .MuiStepConnector-root.Mui-completed .MuiStepConnector-line': {
+                              borderColor: '#9f1239',
+                            },
+                            '.MuiStepIcon-root': {
+                              width: 30,
+                              height: 30, // Increase the icon font size if needed
+                            },
+                          }}>
+                          <StepLabel>{label.name}</StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </Box>
+                )}
+                {getDashboardUI(
+                  userProfile,
+                  onboardingStatus,
+                  userData?.email ?? '',
+                  navigation,
+                  businessType,
+                  handleBusinessTypeChange,
+                  favorites,
+                  setListFavorites
+                )}
+              </div>
+            </main>
+          )}
         </Navigation>
       </div>
     </>

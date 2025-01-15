@@ -6,35 +6,33 @@ import {
   DevicePhoneMobileIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline'
+import { useTranslations } from 'next-intl'
 
 const features = [
   {
-    name: 'User-Friendly Dashboard',
-    description:
-      'Emphasize the ease of use of your platform, including features like job listings, messaging, and payment tracking.',
+    name: 'landingPromotorSec2Item1Title',
+    description: 'landingPromotorSec2Item1Description',
     icon: DevicePhoneMobileIcon,
   },
   {
-    name: 'Training and Resources',
-    description:
-      'Offer information about training programs or resources available to help promoters succeed.',
+    name: 'landingPromotorSec2Item2Title',
+    description: 'landingPromotorSec2Item2Description',
     icon: ArrowTrendingUpIcon,
   },
   {
-    name: 'Community and Networking',
-    description:
-      'Promote the opportunity for promoters to connect with other professionals in the industry.',
+    name: 'landingPromotorSec2Item3Title',
+    description: 'landingPromotorSec2Item3Description',
     icon: UserGroupIcon,
   },
   {
-    name: 'Diverse Opportunities',
-    description:
-      'Highlight the wide range of opportunities available for promoters to work on different campaigns and events.',
+    name: 'landingPromotorSec2Item4Title',
+    description: 'landingPromotorSec2Item4Description',
     icon: ArrowsPointingInIcon,
   },
 ]
 
 export default function Feature() {
+  const t = useTranslations('default')
   return (
     <div
       id="features"
@@ -43,11 +41,10 @@ export default function Feature() {
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-rose-600">Promoters Community</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Join Our Community of Promoters
+            {t('landingPromotorSec2Title')}
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-200">
-            Become a part of a thriving network of talented individuals and experience the benefits
-            of flexible work, competitive earnings, and diverse opportunities.
+            {t('landingPromotorSec2Description')}
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -63,9 +60,9 @@ export default function Feature() {
                       className="h-6 w-6 text-white"
                     />
                   </div>
-                  {feature.name}
+                  {t(feature.name)}
                 </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-200">{feature.description}</dd>
+                <dd className="mt-2 text-base leading-7 text-gray-200">{t(feature.description)}</dd>
               </div>
             ))}
           </dl>

@@ -7,25 +7,25 @@ import EarlyOnboardingLayout from '@/components/layout/EarlyOnboardingLayout'
 import { localStorageKeys } from '@/lib/constants'
 import { StarIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
-import { Crisp } from 'crisp-sdk-web'
 import { Label } from 'flowbite-react'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 const questions = [
   {
     id: 1,
-    title: 'What event are you going to join?',
+    title: 'clientInterestQuestion1',
     choices: ['Retail', 'Cosmetics', 'Automotive'],
   },
 
   {
     id: 2,
-    title: 'How many days will this event be held?',
+    title: 'clientInterestQuestion2',
     choices: ['1-3 days', '4-6 days', '1-2 weeks', '3-4 weeks', '> 1 month'],
   },
   {
     id: 3,
-    title: 'How many promoters do you need?',
+    title: 'clientInterestQuestion3',
     choices: ['1', '2', '3', '4', 'Lainnya'],
   },
 ]
@@ -50,6 +50,7 @@ const defaultCountry = {
 var answers = []
 
 export default function Interest() {
+  const t = useTranslations('default')
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [email, setEmail] = useState('')
   const [contact, setContact] = useState('')
@@ -109,9 +110,9 @@ export default function Interest() {
     switch (currentQuestion) {
       case 0:
         return (
-          <div className="mt-60">
+          <div className="my-32">
             <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
-              {questions[currentQuestion].title}
+              {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
               listText={questions[currentQuestion].choices}
@@ -125,9 +126,9 @@ export default function Interest() {
         )
       case 1:
         return (
-          <div className="mt-60">
+          <div className="my-32">
             <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
-              {questions[currentQuestion].title}
+              {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
               listText={questions[currentQuestion].choices}
@@ -137,18 +138,18 @@ export default function Interest() {
         )
       case 2:
         return (
-          <div className="mt-60">
+          <div className="my-32">
             <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
-              {questions[currentQuestion].title}
+              {t(questions[currentQuestion].title)}
             </h2>
             <RangeSliderButton onClick={nextQuestion} />
           </div>
         )
       case 3:
         return (
-          <div className="mt-60">
+          <div className="my-32">
             <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
-              Please let us know your email address
+              {t('clientInterestQuestion4')}
             </h2>
             <div className="mt-8 flex max-w-md flex-col gap-4">
               <div>
@@ -182,7 +183,7 @@ export default function Interest() {
                   isFullWidth={true}
                 />
                 <div className="mt-4 text-sm">
-                  We’ll never share your details. Read our
+                  {t('clientInterestQuestionTncText')}
                   <a
                     href="#"
                     className="ml-1 font-medium text-rose-600 hover:underline dark:text-rose-500">
@@ -196,33 +197,34 @@ export default function Interest() {
                 type="submit"
                 disabled={isSubmit}
                 onClick={handleSubmit}>
-                {isSubmit ? <LoadingSpinner /> : 'Submit'}
+                {isSubmit ? <LoadingSpinner /> : t('commonSubmit')}
               </button>
             </div>
           </div>
         )
       case 4:
         return (
-          <div className="mt-60">
+          <div className="my-32">
             <div className="text-center">
-              <p className="text-xl font-semibold">Thanks for your answers!</p>
+              {t('clientInterestSuccessText1')}
+              <div />
               <StarIcon className="mx-auto my-4 h-24 w-24 text-rose-600" />
               <p className="text-base leading-7 text-stone-600">
-                Please signup to continue or talk with our agent.
+                {t('clientInterestSuccessText2')}
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
-                  href="/client/register"
+                  href={'/client/register?email=' + email}
                   className="rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                  Signup
+                  {t('commonSignup')}
                 </a>
                 <a
-                  onClick={() => {
-                    Crisp.user.setEmail(email)
-                    Crisp.chat.open()
-                  }}
+                  href="https://wa.me/6281299880745"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="cursor-pointer text-sm font-semibold text-stone-900">
-                  Contact agent <span aria-hidden="true">&rarr;</span>
+                  {t('clientInterestSuccessButton2')}
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
@@ -234,8 +236,8 @@ export default function Interest() {
   }
   return (
     <>
-      <EarlyOnboardingLayout url={'/images/background/bg-early-onboarding-client.jpeg'}>
-        <div className="px-8">
+      <EarlyOnboardingLayout url={'/images/background/bg-auth-client.jpg'}>
+        <div>
           <div className="mt-8 h-2.5 w-full rounded-full bg-stone-200 dark:bg-stone-300">
             <div
               className={`h-2.5 rounded-full bg-rose-600 transition-[width] duration-700 ease-in-out ${progressPercent()}`}></div>

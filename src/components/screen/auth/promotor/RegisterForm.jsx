@@ -34,7 +34,7 @@ export default function RegistrationForm({ createUser }) {
   }
   return (
     <>
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="sm:mx-auto sm:w-full">
         <img
           className="mx-auto h-20 w-auto"
           src="/images/marketingo-logo.png"
@@ -45,7 +45,7 @@ export default function RegistrationForm({ createUser }) {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
           onSubmit={handleSubmit}>

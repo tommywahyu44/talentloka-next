@@ -10,11 +10,11 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 const navigation = [
-  { name: 'Solution', href: '#solution' },
-  { name: 'Company', href: '#company' },
-  { name: 'Our Product', href: '#product' },
-  { name: 'Pricing', href: '#pricing' },
-  { name: 'Contact Us', href: '#contact' },
+  { name: 'landingClientHeader1', href: '#solution' },
+  { name: 'landingClientHeader2', href: '#company' },
+  { name: 'landingClientHeader3', href: '#product' },
+  { name: 'landingClientHeader4', href: '#pricing' },
+  { name: 'landingClientHeader5', href: '#contact' },
 ]
 
 const partners = [
@@ -48,16 +48,16 @@ export default function Example() {
 
   const stats = [
     {
-      label: t('landingPromotorSec2KpiLabel1'),
-      value: t('landingPromotorSec2KpiAmount1'),
+      label: t('landingClientSec2KpiLabel1'),
+      value: t('landingClientSec2KpiAmount1'),
     },
     {
-      label: t('landingPromotorSec2KpiLabel2'),
-      value: t('landingPromotorSec2KpiAmount2'),
+      label: t('landingClientSec2KpiLabel2'),
+      value: t('landingClientSec2KpiAmount2'),
     },
     {
-      label: t('landingPromotorSec2KpiLabel3'),
-      value: t('landingPromotorSec2KpiAmount3'),
+      label: t('landingClientSec2KpiLabel3'),
+      value: t('landingClientSec2KpiAmount3'),
     },
   ]
 
@@ -119,7 +119,7 @@ export default function Example() {
                 key={item.name}
                 href={item.href}
                 className="text-sm font-semibold leading-6 text-stone-900">
-                {item.name}
+                {t(item.name)}
               </a>
             ))}
           </div>
@@ -165,7 +165,7 @@ export default function Example() {
                       key={item.name}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-stone-900 transition duration-300 hover:bg-stone-50">
-                      {item.name}
+                      {t(item.name)}
                     </a>
                   ))}
                 </div>
@@ -241,7 +241,7 @@ export default function Example() {
                     <span className="text-rose-600">Staffing Solutions</span>
                   </h1>
                   <p className="relative mt-6 text-lg leading-8 text-stone-600 sm:max-w-md lg:max-w-none">
-                    {t('landingPromotorSec1Description')}
+                    {t('landingClientSec1Description')}
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
@@ -320,11 +320,11 @@ export default function Example() {
                 <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
                   <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                     <p className="text-lg leading-8 text-stone-600">
-                      {t('landingPromotorSec2Description1')}
+                      {t('landingClientSec2Description1')}
                     </p>
                     <br></br>
                     <p className="text-lg leading-8 text-stone-600">
-                      {t('landingPromotorSec2Description2')}
+                      {t('landingClientSec2Description2')}
                     </p>
                   </div>
                   <div className="lg:flex lg:flex-auto lg:justify-center">

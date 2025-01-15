@@ -47,6 +47,7 @@ export default function AuthInput({ InputProps, type, ...props }) {
           '&::placeholder': {
             color: '#9CA3AF',
             opacity: 1,
+            fontSize: '0.875rem',
           },
           '&:focus': {
             boxShadow: 'none',

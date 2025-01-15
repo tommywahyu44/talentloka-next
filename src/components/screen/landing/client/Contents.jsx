@@ -40,7 +40,7 @@ export default function Contents() {
               <span className="text-rose-600">Everything</span> You Need
             </p>
             <p className="mt-6 text-lg leading-8 text-stone-700">
-              {t('landingPromotorSec3Description')}
+              {t('landingClientSec3Description')}
             </p>
           </div>
         </div>

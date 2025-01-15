@@ -23,7 +23,7 @@ import {
   paymentCalculation,
 } from '@/lib/helpers'
 import { getStyleEventStatus, getStyleEventType, getTextEventStatus } from '@/lib/statusUtils'
-
+import { Tooltip } from '@mui/material'
 export default function ListClientEvents({
   events,
   updateEvent,
@@ -41,16 +41,19 @@ export default function ListClientEvents({
         const paymentDp = event?.paymentDp?.amount ?? 0
         const { totalFee } = paymentCalculation(event?.promotorNumber ?? 0, paymentDp, 'full')
         const listInvitedPromotor = event.listPromotor ?? []
-        if (
-          (!event.paymentDp || event.paymentDp?.imageUrl === '') &&
-          (!event.paymentFull || event.paymentFull?.imageUrl === '') &&
-          daysUntil < 30
-        ) {
-          eventStatus = 'PENDING_PAYMENT_DP'
+        if (event.status !== 'IN_REVIEW') {
+          if (
+            (!event.paymentDp || event.paymentDp?.imageUrl === '') &&
+            (!event.paymentFull || event.paymentFull?.imageUrl === '') &&
+            daysUntil < 30
+          ) {
+            eventStatus = 'PENDING_PAYMENT_DP'
+          }
+          if ((!event.paymentFull || event.paymentFull?.imageUrl === '') && daysUntil < 7) {
+            eventStatus = 'PENDING_PAYMENT_FULL'
+          }
         }
-        if ((!event.paymentFull || event.paymentFull?.imageUrl === '') && daysUntil < 7) {
-          eventStatus = 'PENDING_PAYMENT_FULL'
-        }
+
         return (
           <div
             key={event.title}
@@ -151,40 +154,64 @@ export default function ListClientEvents({
                 </div>
                 <div className="text-sm">
                   <div className="grid grid-cols-1 items-center gap-1.5 text-gray-700">
-                    <PencilIcon
-                      onClick={() => updateEvent(event)}
-                      className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
-                      aria-hidden="true"
-                    />
-                    <XMarkIcon
-                      onClick={() => cancelEvent(event)}
-                      className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
-                      aria-hidden="true"
-                    />
-                    {(event.status.toUpperCase() === 'PUBLISHED' ||
-                      event.status.toUpperCase() === 'READY') && (
-                      <UserPlusIcon
-                        onClick={() => openAddPromotor(event)}
+                    <Tooltip
+                      title="Edit button"
+                      arrow>
+                      <PencilIcon
+                        onClick={() => updateEvent(event)}
                         className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
                         aria-hidden="true"
                       />
-                    )}
-                    {eventStatus.toUpperCase().includes('PENDING_PAYMENT') && (
-                      <span className="relative flex">
-                        <BanknotesIcon
-                          onClick={() => openPayment(event, eventStatus)}
-                          className="z-20 inline h-8 w-8 cursor-pointer rounded-full border border-amber-600 bg-amber-500 p-1.5 text-white hover:border-rose-600 hover:bg-rose-500"
+                    </Tooltip>
+
+                    <Tooltip
+                      title="Cancel button"
+                      arrow>
+                      <XMarkIcon
+                        onClick={() => cancelEvent(event)}
+                        className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
+                        aria-hidden="true"
+                      />
+                    </Tooltip>
+
+                    {(event.status.toUpperCase() === 'PUBLISHED' ||
+                      event.status.toUpperCase() === 'READY') && (
+                      <Tooltip
+                        title="Add Promotor"
+                        arrow>
+                        <UserPlusIcon
+                          onClick={() => openAddPromotor(event)}
+                          className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
                           aria-hidden="true"
                         />
+                      </Tooltip>
+                    )}
+
+                    {eventStatus.toUpperCase().includes('PENDING_PAYMENT') && (
+                      <span className="relative flex">
+                        <Tooltip
+                          title="Open Payment"
+                          arrow>
+                          <BanknotesIcon
+                            onClick={() => openPayment(event, eventStatus)}
+                            className="z-20 inline h-8 w-8 cursor-pointer rounded-full border border-amber-600 bg-amber-500 p-1.5 text-white hover:border-rose-600 hover:bg-rose-500"
+                            aria-hidden="true"
+                          />
+                        </Tooltip>
                         <span className="absolute z-10 inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-45"></span>
                       </span>
                     )}
+
                     {(event?.paymentDp?.amount > 0 || event?.paymentFull?.amount > 0) && (
-                      <ClockIcon
-                        onClick={() => openPaymentHistory(event, eventStatus)}
-                        className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
-                        aria-hidden="true"
-                      />
+                      <Tooltip
+                        title="View Payment History"
+                        arrow>
+                        <ClockIcon
+                          onClick={() => openPaymentHistory(event, eventStatus)}
+                          className="inline h-8 w-8 cursor-pointer rounded-full border border-gray-300 p-1.5 hover:border-rose-400 hover:text-rose-500"
+                          aria-hidden="true"
+                        />
+                      </Tooltip>
                     )}
                   </div>
                 </div>

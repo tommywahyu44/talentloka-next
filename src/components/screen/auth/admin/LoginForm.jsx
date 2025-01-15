@@ -25,7 +25,7 @@ export default function LoginForm({ signIn }) {
   }
   return (
     <>
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="sm:mx-auto sm:w-full">
         <img
           className="mx-auto h-20 w-auto"
           src="/images/marketingo-logo.png"
@@ -36,7 +36,7 @@ export default function LoginForm({ signIn }) {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
           onSubmit={handleSubmit}>
@@ -57,7 +57,7 @@ export default function LoginForm({ signIn }) {
             onChange={handlePasswordChange}
           />
           <div>
-            <AuthButton type="submit">Sign in</AuthButton>
+            <AuthButton type="submit">{t('commonSignin')}</AuthButton>
           </div>
         </form>
       </div>

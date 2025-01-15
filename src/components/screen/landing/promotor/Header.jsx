@@ -2,17 +2,19 @@
 
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 const navigation = [
-  { name: 'Benefits', href: '#benefits' },
-  { name: 'Partners', href: '#partners' },
-  { name: 'Features', href: '#features' },
-  { name: 'Stories', href: '#stories' },
-  { name: 'FAQ', href: '#faq' },
+  { name: 'landingPromotorHeader1', href: '#benefits' },
+  { name: 'landingPromotorHeader2', href: '#partners' },
+  { name: 'landingPromotorHeader3', href: '#features' },
+  { name: 'landingPromotorHeader4', href: '#stories' },
+  { name: 'landingPromotorHeader5', href: '#faq' },
 ]
 
 export default function Header() {
+  const t = useTranslations('default')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -73,7 +75,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
+                {t(item.name)}
               </a>
             ))}
           </div>
@@ -81,7 +83,8 @@ export default function Header() {
             <a
               href="/promotor/login"
               className="text-sm font-semibold leading-6 text-rose-600">
-              Log in <span aria-hidden="true">&rarr;</span>
+              {t('commonSignin')}
+              <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </nav>
@@ -130,7 +133,7 @@ export default function Header() {
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-rose-600 hover:bg-gray-50">
-                  Log in
+                  {t('commonSignin')}
                 </a>
               </div>
             </div>

@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 const footerNavigation = {
   solutions: [
     { name: 'Retail', href: '#' },
@@ -23,6 +25,7 @@ const footerNavigation = {
 }
 
 export default function Footer() {
+  const t = useTranslations('default')
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <footer

@@ -51,25 +51,25 @@ export const clientDashboard = {
         { value: 'Chinese', label: 'Indonesian - Chinese', checked: false },
       ],
     },
-    // {
-    //   id: 'country',
-    //   name: 'commonCountry',
-    //   options: [
-    //     { value: 'All', label: 'All', checked: false },
-    //     { value: 'Indonesia', label: 'Indonesia', checked: true },
-    //     { value: 'Singapore', label: 'Singapore', checked: false },
-    //     { value: 'Malaysia', label: 'Malaysia', checked: false },
-    //     { value: 'Vietnam', label: 'Vietnam', checked: false },
-    //     { value: 'Thailand', label: 'Thailand', checked: false },
-    //   ],
-    // },
+    {
+      id: 'country',
+      name: 'commonCountry',
+      options: [
+        // { value: 'All', label: 'All', checked: false },
+        { value: 'Indonesia', label: 'Indonesia', checked: true },
+        // { value: 'Singapore', label: 'Singapore', checked: false },
+        // { value: 'Malaysia', label: 'Malaysia', checked: false },
+        // { value: 'Vietnam', label: 'Vietnam', checked: false },
+        // { value: 'Thailand', label: 'Thailand', checked: false },
+      ],
+    },
     {
       id: 'role',
       name: 'commonRole',
       options: [
         { value: 'All', label: 'All', checked: false },
-        { value: 'SPG', label: 'Promoter', checked: true },
-        { value: 'Model', label: 'Model', checked: false },
+        { value: 'SPG', label: 'SPG', checked: true },
+        { value: 'Usher', label: 'Usher', checked: false },
       ],
     },
     {
@@ -153,8 +153,7 @@ export const clientDashboard = {
       options: [
         { value: 'All', label: 'All', checked: true },
         { value: '1', label: 'Elite Proferssionals', checked: false },
-        { value: '2', label: 'Tier 2', checked: false },
-        { value: '3', label: 'Tier 3', checked: false },
+        { value: '2', label: 'Reliable Support', checked: false },
       ],
     },
   ],

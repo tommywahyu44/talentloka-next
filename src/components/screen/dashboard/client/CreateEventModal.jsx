@@ -341,11 +341,11 @@ export default function CreateEventModal({
           className="space-y-6 sm:mx-auto sm:w-full sm:max-w-2xl"
           onSubmit={handleSubmit}>
           <h3 className="text-xl font-medium text-stone-900">
-            {method === 'create' ? 'Create your event' : 'Update your event'}
+            {method === 'create' ? t('clientCreateEvent') : t('clientCreateEventUpdate')}
           </h3>
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 text-left sm:grid-cols-6">
             <TextInput
-              label="Title"
+              label={t('clientCreateEventTitle')}
               id="title"
               value={eventData.title}
               onChange={handleChange}
@@ -354,7 +354,7 @@ export default function CreateEventModal({
               isFullWidth={true}
             />
             <TextInput
-              label="Description"
+              label={t('clientCreateEventDescription')}
               id="description"
               value={eventData.description}
               onChange={handleChange}
@@ -364,7 +364,7 @@ export default function CreateEventModal({
               isFullWidth={true}
             />
             <FileInput
-              label="Event Image"
+              label={t('clientCreateEventImage')}
               limitDesc="PNG, JPG or JPEG (Max 2 MB)"
               id="eventImage"
               value={fileInputs.eventImage}
@@ -379,14 +379,14 @@ export default function CreateEventModal({
               src={data?.image ?? '/images/image-placeholder.webp'}
             />
             <DropdownInput
-              label="Industry"
+              label={t('clientCreateEventIndustry')}
               id="industry"
               value={eventData.industry}
               onChange={handleChange}
               listItems={listIndustry}
             />
             <DropdownInput
-              label="Event Type"
+              label={t('clientCreateEventType')}
               id="type"
               value={eventData.type}
               onChange={handleChange}
@@ -451,7 +451,7 @@ export default function CreateEventModal({
               <label
                 htmlFor={coupon}
                 className="block text-sm font-medium leading-6 text-stone-900">
-                Coupon Code
+                {t('clientCreateEventCoupon')}
               </label>
               {eventData.coupon ? (
                 <div className="flex items-center justify-between rounded-md border border-rose-700 bg-rose-50 px-2 py-2">
@@ -488,7 +488,7 @@ export default function CreateEventModal({
             </div>
             <div className="col-span-6">
               <label className="block text-sm font-medium leading-6 text-stone-900">
-                Invited Promotor
+                {t('clientCreateEventPromotor')}
               </label>
               <div className="mt-2 flex flex-wrap">
                 {listInvitedPromotor.data.map((spgData) => {

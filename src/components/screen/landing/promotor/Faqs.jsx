@@ -1,34 +1,31 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
-
+import { useTranslations } from 'next-intl'
 const faqs = [
   {
     id: 1,
-    question: 'How do I find and accept jobs?',
-    answer:
-      "Use our app's job board to discover a wide range of promotion opportunities. Simply filter by location, category, and pay rate to find jobs that suit you. Once you find a job you're interested in, tap 'Apply' and follow the on-screen instructions.",
+    question: 'landingPromotorSec4Item1Title',
+    answer: 'landingPromotorSec4Item1Description',
   },
   {
     id: 2,
-    question: 'How do I get paid?',
-    answer:
-      'Payments are processed through our secure payment system. Once you complete a job, your earnings will be deposited into your preferred payment method, such as PayPal or direct deposit. You can track your earnings and payment history directly within the app.',
+    question: 'landingPromotorSec4Item2Title',
+    answer: 'landingPromotorSec4Item2Description',
   },
   {
     id: 3,
-    question: 'What kind of support is available?',
-    answer:
-      'Our dedicated support team is here to assist you 24/7. You can contact us in-app for quick assistance or visit our help center for a comprehensive FAQ and troubleshooting guide.',
+    question: 'landingPromotorSec4Item3Title',
+    answer: 'landingPromotorSec4Item3Description',
   },
   {
     id: 4,
-    question: 'How can I improve my performance as a promoter?',
-    answer:
-      'We offer various resources to help you excel as a promoter, including: \n Performance analytics Track your key metrics to identify areas for improvement. \n Training modules: Access on-demand training to learn new skills and best practices. \n Community forums: Connect with other promoters and share tips and experiences.',
+    question: 'landingPromotorSec4Item4Title',
+    answer: 'landingPromotorSec4Item4Description',
   },
 ]
 
 export default function Faqs() {
+  const t = useTranslations('default')
   return (
     <div
       id="faq"
@@ -44,7 +41,7 @@ export default function Faqs() {
             className="pt-6">
             <dt>
               <DisclosureButton className="group flex w-full items-start justify-between text-left text-gray-900">
-                <span className="text-base font-semibold leading-7">{faq.question}</span>
+                <span className="text-base font-semibold leading-7">{t(faq.question)}</span>
                 <span className="ml-6 flex h-7 items-center">
                   <ChevronDownIcon
                     aria-hidden="true"
@@ -60,7 +57,7 @@ export default function Faqs() {
             <DisclosurePanel
               as="dd"
               className="mt-2 pr-12">
-              <p className="text-base leading-7 text-gray-600">{faq.answer}</p>
+              <p className="text-base leading-7 text-gray-600">{t(faq.answer)}</p>
             </DisclosurePanel>
           </Disclosure>
         ))}

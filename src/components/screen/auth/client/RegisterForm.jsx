@@ -6,8 +6,11 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 export default function RegistrationForm({ createUser }) {
+  const params = new URLSearchParams(window.location.search)
+  const paramsEmail = params.get('email')
   const t = useTranslations('default')
-  const [email, setEmail] = useState('')
+
+  const [email, setEmail] = useState(paramsEmail)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -42,7 +45,7 @@ export default function RegistrationForm({ createUser }) {
   // }, [])
   return (
     <>
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="sm:mx-auto sm:w-full">
         <img
           className="mx-auto h-20 w-auto"
           src="/images/marketingo-logo.png"
@@ -53,7 +56,7 @@ export default function RegistrationForm({ createUser }) {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
           onSubmit={handleSubmit}>

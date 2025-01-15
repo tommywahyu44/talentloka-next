@@ -1,3 +1,4 @@
+import WhatsAppChatButton from '@/components/button/WhatsAppChatButton'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
@@ -73,6 +74,7 @@ export default async function RootLayout({ children, params: { locale } }) {
         messages={messages}>
         <body>
           <AuthProvider>{children}</AuthProvider>
+          <WhatsAppChatButton />
         </body>
       </NextIntlClientProvider>
     </html>

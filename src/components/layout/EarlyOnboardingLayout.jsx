@@ -1,16 +1,19 @@
 export default function EarlyOnboardingLayout({ url, children }) {
+  const backgroundImageUrl = url ?? '/images/background/bg-auth-client.jpg'
   return (
     <>
-      <div className="flex min-h-full flex-1">
-        <div className="flex w-2/5 flex-1 flex-col lg:flex-none">
-          <div className="mx-auto w-full max-w-lg">{children}</div>
-        </div>
-        <div className="relative hidden w-0 flex-1 lg:block">
-          <img
-            alt=""
-            src={url ?? '/images/background/bg-auth-client.avif'}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+      <div
+        className="relative flex min-h-screen items-center justify-center"
+        style={{
+          backgroundImage: `url(${backgroundImageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="m-3 w-full max-w-xl rounded-2xl bg-white/70 p-3 sm:m-4 sm:p-4">
+          <div className="relative rounded-xl bg-white px-4 py-6 shadow-2xl backdrop-blur-sm sm:p-10">
+            {children}
+          </div>
         </div>
       </div>
     </>

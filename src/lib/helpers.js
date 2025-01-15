@@ -145,7 +145,7 @@ export const dateIsPast = (date) => {
 export const dateToTwoDateRange = (startDate, endDate) => {
   const start = new Date(startDate)
   const end = new Date(endDate)
-
+  console.log(start, end, 'and', startDate, endDate)
   // Check if both dates are in the same year
   if (start.getFullYear() === end.getFullYear()) {
     // Check if both dates are in the same month

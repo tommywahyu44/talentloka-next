@@ -5,15 +5,17 @@ import { useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 
 import { ArrowDownIcon } from '@heroicons/react/24/outline'
+import { useTranslations } from 'next-intl'
 
 const stats = [
-  { id: 1, name: 'Events', value: 2000, suffix: '+' },
-  { id: 2, name: 'Companies', value: 200, suffix: '+' },
-  { id: 3, name: 'Monthly events', value: 100, suffix: '~' },
-  { id: 4, name: 'Average fee per event', value: 500, suffix: 'K' },
+  { id: 1, name: 'landingPromotorSec1stats1', value: 2000, suffix: '+' },
+  { id: 2, name: 'landingPromotorSec1stats2', value: 200, suffix: '+' },
+  { id: 3, name: 'landingPromotorSec1stats3', value: 100, suffix: '~' },
+  { id: 4, name: 'landingPromotorSec1stats4', value: 500, suffix: 'K' },
 ]
 
 export default function Hero() {
+  const t = useTranslations('default')
   const [estimationFee, setEstimationFee] = useState(0)
   const handleEstimationFeeChange = function (event) {
     setEstimationFee(event.target.value)
@@ -42,16 +44,17 @@ export default function Hero() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              <span className="text-rose-500">Become a Promoter</span> and Make a Difference
+              <span className="pr-4 text-rose-500">{t('landingPromotorSec1Title')}</span>
+              {t('landingPromotorSec1Title2')}
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Join our community of talented individuals and earn while doing what you love.
+              {t('landingPromotorSec1Description')}
             </p>
             <div className="relative mt-10 flex h-12 items-center justify-center gap-x-6">
               <a
                 href="promotor/register"
                 className="absolute z-10 rounded-md bg-rose-600 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                Join now
+                {t('commonJoinNow')}
               </a>
               <div
                 href="#"
@@ -62,7 +65,7 @@ export default function Hero() {
                 <div
                   key={stat.id}
                   className="flex flex-col gap-y-3 border-l border-white/10 pl-6">
-                  <dt className="text-sm leading-6">{stat.name}</dt>
+                  <dt className="text-sm leading-6">{t(stat.name)}</dt>
                   <CountUp
                     end={stat.value}
                     suffix={stat.suffix}
@@ -78,9 +81,9 @@ export default function Hero() {
             <div className="grid grid-cols-1 place-items-center gap-x-6 gap-y-6 md:grid-cols-2">
               <div className="relative mt-16 h-full w-full max-w-xl items-center justify-center">
                 <h1 className="text-center text-4xl font-semibold tracking-tight text-stone-900">
-                  <span className="text-rose-600">Promote it.</span>
+                  <span className="text-rose-600">{t('landingPromotorSec1part2text1')}</span>
                   <br></br>
-                  You could earn estimation
+                  {t('landingPromotorSec1part2text2')}
                 </h1>
                 <div className="mb-1 mt-12 block">
                   <label

@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 const partners = [
   {
     name: 'Djarum',
@@ -22,6 +24,7 @@ const partners = [
 ]
 
 export default function LogoPartners() {
+  const t = useTranslations('default')
   return (
     <div
       id="partners"
@@ -36,7 +39,7 @@ export default function LogoPartners() {
           />
         ))}
       </div>
-      <div className="mt-16 flex justify-center">
+      {/* <div className="mt-16 flex justify-center">
         <p className="relative rounded-full px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/10 hover:ring-gray-900/20">
           <span className="hidden md:inline">
             On average our promoters earn Rp. 5,000,000 per month.
@@ -51,7 +54,7 @@ export default function LogoPartners() {
             Read their stories <span aria-hidden="true">&rarr;</span>
           </a>
         </p>
-      </div>
+      </div> */}
     </div>
   )
 }
