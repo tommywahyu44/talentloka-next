@@ -1,6 +1,6 @@
 import TalentDetailsModal from '@/components/screen/dashboard/client/TalentDetailsModal'
 import clientFavoriteService from '@/services/clientFavoriteService'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { Favorite, FavoriteTwoTone, Straighten } from '@mui/icons-material'
 import clsx from 'clsx'
 import { Briefcase, Crown, MapPin } from 'lucide-react'
 import { useState } from 'react'
@@ -47,7 +47,7 @@ const ModelCard = ({ code, model, favorites, setListFavorites }) => {
               style={{ fill: 'currentColor' }}
             />
           ) : (
-            <FavoriteBorder
+            <FavoriteTwoTone
               sx={{
                 fontSize: '2rem',
               }}
@@ -127,11 +127,13 @@ const ModelCard = ({ code, model, favorites, setListFavorites }) => {
                 {model.categories[0].role}
               </span>
             )}
-            {model.dobYear && (
+            {model.heightCm && (
               <span className="flex items-center gap-1 text-sm text-white/90">
-                <span className="rounded-full border border-rose-400/20 bg-rose-500/20 px-2 py-1 text-xs text-white backdrop-blur-sm sm:px-3 sm:text-sm">
-                  {model.heightCm}
-                </span>
+                <Straighten
+                  fontSize="small"
+                  className="rotate-90 text-rose-300"
+                />
+                <span className="text-base">{model.heightCm}</span>
               </span>
             )}
           </div>

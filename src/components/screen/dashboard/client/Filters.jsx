@@ -27,10 +27,11 @@ import {
   PlusIcon,
 } from '@heroicons/react/20/solid'
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { getDatabase, onValue, ref } from 'firebase/database'
+import { get, getDatabase, onValue, ref } from 'firebase/database'
 import { Fragment, useEffect, useState } from 'react'
 
 import { ModelCard } from '@/components/card/Card'
+import { apiService } from '@/lib/apiService'
 import { clientDashboard } from '@/lib/constants'
 import { moneyFormat } from '@/lib/helpers'
 import clientFavoriteService from '@/services/clientFavoriteService'
@@ -64,6 +65,43 @@ export default function Filters({
   const [listFavorites, setFavorite] = useState(listInitFavorites)
   const [loading, setLoading] = useState(false)
   const [listData, setListData] = useState({ data: [], filteredData: [] })
+  const [coupon, setCoupon] = useState('')
+  const [couponDetail, setCouponDetail] = useState(null)
+
+  const handleApplyCoupon = async () => {
+    console.log('apply clicked')
+    if (coupon.trim() !== '') {
+      const listFavorites = listData.data.filter((spg) => favorites.includes(spg[0]))
+      let subtotal = 0
+      listFavorites.map((item) => {
+        let price = 0
+        switch (item[1].tier) {
+          case 1:
+            price = 999000
+            break
+          case 2:
+            price = 799000
+            break
+          case 3:
+            price = 499000
+            break
+          default:
+            price = 0
+            break
+        }
+        subtotal += price
+      })
+      const response = await apiService.checkCoupon(email, coupon, subtotal)
+
+      if (response.status === 'success') {
+        fetchCouponDetail(coupon)
+      }
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setCouponDetail(null)
+  }
 
   const openCreateEvent = () => {
     setCreateEvent({
@@ -71,6 +109,24 @@ export default function Filters({
       method: 'create',
       data: { listPromotor: favorites.join(',') },
     })
+  }
+
+  const fetchCouponDetail = async (coupon) => {
+    const db = getDatabase() // Initialize the database
+    const couponRef = ref(db, 'coupons/' + coupon.toUpperCase()) // Replace with your database path
+    try {
+      const snapshot = await get(couponRef)
+      if (snapshot.exists()) {
+        const data = snapshot.val()
+        setCouponDetail(data)
+        return data
+      } else {
+        console.log('No data available')
+        return null
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
   }
 
   const closeCreateEvent = () => {
@@ -260,37 +316,67 @@ export default function Filters({
   const handleSubmitWhatsApp = async () => {
     try {
       const listFavorites = listData.data.filter((spg) => favorites.includes(spg[0]))
+      let spgFee = 0
       let subtotal = 0
-      const message = `
-Hi Talentloka!
+      let bundlePackage = 0
+      let supervisionFee = 100000 * listFavorites.length
+      if (listFavorites.length >= 2 && listFavorites.length <= 5) {
+        bundlePackage = 0.05
+      } else if (listFavorites.length >= 6 && listFavorites.length <= 10) {
+        bundlePackage = 0.1
+      } else if (listFavorites.length > 10) {
+        bundlePackage = 0.15
+      }
+      listFavorites.map((item) => {
+        let price = 0
+        switch (item[1].tier) {
+          case 1:
+            price = 999000
+            break
+          case 2:
+            price = 799000
+            break
+          case 3:
+            price = 499000
+            break
+          default:
+            price = 0
+            break
+        }
+        spgFee += price
+      })
+      subtotal = spgFee + supervisionFee
+      const message = `Hi Talentloka!
 Nama: ${userProfile.name}
 Email: ${userProfile.email}
 
+Saya ingin mengontrak SPG berikut:
 ${listFavorites
   .map((item) => {
     let price = 0
     switch (item[1].tier) {
       case 1:
-        price = 499000
+        price = 999000
         break
       case 2:
         price = 799000
         break
       case 3:
-        price = 999000
+        price = 499000
         break
       default:
         price = 0
         break
     }
-    subtotal += price // Add price to subtotal
     return `• ${item[1].name} (${item[0]}) Fee ${moneyFormat(price)}`
   })
   .join('\n')}
 
-Kupon: LAUNCH10%
-Diskon: ${moneyFormat(subtotal * 0.1)}
-Total: ${moneyFormat(subtotal * 0.9)}/day
+Biaya Supervision: ${moneyFormat(supervisionFee)}
+Sub Total: ${moneyFormat(subtotal)}
+${bundlePackage > 0 ? `Diskon Bundling: ${bundlePackage * 100}%` : ''}${couponDetail?.code ? `\nDiskon Kupon: ${couponDetail?.code} ${couponDetail?.discount * 100}%` : ''}
+
+Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bundlePackage || 0)))} / hari
 `
 
       const encodedMessage = encodeURIComponent(message)
@@ -450,17 +536,56 @@ Total: ${moneyFormat(subtotal * 0.9)}/day
                               )
                             })}
                       </div>
-                      <a
-                        onClick={() => openCreateEvent()}
-                        type="button"
-                        className="mt-4 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-xs font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-                        Create Event
-                      </a>
+                      <div className="col-span-6 mt-4 pr-4">
+                        <label
+                          htmlFor={coupon}
+                          className="block text-sm font-medium leading-6 text-stone-900">
+                          {t('clientCreateEventCoupon')}
+                        </label>
+                        {couponDetail?.code ? (
+                          <div className="flex items-center justify-between rounded-md border border-rose-700 bg-rose-50 px-2 py-1">
+                            <span className="text-sm font-semibold text-rose-700">
+                              {coupon.toUpperCase()}: {couponDetail?.title ?? ''}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={handleRemoveCoupon}
+                              className="flex justify-center rounded-md border border-rose-700 bg-white px-3 py-1 text-sm font-semibold leading-6 text-rose-600 shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                              Remove
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2 py-2">
+                            <input
+                              type="text"
+                              name="coupon"
+                              id="coupon"
+                              label="Coupon"
+                              value={coupon}
+                              onChange={(e) => setCoupon(e.target.value.toUpperCase())}
+                              required
+                              className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm outline-none ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleApplyCoupon}
+                              className="flex justify-center rounded-md bg-rose-600 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+                              Apply
+                            </button>
+                          </div>
+                        )}
+                      </div>
                       <a
                         onClick={handleSubmitWhatsApp}
                         type="button"
+                        className="mt-4 inline-flex cursor-pointer items-center gap-x-2 rounded-md bg-rose-600 px-3.5 py-2.5 text-xs font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+                        Booking WhatsApp
+                      </a>
+                      <a
+                        onClick={() => openCreateEvent()}
+                        type="button"
                         className="ml-2 mt-4 inline-flex cursor-pointer items-center gap-x-2 rounded-md border border-rose-500 bg-white px-3.5 py-2.5 text-xs font-semibold text-rose-600 shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                        Send WhatsApp
+                        Buat Event
                       </a>
                     </div>
                   ) : (
