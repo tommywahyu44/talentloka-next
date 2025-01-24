@@ -8,7 +8,7 @@ export default function Example() {
       className="bg-white">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="relative isolate overflow-hidden bg-rose-50 px-6 py-24 text-center shadow-md sm:rounded-3xl sm:px-16">
-          <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-rose-600 sm:text-4xl">
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold tracking-tight text-rose-600 sm:text-4xl">
             {t('landingClientSec4Title')}
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-700">

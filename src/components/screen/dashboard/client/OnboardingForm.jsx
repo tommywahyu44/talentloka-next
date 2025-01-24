@@ -37,6 +37,21 @@ export default function OnboardingForm({ email, businessType, handleBusinessType
   })
 
   const [isSubmit, setIsSubmit] = useState(false)
+  const { name, company, contact, singleBusinessNumber, directorIdCard, employerTaxId } = formData
+  var valid =
+    businessType === 'PT'
+      ? name &&
+        company &&
+        contact &&
+        email &&
+        fileInputs.deedOfEstablishment[0] &&
+        directorIdCard &&
+        fileInputs.directorIdCard[0] &&
+        singleBusinessNumber &&
+        fileInputs.singleBusinessNumber[0] &&
+        employerTaxId &&
+        fileInputs.employerTaxId[0]
+      : name && company && contact && email && directorIdCard && fileInputs.directorIdCard[0]
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -60,42 +75,6 @@ export default function OnboardingForm({ email, businessType, handleBusinessType
   const handleSubmit = async (event) => {
     event.preventDefault()
     setIsSubmit(true)
-
-    const { name, company, contact, singleBusinessNumber, directorIdCard, employerTaxId } = formData
-
-    const valid =
-      businessType === 'PT'
-        ? name &&
-          company &&
-          contact &&
-          fileInputs.companyLogo[0] &&
-          email &&
-          fileInputs.deedOfEstablishment[0] &&
-          directorIdCard &&
-          fileInputs.directorIdCard[0] &&
-          singleBusinessNumber &&
-          fileInputs.singleBusinessNumber[0] &&
-          employerTaxId &&
-          fileInputs.employerTaxId[0]
-        : businessType === 'PP'
-          ? name &&
-            company &&
-            contact &&
-            fileInputs.companyLogo[0] &&
-            email &&
-            directorIdCard &&
-            fileInputs.directorIdCard[0] &&
-            singleBusinessNumber &&
-            fileInputs.singleBusinessNumber[0] &&
-            employerTaxId &&
-            fileInputs.employerTaxId[0]
-          : name &&
-            company &&
-            contact &&
-            fileInputs.companyLogo[0] &&
-            email &&
-            employerTaxId &&
-            fileInputs.employerTaxId[0]
 
     if (valid) {
       const formSubmitData = new FormData()
@@ -141,12 +120,12 @@ export default function OnboardingForm({ email, businessType, handleBusinessType
   }
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8">
-      <ClipboardDocumentListIcon className="mx-auto h-32 w-32 text-rose-500" />
-      <h2 className="mt-8 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+    <div className="flex min-h-full flex-1 flex-col justify-center">
+      <ClipboardDocumentListIcon className="mx-auto mt-12 h-20 w-20 text-rose-500 sm:h-32 sm:w-32" />
+      <h2 className="mt-8 font-display text-xl font-bold tracking-tight text-stone-900 sm:text-4xl">
         Complete Your Onboarding Profile
       </h2>
-      <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+      <p className="mx-auto mt-4 max-w-xl text-base text-stone-600 sm:mt-6 sm:text-lg">
         Before you can start using our app, please complete your onboarding profile so that we can
         verify your profile. Thank you!
       </p>
@@ -242,34 +221,34 @@ export default function OnboardingForm({ email, businessType, handleBusinessType
             isSubmit={isSubmit}
           />
 
-          {(businessType === 'PT' || businessType === 'PP') && (
-            <TextInput
-              label="Employer Tax ID Number"
-              id="employerTaxId"
-              placeholder="Enter your employer tax ID number"
-              value={formData.employerTaxId}
-              onChange={handleChange}
-              errorEmptyMessage="Please fill out this field."
-              isSubmit={isSubmit}
-            />
-          )}
+          <TextInput
+            label={`Nomor NPWP${businessType === 'ID' ? ' (Optional)' : ''}`}
+            id="employerTaxId"
+            placeholder="Enter your employer tax ID number"
+            value={formData.employerTaxId}
+            onChange={handleChange}
+            errorEmptyMessage="Please fill out this field."
+            isSubmit={isSubmit}
+          />
 
-          {(businessType === 'PT' || businessType === 'PP') && (
-            <FileInput
-              label="Upload Employer Tax ID"
-              limitDesc="PDF, PNG, JPG, or JPEG (Max 2 MB)"
-              id="employerTaxId"
-              value={fileInputs.employerTaxId}
-              onChange={(e) => handleFileChange('employerTaxId', 2, e)}
-              errorEmptyMessage="Please fill out this field."
-              isSubmit={isSubmit}
-            />
-          )}
+          <FileInput
+            label={`Upload NPWP${businessType === 'ID' ? ' (Optional)' : ''}`}
+            limitDesc="PDF, PNG, JPG, or JPEG (Max 2 MB)"
+            id="employerTaxId"
+            value={fileInputs.employerTaxId}
+            onChange={(e) => handleFileChange('employerTaxId', 2, e)}
+            errorEmptyMessage="Please fill out this field."
+            isSubmit={isSubmit}
+          />
         </div>
         <div className="mt-auto flex flex-row space-x-3 pt-12">
           <AuthBackButton onClick={() => handleBusinessTypeChange(businessType.selected, false)} />
           <div className="grow space-y-4">
-            <AuthButton type="submit">{t('commonSubmit')}</AuthButton>
+            <AuthButton
+              disabled={!valid}
+              type="submit">
+              {t('commonSubmit')}
+            </AuthButton>
           </div>
         </div>
       </form>

@@ -141,7 +141,7 @@ const FilterDrawer = ({ isOpen, onClose, initialFilters, onApply }) => {
         }`}
         onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between border-b p-4">
-          <h2 className="text-xl font-semibold">Filters</h2>
+          <h2 className="font-display text-xl font-semibold">Filters</h2>
           <button
             onClick={onClose}
             className="rounded-lg p-2 transition-colors hover:bg-gray-100">

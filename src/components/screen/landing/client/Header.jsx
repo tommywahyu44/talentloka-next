@@ -314,7 +314,7 @@ export default function Example() {
               id="company"
               className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-                <h2 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+                <h2 className="font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
                   Who <span className="text-rose-600">We Are</span>
                 </h2>
                 <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
@@ -347,7 +347,9 @@ export default function Example() {
 
             {/* Partners */}
             <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
-              <h2 className="text-lg font-medium leading-7 text-stone-600">Trusted by</h2>
+              <h2 className="font-display text-lg font-medium leading-7 text-stone-600">
+                Trusted by
+              </h2>
               <div className="mx-auto mt-8 grid max-w-lg grid-cols-4 items-center gap-x-12 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-16 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                 {partners.map((partner, index) => (
                   <img

@@ -455,7 +455,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
               className="h-6 w-6 cursor-pointer text-stone-900"
             />
           )}
-          <h2 className="mx-auto text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+          <h2 className="mx-auto font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
             {isFromRegister ? 'Submit Your Profile' : 'Update Profile'}
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">

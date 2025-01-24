@@ -128,7 +128,7 @@ export default function DetailEvent({ event, profileData, back }) {
           <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {/* Invoice summary */}
             <div className="lg:col-start-3 lg:row-end-1">
-              <h2 className="sr-only">Summary</h2>
+              <h2 className="sr-only font-display">Summary</h2>
               <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
                 <dl className="flex flex-wrap">
                   <div className="flex-auto py-6 pl-6">

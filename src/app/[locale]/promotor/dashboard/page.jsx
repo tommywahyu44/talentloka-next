@@ -3,10 +3,6 @@
 import UpdateProfile from '@/components/screen/dashboard/promotor/UpdateProfile'
 import { lottieFiles } from '@/lib/constants'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import Box from '@mui/material/Box'
-import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
-import Stepper from '@mui/material/Stepper'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
@@ -14,7 +10,7 @@ import { DocumentMagnifyingGlassIcon, EnvelopeIcon } from '@heroicons/react/24/o
 
 import Navigation from '@/components/screen/dashboard/promotor/Navigation'
 import { fireAuth } from '@/plugins/firebase'
-import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth'
+import { onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth'
 import { getDatabase, onValue, ref } from 'firebase/database'
 
 const stepsInfo = [
@@ -23,9 +19,11 @@ const stepsInfo = [
   { id: 'Step 3', name: 'Admin Approval', href: '#' },
 ]
 
+import OnboardingLayout from '@/components/layout/OnboardingLayout'
 import Earnings from '@/components/screen/dashboard/promotor/Earnings'
 import Events from '@/components/screen/dashboard/promotor/Events'
 import Home from '@/components/screen/dashboard/promotor/Home'
+import { Step, StepLabel, Stepper } from '@mui/material'
 import Swal from 'sweetalert2'
 
 function sendEmailNotification() {
@@ -82,14 +80,49 @@ function getHomeUI(navigation, setNavigation, email, profileData, listEvents) {
 }
 
 function getDashboardUI(step, email, profileData, listEvents, navigation, setNavigation) {
-  switch (step) {
-    case 0:
-      return (
-        <div className="bg-white">
-          <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
+  if (step < 3) {
+    return (
+      <div className="bg-white">
+        <div className="mx-auto max-w-3xl text-center">
+          {step < 3 && (
+            <div className="w-full">
+              <Stepper
+                activeStep={step}
+                alternativeLabel>
+                {stepsInfo.map((label, index) => (
+                  <Step
+                    key={label.name}
+                    sx={{
+                      '& .MuiStepLabel-root .Mui-completed': {
+                        color: '#9f1239',
+                      },
+                      '& .MuiStepLabel-root .Mui-active': {
+                        color: '#e11d48',
+                      },
+                      '& .MuiStepConnector-line': {
+                        borderWidth: 2,
+                      },
+                      '& .MuiStepConnector-root.Mui-active .MuiStepConnector-line': {
+                        borderColor: '#e11d48',
+                      },
+                      '& .MuiStepConnector-root.Mui-completed .MuiStepConnector-line': {
+                        borderColor: '#9f1239',
+                      },
+                      '.MuiStepIcon-root': {
+                        width: 30,
+                        height: 30, // Increase the icon font size if needed
+                      },
+                    }}>
+                    <StepLabel>{label.name}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </div>
+          )}
+          {step === 0 && (
+            <div>
               <EnvelopeIcon className="mx-auto h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
                 Email Verification
               </h2>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
@@ -104,30 +137,18 @@ function getDashboardUI(step, email, profileData, listEvents, navigation, setNav
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-      )
-    case 1:
-      return (
-        <div className="bg-white">
-          <div className="px-6 py-8 sm:px-6 sm:py-12 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
-              <UpdateProfile
-                email={email}
-                profileData={profileData}
-                isFromRegister={true}
-              />
-            </div>
-          </div>
-        </div>
-      )
-    case 2:
-      return (
-        <div className="bg-white">
-          <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
+          )}
+          {step === 1 && (
+            <UpdateProfile
+              email={email}
+              profileData={profileData}
+              isFromRegister={true}
+            />
+          )}
+          {step === 2 && (
+            <div>
               <DocumentMagnifyingGlassIcon className="mx-auto h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
                 Admin Verification
               </h2>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
@@ -135,25 +156,20 @@ function getDashboardUI(step, email, profileData, listEvents, navigation, setNav
                 publish it. Thank you for waiting!
               </p>
             </div>
-          </div>
+          )}
         </div>
-      )
-    case 3:
-      return (
-        <div className="mx-6 bg-white md:ml-32">
-          {getHomeUI(navigation, setNavigation, email, profileData, listEvents)}
-        </div>
-      )
-    default:
-      return (
-        <div className="mx-auto w-72">
-          <DotLottieReact
-            src={lottieFiles.loading}
-            loop
-            autoplay
-          />
-        </div>
-      )
+      </div>
+    )
+  } else {
+    return (
+      <div className="mx-auto w-72">
+        <DotLottieReact
+          src={lottieFiles.loading}
+          loop
+          autoplay
+        />
+      </div>
+    )
   }
 }
 
@@ -166,6 +182,16 @@ export default function Dashboard() {
   const [navigation, setNavigation] = useState('home')
   const [step, setStep] = useState(-1)
   const [listEvents, setListEvents] = useState([])
+
+  const signout = () => {
+    signOut(fireAuth)
+      .then(() => {
+        window.location.replace('/promotor/login')
+      })
+      .catch(() => {
+        // An error happened.
+      })
+  }
 
   const fetchEvents = async () => {
     const db = getDatabase()
@@ -211,58 +237,38 @@ export default function Dashboard() {
   return (
     <>
       <div className="h-screen">
-        <Navigation
-          navigation={navigation}
-          setNavigation={setNavigation}
-          isOnboarded={step == 3}>
-          <main>
-            <div className="m-auto my-6">
-              {step < 3 && (
-                <Box sx={{ width: '100%' }}>
-                  <Stepper
-                    activeStep={step}
-                    alternativeLabel>
-                    {stepsInfo.map((label, index) => (
-                      <Step
-                        key={label.name}
-                        sx={{
-                          '& .MuiStepLabel-root .Mui-completed': {
-                            color: '#9f1239',
-                          },
-                          '& .MuiStepLabel-root .Mui-active': {
-                            color: '#e11d48',
-                          },
-                          '& .MuiStepConnector-line': {
-                            borderWidth: 2,
-                          },
-                          '& .MuiStepConnector-root.Mui-active .MuiStepConnector-line': {
-                            borderColor: '#e11d48',
-                          },
-                          '& .MuiStepConnector-root.Mui-completed .MuiStepConnector-line': {
-                            borderColor: '#9f1239',
-                          },
-                          '.MuiStepIcon-root': {
-                            width: 30,
-                            height: 30, // Increase the icon font size if needed
-                          },
-                        }}>
-                        <StepLabel>{label.name}</StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </Box>
-              )}
-              {getDashboardUI(
-                step,
-                userData?.email ?? '',
-                profileData,
-                listEvents,
-                navigation,
-                setNavigation
-              )}
-            </div>
-          </main>
-        </Navigation>
+        {step >= 3 && (
+          <Navigation
+            navigation={navigation}
+            setNavigation={setNavigation}
+            isOnboarded={step >= 3}>
+            <main>
+              <div className="m-auto my-4">
+                <div className="mx-6 bg-white md:ml-32">
+                  {getHomeUI(navigation, setNavigation, userData?.email, profileData, listEvents)}
+                </div>
+              </div>
+            </main>
+          </Navigation>
+        )}
+        {step < 3 && (
+          <OnboardingLayout
+            email={userData.email}
+            signout={signout}>
+            <main>
+              <div className="m-auto my-6">
+                {getDashboardUI(
+                  step,
+                  userData?.email ?? '',
+                  profileData,
+                  listEvents,
+                  navigation,
+                  setNavigation
+                )}
+              </div>
+            </main>
+          </OnboardingLayout>
+        )}
       </div>
     </>
   )

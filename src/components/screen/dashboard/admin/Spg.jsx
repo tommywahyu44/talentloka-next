@@ -228,7 +228,7 @@ export default function Spg(email) {
         size="2xl"
         onClose={() => setOpenModal(cardSpgPlaceholder)}>
         {/* <Modal.Header>
-                      <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-rose-600 from-65% via-primary via-90% to-rose-400 font-bold text-3xl">
+                      <h2 className="font-display text-transparent bg-clip-text bg-gradient-to-br from-rose-600 from-65% via-primary via-90% to-rose-400 font-bold text-3xl">
                         {openModal.fieldsname}
                       </h2>
                     </Modal.Header> */}

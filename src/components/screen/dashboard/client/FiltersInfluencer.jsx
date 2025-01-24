@@ -430,7 +430,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                 leaveTo="translate-x-full">
                 <DialogPanel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="text-lg font-medium text-stone-900">Filters</h2>
+                    <h2 className="font-display text-lg font-medium text-stone-900">Filters</h2>
                     <button
                       type="button"
                       className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-stone-400"
@@ -813,7 +813,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                     size="2xl"
                     onClose={() => setOpenModal(cardEntity)}>
                     {/* <Modal.Header>
-                      <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-rose-600 from-65% via-primary via-90% to-rose-400 font-bold text-3xl">
+                      <h2 className="font-display text-transparent bg-clip-text bg-gradient-to-br from-rose-600 from-65% via-primary via-90% to-rose-400 font-bold text-3xl">
                         {openModal.fieldsname}
                       </h2>
                     </Modal.Header> */}

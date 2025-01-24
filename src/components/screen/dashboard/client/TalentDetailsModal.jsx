@@ -155,7 +155,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
             <div className="flex flex-col space-y-8">
               {/* Model ID and Name */}
               <div>
-                <h2 className="bg-clip-text text-xl font-bold text-gray-900 md:text-4xl">
+                <h2 className="bg-clip-text font-display text-xl font-bold text-gray-900 md:text-4xl">
                   {model.name}
                 </h2>
                 <div className="mt-1 font-medium text-gray-800">{code}</div>

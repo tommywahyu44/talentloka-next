@@ -51,7 +51,7 @@ export default function RegistrationForm({ createUser }) {
           src="/images/marketingo-logo.png"
           alt="Your Company"
         />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-stone-900">
+        <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-stone-900">
           {t('authClientRegistrationTitle')}
         </h2>
       </div>

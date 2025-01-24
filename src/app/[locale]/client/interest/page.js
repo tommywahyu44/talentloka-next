@@ -116,7 +116,7 @@ export default function Interest() {
       case 0:
         return (
           <div className="my-32">
-            <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
@@ -132,7 +132,7 @@ export default function Interest() {
       case 1:
         return (
           <div className="my-32">
-            <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
@@ -144,7 +144,7 @@ export default function Interest() {
       case 2:
         return (
           <div className="my-32">
-            <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <RangeSliderButton onClick={nextQuestion} />
@@ -153,7 +153,7 @@ export default function Interest() {
       case 3:
         return (
           <div className="my-32">
-            <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
               {t('clientInterestQuestion4')}
             </h2>
             <div className="mt-8 flex max-w-md flex-col gap-4">

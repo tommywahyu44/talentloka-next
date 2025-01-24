@@ -146,7 +146,7 @@ export default function Contents() {
           />
         </div>
         <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
-          <h2 className="text-base font-semibold leading-7 text-rose-600">Pricing</h2>
+          <h2 className="font-display text-base font-semibold leading-7 text-rose-600">Pricing</h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
             Our bundle package for you
           </p>

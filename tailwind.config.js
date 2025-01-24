@@ -9,11 +9,11 @@ module.exports = {
     'flowbite.content()',
   ],
   theme: {
-    fontFamily: {
-      display: 'var(--display-font)',
-      body: 'var(--body-font)',
-    },
     extend: {
+      fontFamily: {
+        body: ['var(--font-body)', 'sans-serif'], // For Nunito
+        display: ['var(--font-display)', 'monospace'], // For Roboto Mono
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

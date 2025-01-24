@@ -5,7 +5,7 @@ export default function CTA() {
   return (
     <div className="relative isolate py-72">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
           <span className="pb-2 text-rose-600">{t('landingPromotorSec5Text1')}</span>
           <br />
           {t('landingPromotorSec5Text2')}
