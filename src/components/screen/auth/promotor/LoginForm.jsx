@@ -28,7 +28,7 @@ export default function LoginForm({ signIn }) {
       <div className="sm:mx-auto sm:w-full">
         <img
           className="mx-auto h-20 w-auto"
-          src="/images/marketingo-logo.png"
+          src="/images/icon-talentloka.png"
           alt="Your Company"
         />
         <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-stone-900">

@@ -96,7 +96,7 @@ export default function Example() {
               <span className="sr-only">Talentvis</span>
               <img
                 className="h-16 w-auto"
-                src="/images/marketingo-logo.png"
+                src="/images/icon-talentloka.png"
                 alt=""
               />
             </a>

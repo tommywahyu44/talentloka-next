@@ -1578,7 +1578,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
             </div>
             <div className="my-4 flex justify-between text-center text-lg">
               <img
-                src="/images/marketingo-logo.png"
+                src="/images/icon-talentloka.png"
                 className="w-12 sm:w-28"></img>
               <div className="my-auto text-sm font-light text-rose-600 sm:text-base">
                 Sales Promotion Staffing Solution

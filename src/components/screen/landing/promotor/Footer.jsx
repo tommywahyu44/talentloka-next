@@ -39,7 +39,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <img
             alt="Company name"
-            src="/images/marketingo-logo.png"
+            src="/images/icon-talentloka.png"
             className="h-16"
           />
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

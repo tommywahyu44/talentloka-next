@@ -52,7 +52,7 @@ export default function Header() {
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
-                src="/images/marketingo-logo.png"
+                src="/images/icon-talentloka.png"
                 className="h-8 w-auto"
               />
             </a>

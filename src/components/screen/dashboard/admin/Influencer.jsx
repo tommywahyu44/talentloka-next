@@ -263,7 +263,7 @@ export default function Influencer() {
             </div>
             <div className="my-4 flex justify-between text-center text-lg">
               <img
-                src="/images/marketingo-logo.png"
+                src="/images/icon-talentloka.png"
                 className="w-28"></img>
               <div className="my-auto text-base font-light text-rose-600">
                 Sales Promotion Staffing Solution
