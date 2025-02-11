@@ -670,7 +670,7 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-stone-200 py-3 sm:py-5">
             <h1 className="mr-4 text-lg font-bold tracking-tight text-stone-900 md:text-3xl">
-              <span className="text-rose-600">Find </span> the Perfect Talent for Your Event
+              <span className="text-rose-600">{t('clientDashboardHomeTitle1')}</span> {t('clientDashboardHomeTitle2')}
             </h1>
           </div>
 
