@@ -11,19 +11,19 @@ export default function FileInput({
   return (
     <div className={isFullWidth ? 'sm:col-span-6' : 'sm:col-span-3'}>
       <label
-        className="mb-2 block text-sm font-medium text-stone-900"
+        className="mb-2 block text-sm font-medium text-slate-900"
         htmlFor={id}>
         {label}
       </label>
       <input
-        className="block w-full cursor-pointer rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 focus:outline-none"
+        className="block w-full cursor-pointer rounded-lg border border-slate-300 bg-slate-50 text-sm text-slate-900 focus:outline-none"
         id={id}
         type="file"
         accept="image/png, image/jpg, image/jpeg, application/pdf"
         onChange={onChange}
       />
       <p
-        className="mt-1 text-sm text-stone-500"
+        className="mt-1 text-sm text-slate-500"
         id="file_input_help">
         {limitDesc}
         <span className="text-red-600">

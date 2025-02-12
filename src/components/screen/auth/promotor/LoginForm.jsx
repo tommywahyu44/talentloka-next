@@ -31,7 +31,7 @@ export default function LoginForm({ signIn }) {
           src="/images/icon-talentloka.png"
           alt="Your Company"
         />
-        <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-stone-900">
+        <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-slate-900">
           {t('authPromotorLoginTitle')}
         </h2>
       </div>
@@ -74,7 +74,7 @@ export default function LoginForm({ signIn }) {
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-stone-500">
+        <p className="mt-10 text-center text-sm text-slate-500">
           {t('authNoAccount')}{' '}
           <a
             href="/promotor/register"
@@ -82,7 +82,7 @@ export default function LoginForm({ signIn }) {
             {t('commonRegister')}
           </a>
         </p>
-        <p className="mt-2 text-center text-sm text-stone-500">
+        <p className="mt-2 text-center text-sm text-slate-500">
           {t('authRegisterAsClient')}{' '}
           <a
             href="/client/register"

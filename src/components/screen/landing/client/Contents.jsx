@@ -1,5 +1,9 @@
+'use client'
+
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { Quote, Sparkles, Star } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 
 const tiers = [
   {
@@ -22,12 +26,100 @@ const tiers = [
   },
 ]
 
+const testimonials = [
+  {
+    company: 'Deltomed',
+    text: "Compared to others we've worked with, Talentloka's SPGs are a step ahead. They handle sampling smoothly, know how to approach customers, and actually bring traffic to the booth. Makes a real difference in engagement!",
+    image:
+      'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    company: 'Amidis',
+    text: "We started with offline activations, then tried Talentloka's online platform—super efficient. The SPGs are well-prepared, communicate our brand message clearly, and really know how to engage with customers.",
+    image:
+      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    company: 'OT Group',
+    text: "From in-store activations to product sampling, Talentloka's SPGs have been a great support. Well-trained, engaging, and they deliver exactly what we need.",
+    image:
+      'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    company: 'Topgolf',
+    text: "We got referred to Talentloka, and their SPGs didn't disappoint. Great energy, professional, and they really understand the crowd. Especially impressed with their knowledge of golf—makes a big difference!",
+    image:
+      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    company: 'FDR Tire',
+    text: "Finding SPGs who can confidently represent an automotive brand, especially with technical knowledge, isn't easy. Talentloka nailed it—the team is reliable, proactive, and knows how to engage the right audience.",
+    image:
+      'https://images.unsplash.com/photo-1518306727298-4c17e1bf6942?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    company: 'Focallure',
+    text: 'We urgently needed 20 SPGs, and Talentloka came through fast. They found the right talents, customized everything to fit our needs, and made the whole process hassle-free.',
+    image:
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=300&q=80',
+  },
+]
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Contents() {
   const t = useTranslations('default')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const totalPairs = Math.ceil(testimonials.length / 2)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex === totalPairs - 1 ? 0 : prevIndex + 1))
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [totalPairs])
+
+  const TestimonialCard = ({ testimonial }) => (
+    <div className="group relative">
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-rose-400 to-purple-600 opacity-25 blur transition-opacity duration-300 group-hover:opacity-40"></div>
+      <div className="relative h-full rounded-2xl border border-rose-100 bg-white/90 p-8 backdrop-blur-sm transition-all duration-300 hover:border-rose-300">
+        <div className="absolute -top-6 left-8 rounded-full bg-gradient-to-r from-rose-500 to-purple-600 p-2">
+          <Quote className="h-8 w-8 text-white" />
+        </div>
+
+        <div className="flex h-full flex-col">
+          <div className="flex-1">
+            <div className="mb-6 flex items-center gap-4">
+              <div className="h-16 w-16 overflow-hidden rounded-full">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.company}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div>
+                <h4 className="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-lg font-semibold text-transparent">
+                  {testimonial.company}
+                </h4>
+                <p className="flex items-center gap-1 text-gray-600">
+                  Verified Client <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                </p>
+              </div>
+            </div>
+            <p className="text-lg leading-relaxed text-gray-700">{testimonial.text}</p>
+          </div>
+
+          <div className="mt-6 flex justify-end">
+            <Sparkles className="h-6 w-6 text-rose-500 opacity-50" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className="bg-white">
       {/* Feature section */}
@@ -36,10 +128,14 @@ export default function Contents() {
         className="mt-32 sm:mt-56">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
-            <p className="mt-2 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-              <span className="text-rose-600">{t('landingClientSec3Title1')}</span> {t('landingClientSec3Title2')}
+            <h2 className="section-caption-gradient text-base font-medium leading-7 text-rose-600">
+              Feature
+            </h2>
+            <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              <span className="">{t('landingClientSec3Title1')}</span>{' '}
+              {t('landingClientSec3Title2')}
             </p>
-            <p className="mt-6 text-lg leading-8 text-stone-700">
+            <p className="mt-6 text-lg leading-8 text-slate-700">
               {t('landingClientSec3Description')}
             </p>
           </div>
@@ -62,79 +158,11 @@ export default function Contents() {
         </div>
       </div>
 
-      {/* Testimonials */}
-      <div
-        id="testimonial"
-        className="mt-48 bg-gradient-to-r from-rose-50 to-pink-50 py-24 sm:py-32 lg:mt-60">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="flex flex-col pb-10 sm:pb-16 lg:pb-0 lg:pr-8 xl:pr-20">
-              <img
-                alt=""
-                src="/images/partner-mayora.png"
-                className="contrast-full h-12 self-start"
-              />
-              <figure className="mt-10 flex flex-auto flex-col justify-between">
-                <blockquote className="text-lg leading-8 text-stone-800">
-                  <p>
-                    “Partnering with Talentvis has been a game-changer for our events. Their
-                    extensive talent pool has consistently provided us with exceptional individuals
-                    who perfectly embody our brand. The platform`s user-friendly interface and
-                    efficient organization have streamlined our recruitment process, allowing us to
-                    focus on delivering unforgettable experiences.”
-                  </p>
-                </blockquote>
-                <figcaption className="mt-10 flex items-center gap-x-6">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="h-14 w-14 rounded-full bg-stone-800"
-                  />
-                  <div className="text-base">
-                    <div className="font-semibold text-rose-600">Judith Black</div>
-                    <div className="mt-1 text-stone-600">Head Marketing of Mayora</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="flex flex-col border-t border-white/10 pt-10 sm:pt-16 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-20">
-              <img
-                alt=""
-                src="/images/partner-djarum.png"
-                className="contrast-full h-12 self-start"
-              />
-              <figure className="mt-10 flex flex-auto flex-col justify-between">
-                <blockquote className="text-lg leading-8 text-stone-800">
-                  <p>
-                    “We`ve had the pleasure of working with Talentvis on multiple events, and their
-                    dedication to quality is unmatched. The talent they connect us with consistently
-                    exceeds our expectations, bringing energy, enthusiasm, and a deep understanding
-                    of our brand. Their efficient event organization ensures a seamless experience
-                    for both our clients and the talent.”
-                  </p>
-                </blockquote>
-                <figcaption className="mt-10 flex items-center gap-x-6">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="h-14 w-14 rounded-full bg-stone-800"
-                  />
-                  <div className="text-base">
-                    <div className="font-semibold text-rose-600">Joseph Rodriguez</div>
-                    <div className="mt-1 text-stone-600">General Manager of Djarum</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Pricing Plan */}
       <div
         id="pricing"
         className="relative isolate mt-12 bg-white px-6 py-24 sm:py-32 lg:mt-24 lg:px-8">
-        <div
+        {/* <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl">
           <div
@@ -144,14 +172,16 @@ export default function Contents() {
             }}
             className="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-rose-200 to-pink-200"
           />
-        </div>
+        </div> */}
         <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
-          <h2 className="font-display text-base font-semibold leading-7 text-rose-600">Pricing</h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
+          <h2 className="section-caption-gradient text-base font-medium leading-7 text-rose-600">
+            Pricing
+          </h2>
+          <p className="mt-2 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
             {t('landingClientSec5Title')}
           </p>
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-stone-600">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-slate-600">
           {t('landingClientSec5Description')}
         </p>
         <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
@@ -167,27 +197,27 @@ export default function Contents() {
                   : tierIdx === 0
                     ? 'rounded-t-3xl sm:rounded-b-none lg:rounded-bl-3xl lg:rounded-tr-none'
                     : 'sm:rounded-t-none lg:rounded-bl-none lg:rounded-tr-3xl',
-                'rounded-3xl p-8 ring-1 ring-stone-900/10 sm:p-10'
+                'rounded-3xl p-8 ring-1 ring-slate-900/10 sm:p-10'
               )}>
               <h3
                 id={tier.id}
                 className={classNames(
                   tier.featured ? 'text-white' : 'text-rose-600',
-                  'text-base font-semibold leading-7'
+                  'text-base font-medium leading-7'
                 )}>
                 {tier.name}
               </h3>
               <p className="mt-4 flex items-baseline gap-x-2">
                 <span
                   className={classNames(
-                    tier.featured ? 'text-white' : 'text-stone-900',
-                    'text-5xl font-bold tracking-tight'
+                    tier.featured ? 'text-white' : 'text-slate-900',
+                    'text-5xl font-medium tracking-tight'
                   )}>
                   {tier.priceMonthly}
                 </span>
                 <span
                   className={classNames(
-                    tier.featured ? 'text-white' : 'text-stone-500',
+                    tier.featured ? 'text-white' : 'text-slate-500',
                     'text-base'
                   )}>
                   /day
@@ -195,7 +225,7 @@ export default function Contents() {
               </p>
               <p
                 className={classNames(
-                  tier.featured ? 'text-white' : 'text-stone-600',
+                  tier.featured ? 'text-white' : 'text-slate-600',
                   'mt-6 text-base leading-7'
                 )}>
                 {tier.description}
@@ -203,7 +233,7 @@ export default function Contents() {
               <ul
                 role="list"
                 className={classNames(
-                  tier.featured ? 'text-white' : 'text-stone-600',
+                  tier.featured ? 'text-white' : 'text-slate-600',
                   'mt-8 space-y-3 text-sm leading-6 sm:mt-10'
                 )}>
                 {tier.features.map((feature) => (
@@ -228,7 +258,7 @@ export default function Contents() {
                   tier.featured
                     ? 'bg-rose-700 text-white shadow-sm hover:bg-rose-600 focus-visible:outline-rose-500'
                     : 'text-rose-600 ring-1 ring-inset ring-rose-200 hover:ring-rose-500 focus-visible:outline-rose-600',
-                  'mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10'
+                  'mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10'
                 )}>
                 Get started today
               </a>
@@ -236,6 +266,64 @@ export default function Contents() {
           ))}
         </div>
       </div>
+
+      {/* Testimonials */}
+      <section className="relative overflow-hidden py-24">
+        {/* Background decorations */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,99,99,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.1),transparent_50%)]"></div> */}
+
+        <div className="relative mx-auto max-w-7xl px-4">
+          <div className="mb-16 text-center">
+            <h2 className="section-caption-gradient text-base font-medium leading-7 text-rose-600">
+              Testimonial
+            </h2>
+            <h2 className="mb-4 mt-2 text-4xl font-medium text-black">What Our Clients Say</h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
+              Real feedback from our valued partners who have experienced the excellence of our
+              services
+            </p>
+          </div>
+
+          <div className="relative min-h-[400px]">
+            {Array.from({ length: totalPairs }).map((_, pairIndex) => {
+              const firstIndex = pairIndex * 2
+              const secondIndex = firstIndex + 1
+
+              return (
+                <div
+                  key={pairIndex}
+                  className={`absolute grid w-full grid-cols-1 gap-8 transition-all duration-700 ease-in-out md:grid-cols-2 ${
+                    pairIndex === currentIndex
+                      ? 'translate-x-0 opacity-100'
+                      : 'translate-x-full opacity-0'
+                  }`}>
+                  <TestimonialCard testimonial={testimonials[firstIndex]} />
+                  {secondIndex < testimonials.length && (
+                    <TestimonialCard testimonial={testimonials[secondIndex]} />
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-12 flex justify-center gap-3">
+            {Array.from({ length: totalPairs }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'h-3 w-12 rounded-full bg-gradient-to-r from-rose-500 to-purple-600'
+                    : 'h-3 w-3 rounded-full bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to testimonial pair ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

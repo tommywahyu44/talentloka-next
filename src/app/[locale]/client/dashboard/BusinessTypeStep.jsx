@@ -38,7 +38,7 @@ export const BusinessTypeStep = ({ businessType, handleBusinessTypeChange, email
               <div className="mb-10 text-xl font-semibold leading-6 md:mb-14 lg:mb-20">
                 <span
                   id="comments-description"
-                  className="font-display text-stone-700">
+                  className="font-display text-slate-700">
                   What type of business entity do you represent?
                 </span>
               </div>
@@ -51,7 +51,7 @@ export const BusinessTypeStep = ({ businessType, handleBusinessTypeChange, email
                       'group flex cursor-pointer items-center rounded-lg border-2 px-8 py-6 transition-all sm:px-16 sm:py-16',
                       businessType.selected === option.id
                         ? 'border-rose-500 bg-rose-50'
-                        : 'border-stone-200 hover:border-rose-300'
+                        : 'border-slate-200 hover:border-rose-300'
                     )}>
                     <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-rose-100">
                       {option.icon}
@@ -59,10 +59,10 @@ export const BusinessTypeStep = ({ businessType, handleBusinessTypeChange, email
                     <label
                       htmlFor={`radio-business-${option.id}`}
                       className="ml-4 flex flex-col text-left">
-                      <span className="block cursor-pointer font-display text-sm font-medium leading-6 text-stone-900">
+                      <span className="block cursor-pointer font-display text-sm font-medium leading-6 text-slate-900">
                         {t(option.label)}
                       </span>
-                      <span className="block cursor-pointer text-xs text-stone-500">
+                      <span className="block cursor-pointer text-xs text-slate-500">
                         {t(option.description)}
                       </span>
                     </label>

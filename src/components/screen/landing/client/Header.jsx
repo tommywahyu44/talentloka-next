@@ -19,24 +19,76 @@ const navigation = [
 
 const partners = [
   {
-    name: 'Djarum',
-    image: '/images/partner-djarum.png',
+    name: 'Amidis',
+    image: '/images/partner-amidis.png',
   },
   {
-    name: 'Mayora',
-    image: '/images/partner-mayora.png',
+    name: 'Antangin',
+    image: '/images/partner-antangin.png',
   },
   {
-    name: 'Polytron',
-    image: '/images/partner-polytron.png',
+    name: 'Arah Coffee',
+    image: '/images/partner-arah.png',
   },
   {
-    name: 'Sinarmas',
-    image: '/images/partner-sinarmas.png',
+    name: 'Focallure',
+    image: '/images/partner-focallure.png',
   },
   {
-    name: 'Wardah',
-    image: '/images/partner-wardah.png',
+    name: 'OT Group',
+    image: '/images/partner-ot.png',
+  },
+  {
+    name: 'Topgolf',
+    image: '/images/partner-topgolf.png',
+  },
+  {
+    name: 'Amidis',
+    image: '/images/partner-amidis.png',
+  },
+  {
+    name: 'Antangin',
+    image: '/images/partner-antangin.png',
+  },
+  {
+    name: 'Arah Coffee',
+    image: '/images/partner-arah.png',
+  },
+  {
+    name: 'Focallure',
+    image: '/images/partner-focallure.png',
+  },
+  {
+    name: 'OT Group',
+    image: '/images/partner-ot.png',
+  },
+  {
+    name: 'Topgolf',
+    image: '/images/partner-topgolf.png',
+  },
+  {
+    name: 'Amidis',
+    image: '/images/partner-amidis.png',
+  },
+  {
+    name: 'Antangin',
+    image: '/images/partner-antangin.png',
+  },
+  {
+    name: 'Arah Coffee',
+    image: '/images/partner-arah.png',
+  },
+  {
+    name: 'Focallure',
+    image: '/images/partner-focallure.png',
+  },
+  {
+    name: 'OT Group',
+    image: '/images/partner-ot.png',
+  },
+  {
+    name: 'Topgolf',
+    image: '/images/partner-topgolf.png',
   },
 ]
 
@@ -85,9 +137,9 @@ export default function Example() {
   return (
     <div className="bg-white">
       {/* Header */}
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="fixed inset-x-0 top-0 z-50 mt-4">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+          className="sticky top-4 mx-auto flex max-w-7xl items-center justify-between rounded-full bg-white p-3 shadow-md lg:px-4"
           aria-label="Global">
           <div className="flex lg:flex-1">
             <a
@@ -95,8 +147,8 @@ export default function Example() {
               className="-m-1.5 p-1.5">
               <span className="sr-only">Talentvis</span>
               <img
-                className="h-16 w-auto"
-                src="/images/icon-talentloka.png"
+                className="h-8 w-auto"
+                src="/images/logo-talentloka.png"
                 alt=""
               />
             </a>
@@ -104,7 +156,7 @@ export default function Example() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-stone-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
               onClick={() => setMobileMenuOpen(true)}>
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -118,7 +170,7 @@ export default function Example() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-stone-900">
+                className="text-sm font-medium leading-6 text-slate-900">
                 {t(item.name)}
               </a>
             ))}
@@ -127,9 +179,8 @@ export default function Example() {
             <LanguageChanger locale={locale} />
             <a
               onClick={handleClientClick}
-              className="my-auto cursor-pointer text-center text-sm font-semibold leading-6 text-stone-900">
-              {isUserSignin ? 'Go to dashboard' : 'Log in Client / Brand'}{' '}
-              <span aria-hidden="true">&rarr;</span>
+              className="my-auto cursor-pointer rounded-full bg-gradient-to-r from-rose-600 to-purple-500 px-3 py-1 text-center text-xs font-medium leading-6 text-white">
+              {isUserSignin ? 'Dashboard' : 'Log in'}{' '}
             </a>
           </div>
         </nav>
@@ -139,7 +190,7 @@ export default function Example() {
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}>
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-stone-900/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
             <div className="flex items-center justify-between">
               <a
                 href="#"
@@ -148,7 +199,7 @@ export default function Example() {
               </a>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-stone-700"
+                className="-m-2.5 rounded-md p-2.5 text-slate-700"
                 onClick={() => setMobileMenuOpen(false)}>
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon
@@ -158,13 +209,13 @@ export default function Example() {
               </button>
             </div>
             <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-stone-500/10">
+              <div className="-my-6 divide-y divide-slate-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-stone-900 transition duration-300 hover:bg-stone-50">
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-slate-900 transition duration-300 hover:bg-slate-50">
                       {t(item.name)}
                     </a>
                   ))}
@@ -173,7 +224,7 @@ export default function Example() {
                   <LanguageChanger locale={locale} />
                   <a
                     href={isUserSignin ? '/client/dashboard' : '/client/login'}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-stone-900 transition duration-300 hover:bg-stone-50">
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-medium leading-7 text-slate-900 transition duration-300 hover:bg-slate-50">
                     {isUserSignin ? 'Go to dashboard' : 'Log in'}
                   </a>
                 </div>
@@ -186,8 +237,8 @@ export default function Example() {
       <main className="isolate">
         {/* Hero section */}
         <div className="relative isolate -z-10">
-          <svg
-            className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-stone-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+          {/* <svg
+            className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-slate-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
             aria-hidden="true">
             <defs>
               <pattern
@@ -206,7 +257,7 @@ export default function Example() {
             <svg
               x="50%"
               y={-1}
-              className="overflow-visible fill-stone-50">
+              className="overflow-visible fill-slate-50">
               <path
                 d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
                 strokeWidth={0}
@@ -218,17 +269,11 @@ export default function Example() {
               strokeWidth={0}
               fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"
             />
-          </svg>
+          </svg> */}
           <div
-            className="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48"
+            className="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden lg:ml-24 xl:ml-48"
             aria-hidden="true">
-            <div
-              className="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-rose-200 to-pink-200"
-              style={{
-                clipPath:
-                  'polygon(63.1% 29.5%, 100% 17.1%, 76.6% 3%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, 44.4% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% 81.4%, 97.2% 52.8%, 63.1% 29.5%)',
-              }}
-            />
+            <div className="aspect-[801/1036] w-[45rem] bg-gradient-to-tr from-rose-200 to-purple-200" />
           </div>
           <div className="overflow-hidden">
             <div
@@ -236,22 +281,24 @@ export default function Example() {
               className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                  <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-6xl">
-                    {t('clientLandingPageHeroTitle1')}<br></br>
+                  <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+                    {t('clientLandingPageHeroTitle1')}
+                  </h1>
+                  <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
                     <span className="text-rose-600">{t('clientLandingPageHeroTitle2')}</span>
                   </h1>
-                  <p className="relative mt-6 text-lg leading-8 text-stone-600 sm:max-w-md lg:max-w-none">
+                  <p className="relative mt-6 text-lg leading-8 text-slate-500 sm:max-w-md lg:max-w-xl">
                     {t('landingClientSec1Description')}
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
                       href="/client/register"
-                      className="rounded-md bg-rose-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400">
+                      className="rounded-md bg-rose-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition duration-300 hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400">
                       {t('commonGetStarted')}
                     </a>
                     <a
                       href="/promotor"
-                      className="text-sm font-semibold leading-6 text-stone-700">
+                      className="text-sm font-medium leading-6 text-slate-700">
                       {t('commonRegisterAsPromotor')}
                       <span aria-hidden="true">→</span>
                     </a>
@@ -263,9 +310,9 @@ export default function Example() {
                       <img
                         src="/images/spg-1.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-stone-900/5 object-cover shadow-lg"
+                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
-                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-stone-900/10" />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
                   </div>
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
@@ -273,17 +320,17 @@ export default function Example() {
                       <img
                         src="/images/spg-2.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-stone-900/5 object-cover shadow-lg"
+                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
-                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-stone-900/10" />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
                     <div className="relative">
                       <img
                         src="/images/spb-1.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-stone-900/5 object-cover shadow-lg"
+                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
-                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-stone-900/10" />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
                   </div>
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
@@ -291,18 +338,18 @@ export default function Example() {
                       <img
                         src="/images/spg-3.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-stone-900/5 object-cover shadow-lg"
+                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
 
-                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-stone-900/10" />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
                     <div className="relative">
                       <img
                         src="/images/spg-4.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-stone-900/5 object-cover shadow-lg"
+                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
-                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-stone-900/10" />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
                   </div>
                 </div>
@@ -312,53 +359,59 @@ export default function Example() {
             {/* Content section */}
             <div
               id="company"
-              className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
-              <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-                <h2 className="font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-                  {t('landingClientSec2Title1')} <span className="text-rose-600">{t('landingClientSec2Title2')}</span>
-                </h2>
-                <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-                  <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                    <p className="text-lg leading-8 text-stone-600">
+              className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+              <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto items-center justify-center lg:mx-0">
+                  <h2 className="section-caption-gradient text-center text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+                    Who we are
+                  </h2>
+                  <div className="mt-8 grid w-full grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+                    <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">
                       {t('landingClientSec2Description1')}
                     </p>
-                    <br></br>
-                    <p className="text-lg leading-8 text-stone-600">
+                    <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">
                       {t('landingClientSec2Description2')}
                     </p>
                   </div>
-                  <div className="lg:flex lg:flex-auto lg:justify-center">
-                    <dl className="w-64 space-y-8 xl:w-80">
-                      {stats.map((stat) => (
-                        <div
-                          key={stat.label}
-                          className="flex flex-col-reverse gap-y-4">
-                          <dt className="text-base leading-7 text-stone-600">{stat.label}</dt>
-                          <dd className="text-5xl font-semibold tracking-tight text-stone-900">
-                            {stat.value}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
                 </div>
+                <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+                  <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
+                    {stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="flex flex-col-reverse gap-1">
+                        <dt className="text-base/7 text-gray-300">{stat.label}</dt>
+                        <dd className="text-4xl font-semibold tracking-tight text-white">
+                          {stat.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+              <div className="background relative">
+                <div className="absolute z-10 h-full w-full bg-black bg-opacity-85"></div>
+                <img
+                  src="images/team-spg-landing.jpg"
+                  className="h-full w-full object-cover grayscale-[80%]"></img>
               </div>
             </div>
 
             {/* Partners */}
-            <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
-              <h2 className="font-display text-lg font-medium leading-7 text-stone-600">
+            <div className="mx-auto py-10">
+              {/* <h2 className="font-display text-lg font-medium leading-7 text-slate-500">
                 Trusted by
-              </h2>
-              <div className="mx-auto mt-8 grid max-w-lg grid-cols-4 items-center gap-x-12 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-16 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                {partners.map((partner, index) => (
-                  <img
-                    key={index}
-                    alt={partner.name}
-                    src={partner.image}
-                    className="col-span-2 max-h-20 w-full object-contain lg:col-span-1"
-                  />
-                ))}
+              </h2> */}
+              <div className="slider-partner">
+                <div className="slider-partner-items">
+                  {partners.map((partner, index) => (
+                    <img
+                      key={index}
+                      alt={partner.name}
+                      src={partner.image}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

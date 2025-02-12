@@ -159,10 +159,10 @@ export default function Spg(email) {
     <div>
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-stone-900">
+          <h1 className="text-base font-semibold leading-6 text-slate-900">
             Promotor Admin Dashboard
           </h1>
-          {/* <p className="mt-2 text-sm text-stone-700">A list of all the SPG.</p> */}
+          {/* <p className="mt-2 text-sm text-slate-700">A list of all the SPG.</p> */}
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
@@ -177,7 +177,7 @@ export default function Spg(email) {
           <select
             id="tabs"
             name="tabs"
-            className="block w-full rounded-md border-stone-300 py-2 pl-3 pr-10 text-base focus:border-rose-500 focus:outline-none focus:ring-rose-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base focus:border-rose-500 focus:outline-none focus:ring-rose-500 sm:text-sm"
             defaultValue={tabs.find((tab) => tab.current).name}>
             {tabs.map((tab) => (
               <option key={tab.name}>{tab.name}</option>
@@ -196,7 +196,7 @@ export default function Spg(email) {
                   className={classNames(
                     index === selectedTab
                       ? 'bg-rose-50 text-rose-600'
-                      : 'border-transparent text-stone-500 transition duration-300 hover:text-rose-700',
+                      : 'border-transparent text-slate-500 transition duration-300 hover:text-rose-700',
                     'cursor-pointer whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium'
                   )}>
                   {tab.name}
@@ -236,7 +236,7 @@ export default function Spg(email) {
           <div
             id="capture"
             className="bg-white p-4 text-center">
-            <p className="text-4xl font-bold text-stone-900">{openModal.fullName}</p>
+            <p className="text-4xl font-bold text-slate-900">{openModal.fullName}</p>
             <p className="mt-2 text-base text-rose-600">{openModal.email ?? openModal.code}</p>
             <p className="mt-2 text-base text-rose-600">{openModal.contact}</p>
             <div className="mt-1 flex items-center justify-center text-center text-base">

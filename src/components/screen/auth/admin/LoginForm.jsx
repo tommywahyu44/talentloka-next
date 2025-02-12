@@ -31,7 +31,7 @@ export default function LoginForm({ signIn }) {
           src="/images/icon-talentloka.png"
           alt="Your Company"
         />
-        <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-stone-900">
+        <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-slate-900">
           Admin Login
         </h2>
       </div>

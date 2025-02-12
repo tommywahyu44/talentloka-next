@@ -1,3 +1,6 @@
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,6 +15,15 @@
     rgb(var(--accent-light)) 30%,
     white 60%
   );
+  --gradient-primary-1: linear-gradient(to right, #f43f5e, #8b5cf6);
+  --gradient-primary-1-b: linear-gradient(
+    45deg,
+    var(--color-primary-4) 0%,
+    var(--color-primary-3) 33%,
+    var(--color-primary-2) 67%,
+    var(--color-primary-1) 100%
+  );
+  --color-primary-1: #4567ed;
 }
 html {
   font-family: var(--font-body);
@@ -25,6 +37,7 @@ h1 {
 }
 body {
   height: 100%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 main {
@@ -135,4 +148,77 @@ input[type='range']::-webkit-slider-thumb {
       @apply opacity-50;
     }
   }
+}
+
+/* Landing Page */
+.section-caption-gradient {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: normal;
+  background: var(--gradient-primary-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title-gradient {
+  display: inline-block;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: normal;
+  background: var(--gradient-primary-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-button-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(to right, #fff, #fff), var(--gradient-primary-1-b);
+  -webkit-background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  color: var(--color-primary-1);
+}
+
+.section-line-gradient {
+  width: 70px;
+  height: 1px;
+  margin: 0 auto 0 0;
+  background: var(--gradient-primary-1);
+}
+
+.slider-partner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  width: 100%;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.slider-partner-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  animation: scrolling 20s linear infinite;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(80%);
+  }
+
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+.slider-partner-items img {
+  width: 12%;
+  margin: 20px;
 }

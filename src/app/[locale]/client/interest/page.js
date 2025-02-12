@@ -116,7 +116,7 @@ export default function Interest() {
       case 0:
         return (
           <div className="my-32">
-            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
@@ -132,7 +132,7 @@ export default function Interest() {
       case 1:
         return (
           <div className="my-32">
-            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <SelectButton
@@ -144,7 +144,7 @@ export default function Interest() {
       case 2:
         return (
           <div className="my-32">
-            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
               {t(questions[currentQuestion].title)}
             </h2>
             <RangeSliderButton onClick={nextQuestion} />
@@ -153,7 +153,7 @@ export default function Interest() {
       case 3:
         return (
           <div className="my-32">
-            <h2 className="font-display text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">
+            <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
               {t('clientInterestQuestion4')}
             </h2>
             <div className="mt-8 flex max-w-md flex-col gap-4">
@@ -170,7 +170,7 @@ export default function Interest() {
                   placeholder="name@example.com"
                   value={email}
                   onChange={handleEmailChange}
-                  className="mb-6 block w-full rounded-lg border-0 px-3 py-2 text-stone-900 shadow-sm outline-none ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                  className="mb-6 block w-full rounded-lg border-0 px-3 py-2 text-slate-900 shadow-sm outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                   required
                 />
                 <PhoneInput
@@ -213,7 +213,7 @@ export default function Interest() {
               {t('clientInterestSuccessText1')}
               <div />
               <StarIcon className="mx-auto my-4 h-24 w-24 text-rose-600" />
-              <p className="text-base leading-7 text-stone-600">
+              <p className="text-base leading-7 text-slate-600">
                 {t('clientInterestSuccessText2')}
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -226,7 +226,7 @@ export default function Interest() {
                   href="https://wa.me/6281299880745"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-pointer text-sm font-semibold text-stone-900">
+                  className="cursor-pointer text-sm font-semibold text-slate-900">
                   {t('clientInterestSuccessButton2')}
                   <span aria-hidden="true">&rarr;</span>
                 </a>
@@ -242,7 +242,7 @@ export default function Interest() {
     <>
       <EarlyOnboardingLayout url={'/images/background/bg-auth-client.jpg'}>
         <div>
-          <div className="mt-8 h-2.5 w-full rounded-full bg-stone-200 dark:bg-stone-300">
+          <div className="mt-8 h-2.5 w-full rounded-full bg-slate-200 dark:bg-slate-300">
             <div
               className={`h-2.5 rounded-full bg-rose-600 transition-[width] duration-700 ease-in-out ${progressPercent()}`}></div>
           </div>

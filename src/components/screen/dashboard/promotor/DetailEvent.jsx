@@ -33,7 +33,7 @@ export default function DetailEvent({ event, profileData, back }) {
               <div className="flex items-center gap-x-6">
                 <ChevronLeftIcon
                   onClick={() => back()}
-                  className="custor-pointer h-8 w-8 cursor-pointer text-stone-900 hover:text-rose-500"
+                  className="custor-pointer h-8 w-8 cursor-pointer text-slate-900 hover:text-rose-500"
                 />
                 <img
                   alt=""

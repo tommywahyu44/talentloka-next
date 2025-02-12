@@ -109,7 +109,7 @@ export default function SpgCard({ card, index, listFavorites, setFavorite, setOp
               .map((event) => (
                 <Badge
                   key={event}
-                  className="flex-shrink-0 cursor-pointer pr-2 text-xs text-stone-600">
+                  className="flex-shrink-0 cursor-pointer pr-2 text-xs text-slate-600">
                   {event.replace('Others-', '')}
                 </Badge>
               ))}

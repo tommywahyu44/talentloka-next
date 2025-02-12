@@ -162,7 +162,7 @@ export default function PaymentModal({ isOpenPayment, closePayment, email, metho
         <form
           className="space-y-6 sm:mx-auto sm:w-full sm:max-w-2xl"
           onSubmit={handleSubmit}>
-          <h3 className="text-xl font-medium text-stone-900">
+          <h3 className="text-xl font-medium text-slate-900">
             {method === 'dp' ? 'Complete your down payment' : 'Complete your full payment'}
           </h3>
           <div className="flex flex-col text-left">

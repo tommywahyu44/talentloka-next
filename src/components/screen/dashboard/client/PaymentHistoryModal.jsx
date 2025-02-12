@@ -55,7 +55,7 @@ export default function PaymentHistoryModal({
         padding: '20px',
       }}>
       <DialogContent>
-        <h3 className="text-xl font-medium text-stone-900">Payment History</h3>
+        <h3 className="text-xl font-medium text-slate-900">Payment History</h3>
         <div className="flex flex-col text-left">
           <div className="mt-4">
             <ul

@@ -14,7 +14,7 @@ export default function DropdownInput({
     <div className={isFullWidth ? 'sm:col-span-6' : 'sm:col-span-3'}>
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-stone-900">
+        className="block text-sm font-medium leading-6 text-slate-900">
         {label}
       </label>
       <Menu
@@ -24,7 +24,7 @@ export default function DropdownInput({
           <MenuButton
             id="dropdown-phone-button"
             data-dropdown-toggle="dropdown-phone"
-            className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-md border-0 bg-stone-800 px-3 py-1 text-white shadow-sm outline-none ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-md border-0 bg-slate-800 px-3 py-1 text-white shadow-sm outline-none ring-1 ring-inset ring-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
             type="button">
             {value}
             <ChevronDownIcon
@@ -48,7 +48,7 @@ export default function DropdownInput({
                   <MenuItem key={index}>
                     <button
                       type="button"
-                      className="inline-flex w-full px-2 py-1 text-sm text-stone-700 transition duration-300 hover:bg-stone-50 hover:text-white dark:text-stone-200 dark:transition"
+                      className="inline-flex w-full px-2 py-1 text-sm text-slate-700 transition duration-300 hover:bg-slate-50 hover:text-white dark:text-slate-200 dark:transition"
                       role="menuitem"
                       onClick={() => {
                         const item = {
@@ -59,7 +59,7 @@ export default function DropdownInput({
                         }
                         onChange(item)
                       }}>
-                      <div className="inline-flex items-center text-stone-800">{text}</div>
+                      <div className="inline-flex items-center text-slate-800">{text}</div>
                     </button>
                   </MenuItem>
                 )

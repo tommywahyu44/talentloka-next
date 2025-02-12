@@ -80,7 +80,7 @@ export default function Hero() {
             className="mt-48 flow-root">
             <div className="grid grid-cols-1 place-items-center gap-x-6 gap-y-6 md:grid-cols-2">
               <div className="relative mt-16 h-full w-full max-w-xl items-center justify-center">
-                <h1 className="text-center text-4xl font-semibold tracking-tight text-stone-900">
+                <h1 className="text-center text-4xl font-semibold tracking-tight text-slate-900">
                   <span className="text-rose-600">{t('landingPromotorSec1part2text1')}</span>
                   <br></br>
                   {t('landingPromotorSec1part2text2')}

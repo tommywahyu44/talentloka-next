@@ -20,7 +20,7 @@ export default function PhoneInput({
     <div className={isFullWidth ? 'sm:col-span-6' : 'sm:col-span-3'}>
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-stone-900">
+        className="block text-sm font-medium leading-6 text-slate-900">
         {label}
       </label>
       <div className="flex items-center sm:col-span-3">
@@ -31,7 +31,7 @@ export default function PhoneInput({
             <MenuButton
               id="dropdown-phone-button"
               data-dropdown-toggle="dropdown-phone"
-              className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-3 py-2.5 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+              className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-slate-800 px-3 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               type="button">
               <img
                 src={selectedCountry.flagUrl}
@@ -54,7 +54,7 @@ export default function PhoneInput({
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95">
-            <MenuItems className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-stone-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <MenuItems className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 {countries
                   .filter((country) => allowedCountries.includes(country.name))
@@ -63,7 +63,7 @@ export default function PhoneInput({
                       <MenuItem key={index}>
                         <button
                           type="button"
-                          className="inline-flex w-full px-2 py-1 text-sm text-stone-700 transition duration-300 hover:bg-stone-600 hover:text-white dark:text-stone-200 dark:transition"
+                          className="inline-flex w-full px-2 py-1 text-sm text-slate-700 transition duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-200 dark:transition"
                           role="menuitem"
                           onClick={() => {
                             setSelectedCountry({
@@ -95,7 +95,7 @@ export default function PhoneInput({
             id={id}
             value={contact}
             onChange={onChange}
-            className="block w-full rounded-e-md border-0 px-2 py-2 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-e-md border-0 px-2 py-2 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
             placeholder="812-345-6789"
             required
           />

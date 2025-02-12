@@ -104,8 +104,8 @@ export default function Influencer() {
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-stone-900">SPG Admin Dashboard</h1>
-          {/* <p className="mt-2 text-sm text-stone-700">A list of all the SPG.</p> */}
+          <h1 className="text-base font-semibold leading-6 text-slate-900">SPG Admin Dashboard</h1>
+          {/* <p className="mt-2 text-sm text-slate-700">A list of all the SPG.</p> */}
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
@@ -118,32 +118,32 @@ export default function Influencer() {
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="min-w-full divide-y divide-stone-300 bg-stone-50">
+            <table className="min-w-full divide-y divide-slate-300 bg-slate-50">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-stone-900 sm:pl-0">
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-0">
                     Profile
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     {t('commonGender')}
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     {t('commonCity')}
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     DOB
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Status
                   </th>
                   <th
@@ -158,7 +158,7 @@ export default function Influencer() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-200 bg-white">
+              <tbody className="divide-y divide-slate-200 bg-white">
                 {listSpg.length > 0 ? (
                   listSpg.map((inf) => (
                     <tr key={inf[0]}>
@@ -172,21 +172,21 @@ export default function Influencer() {
                             />
                           </div>
                           <div className="ml-4">
-                            <div className="font-medium text-stone-900">{inf[1].fullName}</div>
-                            <div className="mt-1 text-stone-700">{inf[1].email}</div>
+                            <div className="font-medium text-slate-900">{inf[1].fullName}</div>
+                            <div className="mt-1 text-slate-700">{inf[1].email}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-700">
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-700">
                         {inf[1].gender}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-700">
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-700">
                         {inf[1].city}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-700">
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-700">
                         {inf[1].dobYear}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-700">
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-700">
                         {inf[1].confirmed ? (
                           <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                             Active
@@ -243,7 +243,7 @@ export default function Influencer() {
           <div
             id="capture"
             className="bg-white p-4 text-center">
-            <p className="text-4xl font-bold text-stone-900">{openModal[1].fullName}</p>
+            <p className="text-4xl font-bold text-slate-900">{openModal[1].fullName}</p>
             <p className="mt-2 text-base text-rose-600">{openModal[1].email}</p>
             <p className="mt-2 text-base text-rose-600">{openModal[1].contact}</p>
             <div className="mt-1 flex items-center justify-center text-center text-base">

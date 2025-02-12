@@ -139,10 +139,10 @@ function getOnboardingUI(
           {status === 0 && (
             <div>
               <EnvelopeIcon className="mx-auto h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Email Verification
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
                 Please click the button below to send email verification to verify your email.
               </p>
               <div>
@@ -165,10 +165,10 @@ function getOnboardingUI(
           {status === 2 && (
             <div>
               <DocumentMagnifyingGlassIcon className="mx-auto mt-12 h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Account Verification
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
                 You are not yet verified. Please wait up to 1x24 hours for our team to verify your
                 account before you can use it. Thank you for waiting!
               </p>

@@ -20,8 +20,8 @@ export default function SpgTable({ listSpg, setOpenModal }) {
                 />
               </div>
               <div className="ml-4">
-                <div className="font-medium text-stone-900">{params.row.fullName}</div>
-                <div className="mt-0.5 text-stone-700">{params.row.email.replaceAll(',', '.')}</div>
+                <div className="font-medium text-slate-900">{params.row.fullName}</div>
+                <div className="mt-0.5 text-slate-700">{params.row.email.replaceAll(',', '.')}</div>
               </div>
             </div>
           </td>

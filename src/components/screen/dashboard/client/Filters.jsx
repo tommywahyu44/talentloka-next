@@ -467,10 +467,10 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                 leaveTo="translate-x-full">
                 <DialogPanel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="font-display text-lg font-medium text-stone-900"></h2>
+                    <h2 className="font-display text-lg font-medium text-slate-900"></h2>
                     <button
                       type="button"
-                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-stone-400"
+                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-slate-400"
                       onClick={() => setMobileFiltersOpen(false)}>
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon
@@ -483,7 +483,7 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                   {favorites.length > 0 ? (
                     <div className="ml-4">
                       <h3 className="mb-2 mt-4 flow-root">
-                        <span className="text-sm font-medium text-stone-900">Hired</span>
+                        <span className="text-sm font-medium text-slate-900">Hired</span>
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {listData.data.length > 0 &&
@@ -539,7 +539,7 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                       <div className="col-span-6 mt-4 pr-4">
                         <label
                           htmlFor={coupon}
-                          className="block text-sm font-medium leading-6 text-stone-900">
+                          className="block text-sm font-medium leading-6 text-slate-900">
                           {t('clientCreateEventCoupon')}
                         </label>
                         {couponDetail?.code ? (
@@ -564,7 +564,7 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                               value={coupon}
                               onChange={(e) => setCoupon(e.target.value.toUpperCase())}
                               required
-                              className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm outline-none ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                              className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                             />
                             <button
                               type="button"
@@ -593,20 +593,20 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                   )}
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-stone-200">
-                    <h2 className="ml-4 mt-4 font-display text-lg font-medium text-stone-900">
+                  <form className="mt-4 border-t border-slate-200">
+                    <h2 className="ml-4 mt-4 font-display text-lg font-medium text-slate-900">
                       Filters
                     </h2>
                     {clientDashboard.filters.map((section, index) => (
                       <Disclosure
                         as="div"
                         key={section.id}
-                        className="border-b border-stone-200 px-4 py-6">
+                        className="border-b border-slate-200 px-4 py-6">
                         {({ open }) => (
                           <>
                             <h3 className="-my-3 flow-root">
-                              <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-stone-400 transition duration-300 hover:text-rose-500">
-                                <span className="font-medium text-stone-900">
+                              <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-slate-400 transition duration-300 hover:text-rose-500">
+                                <span className="font-medium text-slate-900">
                                   {section.name.toLowerCase() !== 'tier'
                                     ? t(section.name)
                                     : capitalize(section.name)}
@@ -645,11 +645,11 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                                       type="radio"
                                       defaultChecked={option.value == selectedFilter[index]}
                                       onChange={handleFilterChange}
-                                      className="h-4 w-4 rounded border-stone-300 text-rose-600 outline-none focus:ring-0"
+                                      className="h-4 w-4 rounded border-slate-300 text-rose-600 outline-none focus:ring-0"
                                     />
                                     <label
                                       htmlFor={`filter-${section.id}-${optionIdx}`}
-                                      className="ml-3 text-sm text-stone-600">
+                                      className="ml-3 text-sm text-slate-600">
                                       {option.label}
                                     </label>
                                   </div>
@@ -668,9 +668,10 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
         </Transition>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-stone-200 py-3 sm:py-5">
-            <h1 className="mr-4 text-lg font-bold tracking-tight text-stone-900 md:text-3xl">
-              <span className="text-rose-600">{t('clientDashboardHomeTitle1')}</span> {t('clientDashboardHomeTitle2')}
+          <div className="flex items-baseline justify-between border-b border-slate-200 py-3 sm:py-5">
+            <h1 className="mr-4 text-lg font-bold tracking-tight text-slate-900 md:text-3xl">
+              <span className="text-rose-600">{t('clientDashboardHomeTitle1')}</span>{' '}
+              {t('clientDashboardHomeTitle2')}
             </h1>
           </div>
 
@@ -708,9 +709,9 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                               className={classNames(
                                 option.value == selectedSort.value &&
                                   option.type == selectedSort.type
-                                  ? 'font-medium text-stone-900'
-                                  : 'text-stone-500',
-                                active ? 'bg-stone-100' : '',
+                                  ? 'font-medium text-slate-900'
+                                  : 'text-slate-500',
+                                active ? 'bg-slate-100' : '',
                                 'block cursor-pointer px-4 py-2 text-sm transition duration-300 hover:bg-rose-50 hover:text-rose-600'
                               )}
                               onClick={() => handleSortChange(option.value, option.type)}>
@@ -763,9 +764,9 @@ Total Biaya: ${moneyFormat(subtotal * (1 - (couponDetail?.discount || 0) - (bund
                   </div>
                 ) : (
                   <div className="mx-auto my-48 text-center">
-                    <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-stone-400"></MagnifyingGlassIcon>
-                    <h3 className="mt-2 text-sm font-semibold text-stone-900">No results</h3>
-                    <p className="mt-1 text-sm text-stone-500">
+                    <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-slate-400"></MagnifyingGlassIcon>
+                    <h3 className="mt-2 text-sm font-semibold text-slate-900">No results</h3>
+                    <p className="mt-1 text-sm text-slate-500">
                       Sorry we can&apos;t find any results for you, please try another filter.
                     </p>
                   </div>

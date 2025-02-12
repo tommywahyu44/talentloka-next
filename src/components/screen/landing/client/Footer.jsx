@@ -68,7 +68,7 @@ export default function Example() {
               className="pb-6">
               <a
                 href={item.href}
-                className="text-sm leading-6 text-stone-600 transition duration-300 hover:text-stone-900">
+                className="text-sm leading-6 text-slate-600 transition duration-300 hover:text-slate-900">
                 {item.name}
               </a>
             </div>
@@ -81,7 +81,7 @@ export default function Example() {
               href={item.href}
               target="_blank"
               rel="noreferrer nofollow"
-              className="text-stone-400 transition duration-300 hover:text-stone-500">
+              className="text-slate-400 transition duration-300 hover:text-slate-500">
               <span className="sr-only">{item.name}</span>
               <item.icon
                 className="h-6 w-6"
@@ -90,7 +90,7 @@ export default function Example() {
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-xs leading-5 text-stone-500">
+        <p className="mt-10 text-center text-xs leading-5 text-slate-500">
           &copy; 2024 Hireplace Pte. Ltd. All rights reserved.
         </p>
       </div>

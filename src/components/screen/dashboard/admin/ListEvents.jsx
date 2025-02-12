@@ -75,36 +75,36 @@ export default function ListEvents({
     <div className="mt-4 flow-root">
       <div className="h-[75vh] overflow-x-auto">
         <table className="w-full">
-          <thead className="sticky top-0 z-30 h-16 divide-y divide-stone-300 bg-stone-50">
+          <thead className="sticky top-0 z-30 h-16 divide-y divide-slate-300 bg-slate-50">
             <tr>
               <th
                 scope="col"
-                className="pl-4 text-left text-sm font-semibold text-stone-900">
+                className="pl-4 text-left text-sm font-semibold text-slate-900">
                 Company
               </th>
               <th
                 scope="col"
-                className="text-left text-sm font-semibold text-stone-900">
+                className="text-left text-sm font-semibold text-slate-900">
                 Event
               </th>
               <th
                 scope="col"
-                className="text-left text-sm font-semibold text-stone-900">
+                className="text-left text-sm font-semibold text-slate-900">
                 Date Time
               </th>
               <th
                 scope="col"
-                className="text-left text-sm font-semibold text-stone-900">
+                className="text-left text-sm font-semibold text-slate-900">
                 Industry
               </th>
               <th
                 scope="col"
-                className="text-left text-sm font-semibold text-stone-900">
+                className="text-left text-sm font-semibold text-slate-900">
                 Budget
               </th>
               <th
                 scope="col"
-                className="text-left text-sm font-semibold text-stone-900">
+                className="text-left text-sm font-semibold text-slate-900">
                 Status
               </th>
               <th
@@ -114,7 +114,7 @@ export default function ListEvents({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-stone-200 bg-white">
+          <tbody className="divide-y divide-slate-200 bg-white">
             {events.length > 0 ? (
               events.map((event) => (
                 <tr key={event.id}>
@@ -139,8 +139,8 @@ export default function ListEvents({
                         />
                       </div>
                       <div className="ml-4 text-wrap">
-                        <div className="font-medium text-stone-900">{event.title}</div>
-                        <div className="mt-1 line-clamp-3 break-all text-stone-500">
+                        <div className="font-medium text-slate-900">{event.title}</div>
+                        <div className="mt-1 line-clamp-3 break-all text-slate-500">
                           {event.description}
                         </div>
                       </div>
@@ -149,19 +149,19 @@ export default function ListEvents({
                   <td className="whitespace-nowrap text-sm">
                     <div className="flex items-center">
                       <div className="">
-                        <div className="font-medium text-stone-900">
+                        <div className="font-medium text-slate-900">
                           {dateToTwoDateRange(event.startDate, event.endDate)}
                         </div>
-                        <div className="mt-1 text-stone-500">
+                        <div className="mt-1 text-slate-500">
                           {event.startTime} - {event.endTime}
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap text-sm text-stone-500">
+                  <td className="whitespace-nowrap text-sm text-slate-500">
                     {capitalizeFirstLetter(event.industry)}
                   </td>
-                  <td className="whitespace-nowrap text-sm text-stone-500">
+                  <td className="whitespace-nowrap text-sm text-slate-500">
                     {moneyFormat(event.budget)}
                   </td>
                   <td className="whitespace-nowrap text-sm">

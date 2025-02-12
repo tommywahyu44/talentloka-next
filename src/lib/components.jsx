@@ -6,8 +6,8 @@ import { Fragment } from 'react'
 export const textItemSmall = (title, desc) => {
   return (
     <span className="mx-2 flex-none truncate">
-      <span className="truncate text-left font-light text-stone-500">{title}:</span>
-      <span className="ml-1 truncate font-medium text-stone-900">{desc}</span>
+      <span className="truncate text-left font-light text-slate-500">{title}:</span>
+      <span className="ml-1 truncate font-medium text-slate-900">{desc}</span>
     </span>
   )
 }
@@ -27,10 +27,10 @@ export const checkboxDropdown = (items, title) => {
       as="div"
       className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
           {title}
           <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-stone-400"
+            className="-mr-1 h-5 w-5 text-slate-400"
             aria-hidden="true"
           />
         </MenuButton>
@@ -55,11 +55,11 @@ export const checkboxDropdown = (items, title) => {
                 name={item.id}
                 type="checkbox"
                 defaultChecked={item.active}
-                className="h-4 w-4 rounded border-stone-300 text-rose-600 focus:ring-0"
+                className="h-4 w-4 rounded border-slate-300 text-rose-600 focus:ring-0"
               />
               <label
                 htmlFor={`label-${item.id}`}
-                className="ml-3 min-w-0 flex-1 text-stone-500">
+                className="ml-3 min-w-0 flex-1 text-slate-500">
                 {item.name}
               </label>
             </MenuItem>
@@ -80,7 +80,7 @@ export const checkbox = (
 ) => {
   return (
     <div>
-      <div className="mb-2 text-sm font-medium leading-6 text-stone-900">{title}</div>
+      <div className="mb-2 text-sm font-medium leading-6 text-slate-900">{title}</div>
       {items.map((item) => (
         <div
           key={item.id}
@@ -95,11 +95,11 @@ export const checkbox = (
                 : checkedItems.includes(item.name) ?? item.active
             }
             onChange={handleChange}
-            className="h-4 w-4 cursor-pointer rounded border-stone-300 text-rose-600 focus:ring-0"
+            className="h-4 w-4 cursor-pointer rounded border-slate-300 text-rose-600 focus:ring-0"
           />
           <label
             htmlFor={`label-${item.id}`}
-            className="ml-3 min-w-0 flex-1 text-sm leading-6 text-stone-900">
+            className="ml-3 min-w-0 flex-1 text-sm leading-6 text-slate-900">
             {item.name}
           </label>
         </div>
@@ -114,7 +114,7 @@ export const checkbox = (
           placeholder="Input your custom"
           value={textInput}
           onChange={handleCustomOthersChange}
-          className={`mt-2 h-8 w-full cursor-pointer rounded border-stone-300 text-stone-900 focus:ring-0 ${
+          className={`mt-2 h-8 w-full cursor-pointer rounded border-slate-300 text-slate-900 focus:ring-0 ${
             checkOthersInArray(checkedItems) ? '' : 'hidden'
           }`}
         />

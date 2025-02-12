@@ -430,10 +430,10 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                 leaveTo="translate-x-full">
                 <DialogPanel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="font-display text-lg font-medium text-stone-900">Filters</h2>
+                    <h2 className="font-display text-lg font-medium text-slate-900">Filters</h2>
                     <button
                       type="button"
-                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-stone-400"
+                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-slate-400"
                       onClick={() => setMobileFiltersOpen(false)}>
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon
@@ -444,18 +444,18 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-stone-200">
+                  <form className="mt-4 border-t border-slate-200">
                     <h3 className="sr-only">Categories</h3>
                     {filters.map((section, index) => (
                       <Disclosure
                         as="div"
                         key={section.id}
-                        className="border-t border-stone-200 px-4 py-6">
+                        className="border-t border-slate-200 px-4 py-6">
                         {({ open }) => (
                           <>
                             <h3 className="-mx-2 -my-3 flow-root">
-                              <DisclosureButton className="flex w-full items-center justify-between bg-white px-2 py-3 text-stone-400 transition duration-300 hover:text-rose-500">
-                                <span className="font-medium text-stone-900">{section.name}</span>
+                              <DisclosureButton className="flex w-full items-center justify-between bg-white px-2 py-3 text-slate-400 transition duration-300 hover:text-rose-500">
+                                <span className="font-medium text-slate-900">{section.name}</span>
                                 <span className="font-medium text-rose-600">
                                   {selectedFilter[index]}
                                 </span>
@@ -487,11 +487,11 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                                       type="checkbox"
                                       defaultChecked={option.checked}
                                       onChange={handleFilterChange}
-                                      className="h-4 w-4 rounded border-stone-300 text-rose-600 focus:ring-0"
+                                      className="h-4 w-4 rounded border-slate-300 text-rose-600 focus:ring-0"
                                     />
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                      className="ml-3 min-w-0 flex-1 text-stone-500">
+                                      className="ml-3 min-w-0 flex-1 text-slate-500">
                                       {option.label}
                                     </label>
                                   </div>
@@ -505,7 +505,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                     {listFavorites.length > 0 ? (
                       <div className="ml-4">
                         <h3 className="mb-2 mt-4 flow-root">
-                          <span className="text-base font-medium text-stone-900">Hired</span>
+                          <span className="text-base font-medium text-slate-900">Hired</span>
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {listFavorites.map((fav) => (
@@ -544,8 +544,8 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
         </Transition>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-stone-200 pb-6 pt-8">
-            <h1 className="mr-4 text-xl font-bold tracking-tight text-stone-900 md:text-4xl">
+          <div className="flex items-baseline justify-between border-b border-slate-200 pb-6 pt-8">
+            <h1 className="mr-4 text-xl font-bold tracking-tight text-slate-900 md:text-4xl">
               <span className="text-rose-600">Meet</span> Our Influencers
             </h1>
           </div>
@@ -558,10 +558,10 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                 as="div"
                 className="relative inline-block text-left">
                 <div>
-                  <MenuButton className="group inline-flex justify-center text-sm font-medium text-stone-700 transition duration-300 hover:text-rose-600">
+                  <MenuButton className="group inline-flex justify-center text-sm font-medium text-slate-700 transition duration-300 hover:text-rose-600">
                     Sort
                     <ChevronDownIcon
-                      className="group-transition -mr-1 ml-1 h-5 w-5 flex-shrink-0 text-stone-400 duration-300 hover:text-rose-500"
+                      className="group-transition -mr-1 ml-1 h-5 w-5 flex-shrink-0 text-slate-400 duration-300 hover:text-rose-500"
                       aria-hidden="true"
                     />
                   </MenuButton>
@@ -584,9 +584,9 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                               className={classNames(
                                 option.value == selectedSort.value &&
                                   option.type == selectedSort.type
-                                  ? 'font-medium text-stone-900'
-                                  : 'text-stone-500',
-                                active ? 'bg-stone-100' : '',
+                                  ? 'font-medium text-slate-900'
+                                  : 'text-slate-500',
+                                active ? 'bg-slate-100' : '',
                                 'block cursor-pointer px-4 py-2 text-sm transition duration-300 hover:bg-rose-50 hover:text-rose-600'
                               )}
                               onClick={() => handleSortChange(option.value, option.type)}>
@@ -601,7 +601,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
               </Menu>
               <button
                 type="button"
-                className="-m-2 ml-4 p-2 text-stone-400 transition duration-300 hover:text-rose-500 sm:ml-6 lg:hidden"
+                className="-m-2 ml-4 p-2 text-slate-400 transition duration-300 hover:text-rose-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}>
                 <span className="sr-only">Filters</span>
                 <FunnelIcon
@@ -619,12 +619,12 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                   <Disclosure
                     as="div"
                     key={section.id}
-                    className="border-b border-stone-200 py-6">
+                    className="border-b border-slate-200 py-6">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
-                          <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-stone-400 transition duration-300 hover:text-rose-500">
-                            <span className="font-medium text-stone-900">{section.name}</span>
+                          <DisclosureButton className="flex w-full items-center justify-between bg-white py-3 text-sm text-slate-400 transition duration-300 hover:text-rose-500">
+                            <span className="font-medium text-slate-900">{section.name}</span>
 
                             <span className="ml-6 flex items-center">
                               {open ? (
@@ -659,11 +659,11 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                                   type="radio"
                                   defaultChecked={option.value == selectedFilter[index]}
                                   onChange={handleFilterChange}
-                                  className="h-4 w-4 rounded border-stone-300 text-rose-600 outline-none focus:ring-0"
+                                  className="h-4 w-4 rounded border-slate-300 text-rose-600 outline-none focus:ring-0"
                                 />
                                 <label
                                   htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-stone-600">
+                                  className="ml-3 text-sm text-slate-600">
                                   {option.label}
                                 </label>
                               </div>
@@ -677,7 +677,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                 {listFavorites.length > 0 ? (
                   <div>
                     <h3 className="mb-2 mt-4 flow-root">
-                      <span className="text-sm font-medium text-stone-900">Hired</span>
+                      <span className="text-sm font-medium text-slate-900">Hired</span>
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {listFavorites.map((fav) => (
@@ -771,11 +771,11 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                                     </div>
                                   </div>
                                   {textItem(
-                                    <CakeIcon className="h-5 w-5 text-stone-500" />,
+                                    <CakeIcon className="h-5 w-5 text-slate-500" />,
                                     `IG ${card[1].IgFollowers}`
                                   )}
                                   {textItem(
-                                    <MapPinIcon className="h-5 w-5 text-stone-500" />,
+                                    <MapPinIcon className="h-5 w-5 text-slate-500" />,
                                     `Tiktok ${card[1].TiktokFollowers}`
                                   )}
                                 </div>
@@ -788,7 +788,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                                   .map((event) => (
                                     <Badge
                                       key={event}
-                                      className="flex-shrink-0 cursor-pointer pr-2 text-xs text-stone-600">
+                                      className="flex-shrink-0 cursor-pointer pr-2 text-xs text-slate-600">
                                       {event.replace('Others-', '')}
                                     </Badge>
                                   ))}
@@ -799,9 +799,9 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                       ))
                     ) : (
                       <div className="my-48 text-center">
-                        <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-stone-400"></MagnifyingGlassIcon>
-                        <h3 className="mt-2 text-sm font-semibold text-stone-900">No results</h3>
-                        <p className="mt-1 text-sm text-stone-500">
+                        <MagnifyingGlassIcon className="mx-auto h-12 w-12 text-slate-400"></MagnifyingGlassIcon>
+                        <h3 className="mt-2 text-sm font-semibold text-slate-900">No results</h3>
+                        <p className="mt-1 text-sm text-slate-500">
                           Sorry we can&apos;t find any results for you, please try another filters.
                         </p>
                       </div>
@@ -823,20 +823,20 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                       {isShowExperience ? (
                         <div className="px-4 pb-8">
                           <div className="px-4 sm:px-0">
-                            <h3 className="text-base font-semibold leading-7 text-stone-900">
+                            <h3 className="text-base font-semibold leading-7 text-slate-900">
                               {t('dashboardClientTalentDetailsExperienceTitle')}
                             </h3>
-                            <p className="mt-1 max-w-2xl text-sm leading-6 text-stone-500">
+                            <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-500">
                               {t('dashboardClientTalentDetailsExperienceDesc')}
                             </p>
                           </div>
-                          <div className="mt-6 border-t border-stone-100">
-                            <dl className="divide-y divide-stone-100">
+                          <div className="mt-6 border-t border-slate-100">
+                            <dl className="divide-y divide-slate-100">
                               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium leading-6 text-stone-900">
+                                <dt className="text-sm font-medium leading-6 text-slate-900">
                                   {t('commonIndustry')}
                                 </dt>
-                                <dd className="mt-1 text-sm leading-6 text-stone-700 sm:col-span-2 sm:mt-0">
+                                <dd className="mt-1 text-sm leading-6 text-slate-700 sm:col-span-2 sm:mt-0">
                                   <div className="flex flex-wrap gap-2 text-wrap">
                                     {openModal[1].brands
                                       .filter((e) => e !== '')
@@ -851,10 +851,10 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                                 </dd>
                               </div>
                               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium leading-6 text-stone-900">
+                                <dt className="text-sm font-medium leading-6 text-slate-900">
                                   {t('commonProductField')}
                                 </dt>
-                                <dd className="mt-1 text-sm leading-6 text-stone-700 sm:col-span-2 sm:mt-0">
+                                <dd className="mt-1 text-sm leading-6 text-slate-700 sm:col-span-2 sm:mt-0">
                                   <div className="flex flex-wrap gap-2">
                                     {openModal[1].events
                                       .filter((e) => e !== '')
@@ -875,7 +875,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                         <div
                           id="capture"
                           className="bg-white p-4 text-center">
-                          <p className="text-4xl font-bold text-stone-900">
+                          <p className="text-4xl font-bold text-slate-900">
                             {openModal[1].name.replace(/[()]/g, '')}
                           </p>
                           <p className="mt-2 text-base text-rose-600">{openModal[0]}</p>
@@ -928,7 +928,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                       )}
                     </Modal.Body>
                   </Modal>
-                  <nav className="flex items-center justify-between border-t border-stone-200 px-4 sm:px-0">
+                  <nav className="flex items-center justify-between border-t border-slate-200 px-4 sm:px-0">
                     <div className="hover:text-rose-5000 -mt-px flex w-0 flex-1 transition duration-300">
                       <a
                         onClick={() => {
@@ -938,9 +938,9 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                             window.scrollTo(0, 0)
                           }
                         }}
-                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
+                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-slate-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
                         <ArrowLongLeftIcon
-                          className="hover:text-rose-5000 mr-3 h-5 w-5 text-stone-400 transition duration-300"
+                          className="hover:text-rose-5000 mr-3 h-5 w-5 text-slate-400 transition duration-300"
                           aria-hidden="true"
                         />
                         Previous
@@ -956,7 +956,7 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                           }}
                           key={index}
                           className={`inline-flex cursor-pointer items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium transition duration-300 hover:border-rose-300 hover:text-rose-500 ${
-                            listIndex == index ? 'border-rose-500 text-rose-500' : 'text-stone-500'
+                            listIndex == index ? 'border-rose-500 text-rose-500' : 'text-slate-500'
                           }`}>
                           {index + 1}
                         </a>
@@ -971,10 +971,10 @@ export default function FiltersInfluencer({ email, listInitFavorites }) {
                             window.scrollTo(0, 0)
                           }
                         }}
-                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-stone-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
+                        className="inline-flex cursor-pointer items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-slate-500 transition duration-300 hover:border-rose-300 hover:text-rose-500">
                         Next
                         <ArrowLongRightIcon
-                          className="hover:text-rose-5000 ml-3 h-5 w-5 text-stone-400 transition duration-300"
+                          className="hover:text-rose-5000 ml-3 h-5 w-5 text-slate-400 transition duration-300"
                           aria-hidden="true"
                         />
                       </a>

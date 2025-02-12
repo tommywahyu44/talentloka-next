@@ -54,7 +54,7 @@ export default function ForgotPassword() {
             src="/images/icon-talentloka.png"
             alt="Your Company"
           />
-          <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-stone-900">
+          <h2 className="mt-10 text-center font-display text-2xl font-bold leading-9 tracking-tight text-slate-900">
             {t('authForgotPasswordTitle')}
           </h2>
         </div>
@@ -81,7 +81,7 @@ export default function ForgotPassword() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-stone-500">
+          <p className="mt-10 text-center text-sm text-slate-500">
             {t('authForgotPasswordLabelQuestion')}{' '}
             <a
               href="/client/login"

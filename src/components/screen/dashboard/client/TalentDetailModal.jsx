@@ -26,20 +26,20 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
         {isShowExperience ? (
           <div className="px-4 pb-8">
             <div className="px-4 sm:px-0">
-              <h3 className="text-base font-semibold leading-7 text-stone-900">
+              <h3 className="text-base font-semibold leading-7 text-slate-900">
                 {t('dashboardClientTalentDetailsExperienceTitle')}
               </h3>
-              <p className="mt-1 max-w-2xl text-sm leading-6 text-stone-500">
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-500">
                 {t('dashboardClientTalentDetailsExperienceDesc')}
               </p>
             </div>
-            <div className="border-t border-stone-100">
-              <dl className="divide-y divide-stone-100">
+            <div className="border-t border-slate-100">
+              <dl className="divide-y divide-slate-100">
                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                  <dt className="text-sm font-medium leading-6 text-stone-900">
+                  <dt className="text-sm font-medium leading-6 text-slate-900">
                     {t('commonIndustry')}
                   </dt>
-                  <dd className="mt-1 text-sm leading-6 text-stone-700 sm:col-span-2 sm:mt-0">
+                  <dd className="mt-1 text-sm leading-6 text-slate-700 sm:col-span-2 sm:mt-0">
                     <div className="flex flex-wrap gap-2 text-wrap">
                       {openModal[1].brands
                         .filter((e) => e !== '')
@@ -54,10 +54,10 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
                   </dd>
                 </div>
                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                  <dt className="text-sm font-medium leading-6 text-stone-900">
+                  <dt className="text-sm font-medium leading-6 text-slate-900">
                     {t('commonProductField')}
                   </dt>
-                  <dd className="mt-1 text-sm leading-6 text-stone-700 sm:col-span-2 sm:mt-0">
+                  <dd className="mt-1 text-sm leading-6 text-slate-700 sm:col-span-2 sm:mt-0">
                     <div className="flex flex-wrap gap-2">
                       {openModal[1].events
                         .filter((e) => e !== '')
@@ -78,7 +78,7 @@ export default function TalentDetailModal({ openModal, setOpenModal, cardEntity,
           <div
             id="capture"
             className="bg-white px-4 pb-4 text-center">
-            <p className="text-4xl font-bold text-stone-900">
+            <p className="text-4xl font-bold text-slate-900">
               {openModal[1].name.replace(/[()]/g, '')}
             </p>
             <p className="mt-2 text-base text-rose-600">{openModal[0]}</p>

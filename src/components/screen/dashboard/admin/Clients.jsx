@@ -136,10 +136,10 @@ export default function Clients() {
     <div>
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-stone-900">
+          <h1 className="text-base font-semibold leading-6 text-slate-900">
             Clients Admin Dashboard
           </h1>
-          {/* <p className="mt-2 text-sm text-stone-700">
+          {/* <p className="mt-2 text-sm text-slate-700">
             A list of all the clients.
           </p> */}
         </div>
@@ -156,7 +156,7 @@ export default function Clients() {
           <select
             id="tabs"
             name="tabs"
-            className="block w-full rounded-md border-stone-300 py-2 pl-3 pr-10 text-base focus:border-rose-500 focus:outline-none focus:ring-rose-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base focus:border-rose-500 focus:outline-none focus:ring-rose-500 sm:text-sm"
             defaultValue={tabs.find((tab) => tab.current).name}>
             {tabs.map((tab) => (
               <option key={tab.name}>{tab.name}</option>
@@ -175,7 +175,7 @@ export default function Clients() {
                   className={classNames(
                     index === selectedTab
                       ? 'bg-rose-50 text-rose-600'
-                      : 'border-transparent text-stone-500 transition duration-300 hover:text-rose-700',
+                      : 'border-transparent text-slate-500 transition duration-300 hover:text-rose-700',
                     'cursor-pointer whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium'
                   )}>
                   {tab.name}
@@ -189,41 +189,41 @@ export default function Clients() {
         <div className="mt-4 flow-root">
           <div className="h-[75vh] overflow-x-auto">
             <table className="w-full">
-              <thead className="sticky top-0 h-16 divide-y divide-stone-300 bg-stone-50">
+              <thead className="sticky top-0 h-16 divide-y divide-slate-300 bg-slate-50">
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-stone-900">
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900">
                     Profile
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Company
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Deed of Establishment
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Single Business Number
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Director Id Card
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Employer Tax Id
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Status
                   </th>
                   <th
@@ -233,7 +233,7 @@ export default function Clients() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-200 bg-white">
+              <tbody className="divide-y divide-slate-200 bg-white">
                 {clients.length > 0 ? (
                   clients.map((client) => (
                     <tr key={client[0]}>
@@ -247,12 +247,12 @@ export default function Clients() {
                             />
                           </div>
                           <div className="ml-4">
-                            <div className="font-medium text-stone-900">{client[1].name}</div>
-                            <div className="mt-1 text-stone-500">{client[1].email}</div>
+                            <div className="font-medium text-slate-900">{client[1].name}</div>
+                            <div className="mt-1 text-slate-500">{client[1].email}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-sm text-stone-500">
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-slate-500">
                         {client[1].company}
                       </td>
                       <td className="m-auto mt-6 text-center text-sm text-blue-500">
@@ -264,8 +264,8 @@ export default function Clients() {
                           View
                         </a>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-500">
-                        <div className="text-stone-900">{client[1].singleBusinessNumber}</div>
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-500">
+                        <div className="text-slate-900">{client[1].singleBusinessNumber}</div>
                         <div className="mt-1">
                           <a
                             href={client[1].singleBusinessNumberFile}
@@ -276,8 +276,8 @@ export default function Clients() {
                           </a>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-500">
-                        <div className="text-stone-900">{client[1].directorIdCard}</div>
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-500">
+                        <div className="text-slate-900">{client[1].directorIdCard}</div>
                         <a
                           href={client[1].directorIdCardFile}
                           target="_blank"
@@ -286,8 +286,8 @@ export default function Clients() {
                           View
                         </a>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-500">
-                        <div className="text-stone-900">{client[1].employerTaxId}</div>
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-500">
+                        <div className="text-slate-900">{client[1].employerTaxId}</div>
                         <a
                           href={client[1].employerTaxIdFile}
                           target="_blank"
@@ -296,7 +296,7 @@ export default function Clients() {
                           View
                         </a>
                       </td>
-                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-stone-500">
+                      <td className="whitespace-nowrap px-3 py-5 text-center text-sm text-slate-500">
                         {client[1].isVerified ? (
                           <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                             Active
@@ -332,16 +332,16 @@ export default function Clients() {
         <div className="mt-4 flow-root">
           <div className="h-[75vh] overflow-x-auto">
             <table className="w-full">
-              <thead className="sticky top-0 h-16 divide-y divide-stone-300 bg-stone-50">
+              <thead className="sticky top-0 h-16 divide-y divide-slate-300 bg-slate-50">
                 <tr>
                   <th
                     scope="col"
-                    className="w-80 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-stone-900">
+                    className="w-80 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900">
                     Profile
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-stone-900">
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">
                     Request
                   </th>
                   <th
@@ -351,7 +351,7 @@ export default function Clients() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-200 bg-white">
+              <tbody className="divide-y divide-slate-200 bg-white">
                 {clients.length > 0 ? (
                   clients
                     .filter((client) => client[1].favorited !== '')
@@ -367,12 +367,12 @@ export default function Clients() {
                               />
                             </div>
                             <div className="ml-4">
-                              <div className="font-medium text-stone-900">{client[1].name}</div>
-                              <div className="mt-1 text-stone-500">{client[1].email}</div>
+                              <div className="font-medium text-slate-900">{client[1].name}</div>
+                              <div className="mt-1 text-slate-500">{client[1].email}</div>
                             </div>
                           </div>
                         </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-stone-500">
+                        <td className="whitespace-nowrap px-3 py-5 text-sm text-slate-500">
                           <div className="flex flex-wrap gap-2">
                             {typeof client[1].favorited === 'string'
                               ? client[1]?.favorited.split(',').map((fav) => (
@@ -424,7 +424,7 @@ export default function Clients() {
           <div
             id="capture"
             className="bg-white p-4 text-center">
-            <p className="text-4xl font-bold text-stone-900">{openModal.name}</p>
+            <p className="text-4xl font-bold text-slate-900">{openModal.name}</p>
             <p className="mt-2 text-base text-rose-600">{openModal.code}</p>
             <p className="mt-2 text-base font-semibold text-rose-600">{openModal.contactNumber}</p>
             <div className="mt-1 flex items-center justify-center text-center text-base">

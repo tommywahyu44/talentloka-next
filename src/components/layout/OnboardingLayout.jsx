@@ -16,7 +16,7 @@ export default function OnboardingLayout({ email, signout, url, children }) {
         <div className="m-3 w-full max-w-3xl">
           <div className="relative rounded-xl bg-white px-4 py-6 shadow-2xl backdrop-blur-sm sm:p-10">
             {children}
-            <div className="px-3 text-center text-stone-500">
+            <div className="px-3 text-center text-slate-500">
               <Tooltip
                 title={email}
                 arrow>

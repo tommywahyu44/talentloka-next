@@ -452,13 +452,13 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
           {!isFromRegister && (
             <ArrowLeftIcon
               onClick={() => setIsUpdateProfile(false)}
-              className="h-6 w-6 cursor-pointer text-stone-900"
+              className="h-6 w-6 cursor-pointer text-slate-900"
             />
           )}
-          <h2 className="mx-auto font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+          <h2 className="mx-auto font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             {isFromRegister ? 'Submit Your Profile' : 'Update Profile'}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
             {isFromRegister
               ? 'Please complete your profile and we will verify it. Thank you!'
               : 'Update the profile information below and click submit to submit your update request.'}
@@ -471,7 +471,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Full Name<span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">
@@ -482,7 +482,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={fullName}
                       onChange={handleFullNameChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -493,7 +493,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     {t('commonGender')}
                     <span className="text-red-600">*</span>
                   </label>
@@ -501,10 +501,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {gender}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -528,7 +528,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setGender(gender)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {gender}
@@ -545,7 +545,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Date of Birth (Year)<span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">
@@ -559,7 +559,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={dob}
                       onChange={handleDobChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -570,7 +570,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="contact"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Phone Number<span className="text-red-600">*</span>
                   </label>
                   <div className="flex items-center sm:col-span-3">
@@ -581,7 +581,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         <MenuButton
                           id="dropdown-phone-button"
                           data-dropdown-toggle="dropdown-phone"
-                          className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-stone-800 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-800 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                          className="z-10 inline-flex w-full flex-shrink-0 items-center rounded-s-md border-0 bg-slate-800 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                           type="button">
                           <img
                             src={selectedCountryCode.flagUrl}
@@ -606,7 +606,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         leave="transition ease-in duration-75"
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95">
-                        <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-stone-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <div className="py-1">
                             {countries
                               .filter((country) => allowedCountries.includes(country.name))
@@ -615,7 +615,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                   <MenuItem key={index}>
                                     <button
                                       type="button"
-                                      className="inline-flex w-full px-2 px-4 py-1 text-sm text-stone-700 transition duration-300 hover:bg-stone-600 hover:text-white dark:text-stone-200 dark:transition"
+                                      className="inline-flex w-full px-2 px-4 py-1 text-sm text-slate-700 transition duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-200 dark:transition"
                                       role="menuitem"
                                       onClick={() => {
                                         setSelectedCountryCode({
@@ -647,7 +647,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         id="contact"
                         value={contact}
                         onChange={handleContactChange}
-                        className="block w-full rounded-e-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-e-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                         placeholder="812-345-6789"
                         required
                       />
@@ -661,7 +661,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     {t('commonCity')}
                     <span className="text-red-600">*</span>
                   </label>
@@ -669,10 +669,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {city}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -696,7 +696,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setCity(city)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {city}
@@ -713,7 +713,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     {t('commonCountry')}
                     <span className="text-red-600">*</span>
                   </label>
@@ -721,10 +721,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {country}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -748,7 +748,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setCountry(country)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {country}
@@ -765,7 +765,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Height (cm)<span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">
@@ -776,7 +776,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={height}
                       onChange={handleHeightChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -787,7 +787,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Weight (kg)<span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">
@@ -798,7 +798,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={weight}
                       onChange={handleWeightChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -808,7 +808,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Shoes (EU)
                   </label>
                   <div className="mt-2">
@@ -818,7 +818,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       id="shoes"
                       value={shoes}
                       onChange={handleShoesChange}
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -826,17 +826,17 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Shirt Size<span className="text-red-600">*</span>
                   </label>
                   <Menu
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {shirt}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -860,7 +860,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setShirt(shirt)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {shirt}
@@ -877,7 +877,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     {t('commonEthnic')}
                     <span className="text-red-600">*</span>
                   </label>
@@ -885,10 +885,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {race}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -912,7 +912,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setRace(race)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {race}
@@ -929,17 +929,17 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     {t('commonRole')} (SPG/Model)<span className="text-red-600">*</span>
                   </label>
                   <Menu
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {role}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -963,7 +963,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setRole(role)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {role}
@@ -980,7 +980,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   <div className="text-sm font-semibold leading-6">
                     <span
                       id="comments-description"
-                      className="text-stone-700">
+                      className="text-slate-700">
                       Do you wear hijab?
                     </span>
                   </div>
@@ -990,19 +990,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         onClick={() => setIsWearHijab(true)}
                         className={clsx(
                           'flex h-10 w-24 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          isWearHijab ? 'border-rose-500' : 'border-stone-200'
+                          isWearHijab ? 'border-rose-500' : 'border-slate-200'
                         )}>
                         <input
                           id="radio-hijab-yes"
                           name="radio-hijab"
                           type="radio"
                           checked={isWearHijab}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
+                          className="h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-600"
                           disabled
                         />
                         <label
                           htmlFor="radio-hijab-yes"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
+                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-slate-900">
                           Yes
                         </label>
                       </div>
@@ -1010,19 +1010,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         onClick={() => setIsWearHijab(false)}
                         className={clsx(
                           'flex h-10 w-24 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          !isWearHijab ? 'border-rose-500' : 'border-stone-200'
+                          !isWearHijab ? 'border-rose-500' : 'border-slate-200'
                         )}>
                         <input
                           id="radio-hijab-no"
                           name="radio-hijab"
                           type="radio"
                           checked={!isWearHijab}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
+                          className="h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-600"
                           disabled
                         />
                         <label
                           htmlFor="radio-hijab-no"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
+                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-slate-900">
                           No
                         </label>
                       </div>
@@ -1033,7 +1033,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                   <div className="text-sm font-semibold leading-6">
                     <span
                       id="comments-description"
-                      className="text-stone-700">
+                      className="text-slate-700">
                       Do you have any tattoos?
                     </span>
                   </div>
@@ -1043,19 +1043,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         onClick={() => setHasTattoo(true)}
                         className={clsx(
                           'flex h-10 w-24 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          hasTattoo ? 'border-rose-500' : 'border-stone-200'
+                          hasTattoo ? 'border-rose-500' : 'border-slate-200'
                         )}>
                         <input
                           id="radio-tattoo-yes"
                           name="radio-tattoo"
                           type="radio"
                           checked={hasTattoo}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
+                          className="h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-600"
                           disabled
                         />
                         <label
                           htmlFor="radio-tattoo-yes"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
+                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-slate-900">
                           Yes
                         </label>
                       </div>
@@ -1063,19 +1063,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                         onClick={() => setHasTattoo(false)}
                         className={clsx(
                           'flex h-10 w-24 cursor-pointer items-center justify-center rounded-lg border p-2',
-                          !hasTattoo ? 'border-rose-500' : 'border-stone-200'
+                          !hasTattoo ? 'border-rose-500' : 'border-slate-200'
                         )}>
                         <input
                           id="radio-tattoo-no"
                           name="radio-tattoo"
                           type="radio"
                           checked={!hasTattoo}
-                          className="h-4 w-4 border-stone-300 text-rose-600 focus:ring-rose-600"
+                          className="h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-600"
                           disabled
                         />
                         <label
                           htmlFor="radio-tattoo-no"
-                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-stone-900">
+                          className="ml-3 block cursor-pointer text-sm font-medium leading-6 text-slate-900">
                           No
                         </label>
                       </div>
@@ -1086,7 +1086,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                     <div className="mt-4 text-left sm:col-span-12">
                       <label
                         htmlFor="name"
-                        className="block text-sm text-stone-900">
+                        className="block text-sm text-slate-900">
                         Is it visible and where is it located?
                       </label>
                       <div className="mt-2">
@@ -1097,7 +1097,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                           value={tattooLocation}
                           onChange={handleTattooLocationChange}
                           required
-                          className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -1163,7 +1163,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Years of Experience<span className="text-red-600">*</span>
                   </label>
                   <div className="mt-2">
@@ -1176,7 +1176,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       min="0"
                       max="60"
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -1187,7 +1187,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Per Day Earnings
                     <span className="text-red-600">*</span>
                   </label>
@@ -1199,7 +1199,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={salary}
                       onChange={handleSalaryChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-red-600">
@@ -1210,7 +1210,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 {/* <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Current Fee as SPG (0 if you are not SPG)
                   </label>
                   <div className="mt-2">
@@ -1221,7 +1221,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={roleFee.SPG}
                       onChange={handleRoleFeeChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -1229,7 +1229,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Current Fee as Usher (0 if you are not Usher)
                   </label>
                   <div className="mt-2">
@@ -1240,7 +1240,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={roleFee.USHER}
                       onChange={handleRoleFeeChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -1248,7 +1248,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Current Fee as Runner (0 if you are not Runner)
                   </label>
                   <div className="mt-2">
@@ -1259,7 +1259,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={roleFee.RUNNER}
                       onChange={handleRoleFeeChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div> */}
@@ -1267,17 +1267,17 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Salary Currency<span className="text-red-600">*</span>
                   </label>
                   <Menu
                     as="div"
                     className="relative mt-2 inline-block w-full text-left">
                     <div>
-                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 transition duration-300 hover:bg-stone-50">
+                      <MenuButton className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 transition duration-300 hover:bg-slate-50">
                         {currency}
                         <ChevronDownIcon
-                          className="-mr-1 h-5 w-5 text-stone-400"
+                          className="-mr-1 h-5 w-5 text-slate-400"
                           aria-hidden="true"
                         />
                       </MenuButton>
@@ -1301,7 +1301,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                                     setCurrency(currency)
                                   }}
                                   className={classNames(
-                                    active ? 'bg-stone-100 text-stone-900' : 'text-stone-700',
+                                    active ? 'bg-slate-100 text-slate-900' : 'text-slate-700',
                                     'block cursor-pointer px-4 py-2 text-sm'
                                   )}>
                                   {currency}
@@ -1322,19 +1322,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
                 <div className="sm:col-span-3">
                   <label
-                    className="mb-2 block text-sm font-medium text-stone-900"
+                    className="mb-2 block text-sm font-medium text-slate-900"
                     htmlFor="company-logo-input">
                     Close Up Photo<span className="text-red-600">*</span>
                   </label>
                   <input
-                    className="block w-full cursor-pointer rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 focus:outline-none"
+                    className="block w-full cursor-pointer rounded-lg border border-slate-300 bg-slate-50 text-sm text-slate-900 focus:outline-none"
                     id="photo1"
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
                     onChange={handlePhoto1Change}
                   />
                   <p
-                    className="mt-1 text-sm text-stone-500"
+                    className="mt-1 text-sm text-slate-500"
                     id="file_input_help">
                     PNG, JPG or JPEG (Max 1 MB 3:4 Ratio).{' '}
                     <span className="text-red-600">
@@ -1360,19 +1360,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
                 <div className="sm:col-span-3">
                   <label
-                    className="mb-2 block text-sm font-medium text-stone-900"
+                    className="mb-2 block text-sm font-medium text-slate-900"
                     htmlFor="company-logo-input">
                     Half Body Photo<span className="text-red-600">*</span>
                   </label>
                   <input
-                    className="block w-full cursor-pointer rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 focus:outline-none"
+                    className="block w-full cursor-pointer rounded-lg border border-slate-300 bg-slate-50 text-sm text-slate-900 focus:outline-none"
                     id="photo2"
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
                     onChange={handlePhoto2Change}
                   />
                   <p
-                    className="mt-1 text-sm text-stone-500"
+                    className="mt-1 text-sm text-slate-500"
                     id="file_input_help">
                     PNG, JPG or JPEG (Max 1 MB 3:4 Ratio).{' '}
                     <span className="text-red-600">
@@ -1398,19 +1398,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
                 <div className="sm:col-span-3">
                   <label
-                    className="mb-2 block text-sm font-medium text-stone-900"
+                    className="mb-2 block text-sm font-medium text-slate-900"
                     htmlFor="company-logo-input">
                     Full Body Photo<span className="text-red-600">*</span>
                   </label>
                   <input
-                    className="block w-full cursor-pointer rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 focus:outline-none"
+                    className="block w-full cursor-pointer rounded-lg border border-slate-300 bg-slate-50 text-sm text-slate-900 focus:outline-none"
                     id="photo3"
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
                     onChange={handlePhoto3Change}
                   />
                   <p
-                    className="mt-1 text-sm text-stone-500"
+                    className="mt-1 text-sm text-slate-500"
                     id="file_input_help">
                     PNG, JPG or JPEG (Max 1 MB 3:4 Ratio).{' '}
                     <span className="text-red-600">
@@ -1436,19 +1436,19 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
 
                 <div className="sm:col-span-3">
                   <label
-                    className="mb-2 block text-sm font-medium text-stone-900"
+                    className="mb-2 block text-sm font-medium text-slate-900"
                     htmlFor="company-logo-input">
                     Casual Photo<span className="text-red-600">*</span>
                   </label>
                   <input
-                    className="block w-full cursor-pointer rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 focus:outline-none"
+                    className="block w-full cursor-pointer rounded-lg border border-slate-300 bg-slate-50 text-sm text-slate-900 focus:outline-none"
                     id="photo4"
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
                     onChange={handlePhoto4Change}
                   />
                   <p
-                    className="mt-1 text-sm text-stone-500"
+                    className="mt-1 text-sm text-slate-500"
                     id="file_input_help">
                     PNG, JPG or JPEG (Max 1 MB 3:4 Ratio).{' '}
                     <span className="text-red-600">
@@ -1475,7 +1475,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                 <div className="sm:col-span-6">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-stone-900">
+                    className="block text-sm font-medium leading-6 text-slate-900">
                     Self Intro Video Url (Optional)
                   </label>
                   <div className="mt-2">
@@ -1486,7 +1486,7 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       value={introVideoUrl}
                       onChange={handleIntroVideoUrlChange}
                       required
-                      className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-1 text-sm text-rose-600">
@@ -1518,10 +1518,10 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
                       type="checkbox"
                       checked={isTncChecked}
                       onChange={handleTncChecked}
-                      className="h-5 w-5 rounded border-stone-300 text-rose-600 focus:border-transparent focus:outline-none focus:ring-0"
+                      className="h-5 w-5 rounded border-slate-300 text-rose-600 focus:border-transparent focus:outline-none focus:ring-0"
                     />
                   </div>
-                  <div className="ml-3 text-base leading-6 text-stone-700">
+                  <div className="ml-3 text-base leading-6 text-slate-700">
                     I have read and agree to Talentvis{' '}
                     <a
                       href="/docs/talentvis-spg-tnc.pdf"
@@ -1554,8 +1554,8 @@ export default function UpdateProfile({ email, profileData, isFromRegister }) {
         </div>
       ) : (
         <div className="mb-24 flex min-h-full flex-1 flex-col justify-center sm:mb-0 sm:px-6 sm:py-6 lg:px-8">
-          <div className="m-auto max-w-xl bg-white text-center shadow-sm sm:border sm:border-stone-900 sm:p-4">
-            <p className="text-xl font-bold text-stone-900 sm:text-3xl md:text-4xl">
+          <div className="m-auto max-w-xl bg-white text-center shadow-sm sm:border sm:border-slate-900 sm:p-4">
+            <p className="text-xl font-bold text-slate-900 sm:text-3xl md:text-4xl">
               {profileData?.fullName ? profileData.fullName.split(' ')[0] : ''}
             </p>
             <p className="mt-2 text-sm text-rose-600 md:text-base">{profileData?.code ?? ''}</p>

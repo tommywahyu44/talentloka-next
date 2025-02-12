@@ -122,10 +122,10 @@ export default function OnboardingForm({ email, businessType, handleBusinessType
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center">
       <ClipboardDocumentListIcon className="mx-auto mt-12 h-20 w-20 text-rose-500 sm:h-32 sm:w-32" />
-      <h2 className="mt-8 font-display text-xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+      <h2 className="mt-8 font-display text-xl font-bold tracking-tight text-slate-900 sm:text-4xl">
         Complete Your Onboarding Profile
       </h2>
-      <p className="mx-auto mt-4 max-w-xl text-base text-stone-600 sm:mt-6 sm:text-lg">
+      <p className="mx-auto mt-4 max-w-xl text-base text-slate-600 sm:mt-6 sm:text-lg">
         Before you can start using our app, please complete your onboarding profile so that we can
         verify your profile. Thank you!
       </p>

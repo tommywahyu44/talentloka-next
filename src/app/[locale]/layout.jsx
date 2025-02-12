@@ -3,23 +3,9 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import dynamic from 'next/dynamic'
-import { Nunito, Roboto } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { locales } from '../../navigation'
 import './globals.css'
-
-const nunito = Nunito({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-})
-
-const roboto_mono = Roboto({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['500'],
-})
 
 export const metadata = {
   title: 'Talentloka Sales Promotion Staffing Solutions',
@@ -58,9 +44,7 @@ export default async function RootLayout({ children, params: { locale } }) {
   }
   const messages = await getMessages()
   return (
-    <html
-      lang={locale}
-      className={`${nunito.variable} ${roboto_mono.variable}`}>
+    <html lang={locale}>
       <head>
         <link
           rel="icon"

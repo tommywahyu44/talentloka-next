@@ -122,10 +122,10 @@ function getDashboardUI(step, email, profileData, listEvents, navigation, setNav
           {step === 0 && (
             <div>
               <EnvelopeIcon className="mx-auto h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Email Verification
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
                 Please click the button below to send email verification to verify your email.
               </p>
               <div>
@@ -148,10 +148,10 @@ function getDashboardUI(step, email, profileData, listEvents, navigation, setNav
           {step === 2 && (
             <div>
               <DocumentMagnifyingGlassIcon className="mx-auto h-32 w-32 text-rose-500" />
-              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              <h2 className="mt-8 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Admin Verification
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-stone-600">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600">
                 Please wait up to 1x24 hours for our team to verify your new profile before we
                 publish it. Thank you for waiting!
               </p>

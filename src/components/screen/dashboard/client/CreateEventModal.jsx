@@ -340,7 +340,7 @@ export default function CreateEventModal({
         <form
           className="space-y-6 sm:mx-auto sm:w-full sm:max-w-2xl"
           onSubmit={handleSubmit}>
-          <h3 className="text-xl font-medium text-stone-900">
+          <h3 className="text-xl font-medium text-slate-900">
             {method === 'create' ? t('clientCreateEvent') : t('clientCreateEventUpdate')}
           </h3>
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 text-left sm:grid-cols-6">
@@ -450,7 +450,7 @@ export default function CreateEventModal({
             <div className="col-span-6">
               <label
                 htmlFor={coupon}
-                className="block text-sm font-medium leading-6 text-stone-900">
+                className="block text-sm font-medium leading-6 text-slate-900">
                 {t('clientCreateEventCoupon')}
               </label>
               {eventData.coupon ? (
@@ -475,7 +475,7 @@ export default function CreateEventModal({
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value.toUpperCase())}
                     required
-                    className="block w-full rounded-md border-0 px-2 py-1 text-stone-900 shadow-sm outline-none ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-2 py-1 text-slate-900 shadow-sm outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                   />
                   <button
                     type="button"
@@ -487,7 +487,7 @@ export default function CreateEventModal({
               )}
             </div>
             <div className="col-span-6">
-              <label className="block text-sm font-medium leading-6 text-stone-900">
+              <label className="block text-sm font-medium leading-6 text-slate-900">
                 {t('clientCreateEventPromotor')}
               </label>
               <div className="mt-2 flex flex-wrap">
@@ -522,18 +522,18 @@ export default function CreateEventModal({
                   )
                 })}
               </div>
-              {/* <div className="mt-4 flex flex-row text-sm font-medium leading-6 text-stone-900">
+              {/* <div className="mt-4 flex flex-row text-sm font-medium leading-6 text-slate-900">
                 <div className="font-semibold">Promoters fee: </div>
                 <div className="ml-2">{moneyFormat(listInvitedPromotor.totalFee)} / day </div>
               </div>
               {listInvitedPromotor.bundlingDiscount > 0 && (
-                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-stone-900">
+                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-slate-900">
                   <div className="font-semibold">Bundling fee discount: </div>
                   <div className="ml-2">{listInvitedPromotor.bundlingDiscount * 100}% </div>
                 </div>
               )}
               {eventData.startDate && eventData.endDate && (
-                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-stone-900">
+                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-slate-900">
                   <div className="font-semibold">Total days: </div>
                   <div className="ml-2">
                     {dateToDaysDifference(eventData.startDate, eventData.endDate) + 1} days
@@ -541,7 +541,7 @@ export default function CreateEventModal({
                 </div>
               )}
               {eventData.startDate && eventData.endDate && listInvitedPromotor.totalFee > 0 && (
-                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-stone-900">
+                <div className="mt-1 flex flex-row text-sm font-medium leading-6 text-slate-900">
                   <div className="font-semibold">Total estimated fee: </div>
                   <div className="ml-2 font-bold text-rose-800">
                     {moneyFormat(
