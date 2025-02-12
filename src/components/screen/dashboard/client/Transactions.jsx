@@ -5,8 +5,10 @@ import { Wallet } from '@mui/icons-material'
 
 import { getDatabase, onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function Transactions({ email }) {
+  const t = useTranslations('default')
   const [listEvents, setListEvents] = useState([])
   const fetchEvents = async () => {
     const db = getDatabase()
@@ -47,7 +49,7 @@ export default function Transactions({ email }) {
       <div className="mt-6 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Transactions</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">{t('commonTransactions')}</h1>
           </div>
           <div className="mt-4 flex max-w-40 flex-row items-center justify-center space-x-2 rounded-md bg-gradient-to-br from-rose-500 to-rose-600 p-2 text-white shadow-sm sm:mt-0">
             <Wallet className="" />

@@ -18,7 +18,7 @@ export default function Example() {
             <a
               href="/client/register"
               className="rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-stone-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-              Sign up
+              {t('signUp')}
             </a>
             <a
               href="/promotor"

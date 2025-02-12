@@ -237,8 +237,8 @@ export default function Example() {
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-6xl">
-                    Sales Promotion<br></br>
-                    <span className="text-rose-600">Staffing Solutions</span>
+                    {t('clientLandingPageHeroTitle1')}<br></br>
+                    <span className="text-rose-600">{t('clientLandingPageHeroTitle2')}</span>
                   </h1>
                   <p className="relative mt-6 text-lg leading-8 text-stone-600 sm:max-w-md lg:max-w-none">
                     {t('landingClientSec1Description')}
@@ -315,7 +315,7 @@ export default function Example() {
               className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
                 <h2 className="font-display text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-                  Who <span className="text-rose-600">We Are</span>
+                  {t('landingClientSec2Title1')} <span className="text-rose-600">{t('landingClientSec2Title2')}</span>
                 </h2>
                 <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
                   <div className="lg:w-full lg:max-w-2xl lg:flex-auto">

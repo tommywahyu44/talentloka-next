@@ -7,8 +7,10 @@ import CreateEventModal from './CreateEventModal'
 import ListClientEvents from './ListClientEvents'
 import PaymentHistoryModal from './PaymentHistoryModal'
 import PaymentModal from './PaymentModal'
+import { useTranslations } from 'next-intl'
 
 export default function Events({ email, favorites }) {
+  const t = useTranslations('default')
   const [listEvents, setListEvents] = useState([])
   const [listPromotor, setListPromotor] = useState([])
   const [event, setEvent] = useState({
@@ -142,9 +144,9 @@ export default function Events({ email, favorites }) {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Events</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">{t('commonEvents')}</h1>
             <p className="mt-2 text-sm text-gray-700">
-              Stay organized and keep track of your events
+              {t('clientDashboardEventDescription')}
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -152,7 +154,7 @@ export default function Events({ email, favorites }) {
               onClick={() => createEvent()}
               type="button"
               className="block rounded-md bg-rose-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
-              Create event
+              {t('commonCreateEvent')}
             </button>
           </div>
         </div>

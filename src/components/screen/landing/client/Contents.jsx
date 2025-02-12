@@ -37,7 +37,7 @@ export default function Contents() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
             <p className="mt-2 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-              <span className="text-rose-600">Everything</span> You Need
+              <span className="text-rose-600">{t('landingClientSec3Title1')}</span> {t('landingClientSec3Title2')}
             </p>
             <p className="mt-6 text-lg leading-8 text-stone-700">
               {t('landingClientSec3Description')}
@@ -148,12 +148,11 @@ export default function Contents() {
         <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
           <h2 className="font-display text-base font-semibold leading-7 text-rose-600">Pricing</h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
-            Our bundle package for you
+            {t('landingClientSec5Title')}
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-stone-600">
-          Qui iusto aut est earum eos quae. Eligendi est at nam aliquid ad quo reprehenderit in
-          aliquid fugiat dolorum voluptatibus.
+          {t('landingClientSec5Description')}
         </p>
         <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
           {tiers.map((tier, tierIdx) => (
