@@ -236,7 +236,7 @@ export default function Example() {
 
       <main className="isolate">
         {/* Hero section */}
-        <div className="relative isolate -z-10">
+        <div className="-z-100 relative isolate">
           {/* <svg
             className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-slate-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
             aria-hidden="true">
@@ -273,21 +273,26 @@ export default function Example() {
           <div
             className="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden lg:ml-24 xl:ml-48"
             aria-hidden="true">
-            <div className="aspect-[801/1036] w-[45rem] bg-gradient-to-tr from-rose-200 to-purple-200" />
+            <div className="aspect-[701/1036] w-[45rem] bg-gradient-to-tr from-rose-200 to-purple-200" />
           </div>
+          <img
+            src="/images/spg-5.jpg"
+            alt=""
+            className="mask-radial absolute left-0 top-0 -z-20 aspect-[2/3] h-1/2 w-3/4 rounded-xl bg-white object-cover object-[50%_20%] opacity-50 shadow-lg"
+          />
           <div className="overflow-hidden">
             <div
               id="solution"
-              className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+              className="relative mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                  <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+                  <h1 className="text-3xl font-semibold tracking-tight text-slate-900">
                     {t('clientLandingPageHeroTitle1')}
                   </h1>
-                  <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+                  <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">
                     <span className="text-rose-600">{t('clientLandingPageHeroTitle2')}</span>
                   </h1>
-                  <p className="relative mt-6 text-lg leading-8 text-slate-500 sm:max-w-md lg:max-w-xl">
+                  <p className="relative mt-6 text-lg leading-8 text-slate-700 sm:max-w-md lg:max-w-xl">
                     {t('landingClientSec1Description')}
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
@@ -308,7 +313,7 @@ export default function Example() {
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
                       <img
-                        src="/images/spg-1.png"
+                        src="/images/spg-6.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
@@ -318,7 +323,7 @@ export default function Example() {
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                     <div className="relative">
                       <img
-                        src="/images/spg-2.png"
+                        src="/images/spg-8.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
@@ -336,7 +341,7 @@ export default function Example() {
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                     <div className="relative">
                       <img
-                        src="/images/spg-3.png"
+                        src="/images/spg-7.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
                       />
@@ -347,7 +352,7 @@ export default function Example() {
                       <img
                         src="/images/spg-4.png"
                         alt=""
-                        className="aspect-[2/3] w-full rounded-xl bg-slate-900/5 object-cover shadow-lg"
+                        className="w-full rounded-xl bg-slate-900/5 object-contain object-bottom shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-slate-900/10" />
                     </div>
@@ -362,14 +367,14 @@ export default function Example() {
               className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
               <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto items-center justify-center lg:mx-0">
-                  <h2 className="section-caption-gradient text-center text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+                  <h2 className="section-caption-gradient text-center text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                     Who we are
                   </h2>
                   <div className="mt-8 grid w-full grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-                    <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">
+                    <p className="mt-8 text-pretty text-base font-medium text-gray-300">
                       {t('landingClientSec2Description1')}
                     </p>
-                    <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-xl/8">
+                    <p className="mt-8 text-pretty text-base font-medium text-gray-300">
                       {t('landingClientSec2Description2')}
                     </p>
                   </div>
@@ -392,7 +397,7 @@ export default function Example() {
               <div className="background relative">
                 <div className="absolute z-10 h-full w-full bg-black bg-opacity-85"></div>
                 <img
-                  src="images/team-spg-landing.jpg"
+                  src="images/arah-spg-landing.jpeg"
                   className="h-full w-full object-cover grayscale-[80%]"></img>
               </div>
             </div>
