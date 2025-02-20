@@ -8,10 +8,10 @@ export default function Example() {
       className="bg-white">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="relative isolate overflow-hidden bg-rose-50 px-6 py-24 text-center shadow-md sm:rounded-3xl sm:px-16">
-          <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight text-rose-600 sm:text-4xl">
+          <h2 className="font-display mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-rose-600 sm:text-4xl">
             {t('landingClientSec4Title')}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-700">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-50">
             {t('landingClientSec4Description')}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -22,32 +22,17 @@ export default function Example() {
             </a>
             <a
               href="/promotor"
-              className="text-sm font-medium leading-6 text-slate-700">
+              className="text-sm font-medium leading-6 text-slate-50">
               {t('commonRegisterAsPromotor')}
               <span aria-hidden="true">→</span>
             </a>
           </div>
-          <svg
-            viewBox="0 0 1024 1024"
-            className="absolute left-1/2 top-1/3 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
-            aria-hidden="true">
-            <circle
-              cx={512}
-              cy={512}
-              r={512}
-              fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
-              fillOpacity="0.7"
-            />
-            <defs>
-              <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
-                <stop stopColor="#e0f2fe" />
-                <stop
-                  offset={1}
-                  stopColor="#bae6fd"
-                />
-              </radialGradient>
-            </defs>
-          </svg>
+          <div className="background relative">
+            <div className="absolute z-10 h-full w-full bg-black bg-opacity-85"></div>
+            <img
+              src="images/booth-spg-landing.jpg"
+              className="h-full w-full object-cover object-[50%_20%] grayscale-[80%]"></img>
+          </div>
         </div>
       </div>
     </div>

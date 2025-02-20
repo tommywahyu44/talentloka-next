@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 const navigation = [
   { name: 'landingClientHeader1', href: '#solution' },
-  { name: 'landingClientHeader2', href: '#company' },
+  // { name: 'landingClientHeader2', href: '#company' },
   { name: 'landingClientHeader3', href: '#product' },
   { name: 'landingClientHeader4', href: '#pricing' },
   { name: 'landingClientHeader5', href: '#contact' },
@@ -170,7 +170,7 @@ export default function Example() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium leading-6 text-slate-900">
+                className="text-sm font-medium leading-6 text-slate-900 hover:text-rose-500">
                 {t(item.name)}
               </a>
             ))}
@@ -179,7 +179,7 @@ export default function Example() {
             <LanguageChanger locale={locale} />
             <a
               onClick={handleClientClick}
-              className="my-auto cursor-pointer rounded-full bg-gradient-to-r from-rose-600 to-purple-500 px-3 py-1 text-center text-xs font-medium leading-6 text-white">
+              className="my-auto cursor-pointer rounded-full bg-gradient-to-r from-rose-600 to-purple-500 px-3 py-1 text-center text-xs font-medium leading-6 text-white hover:to-rose-500">
               {isUserSignin ? 'Dashboard' : 'Log in'}{' '}
             </a>
           </div>

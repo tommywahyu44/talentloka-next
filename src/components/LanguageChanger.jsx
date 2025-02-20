@@ -12,8 +12,8 @@ export default function LanguageChanger({ locale }) {
   }
 
   const options = [
-    { value: 'en', label: 'EN', image: '/images/ic-flag-indonesia.png', flag: '🇺🇸' },
-    { value: 'id', label: 'ID', image: '/images/ic-flag-united-states.png', flag: '🇮🇩' },
+    { value: 'en', label: 'EN', image: '/images/ic-flag-united-states.png', flag: '🇺🇸' },
+    { value: 'id', label: 'ID', image: '/images/ic-flag-indonesia.png', flag: '🇮🇩' },
   ]
 
   return (

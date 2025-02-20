@@ -1,6 +1,5 @@
 'use client'
 
-import { CheckIcon } from '@heroicons/react/20/solid'
 import { Quote, Sparkles, Star } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
@@ -29,39 +28,33 @@ const tiers = [
 const testimonials = [
   {
     company: 'Deltomed',
-    text: "Compared to others we've worked with, Talentloka's SPGs are a step ahead. They handle sampling smoothly, know how to approach customers, and actually bring traffic to the booth. Makes a real difference in engagement!",
-    image:
-      'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiDeltomed',
+    image: '/images/partner-deltomed.png',
   },
   {
     company: 'Amidis',
-    text: "We started with offline activations, then tried Talentloka's online platform—super efficient. The SPGs are well-prepared, communicate our brand message clearly, and really know how to engage with customers.",
-    image:
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiAmidis',
+    image: '/images/partner-amidis.png',
   },
   {
     company: 'OT Group',
-    text: "From in-store activations to product sampling, Talentloka's SPGs have been a great support. Well-trained, engaging, and they deliver exactly what we need.",
-    image:
-      'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiOT',
+    image: '/images/partner-ot.png',
   },
   {
     company: 'Topgolf',
-    text: "We got referred to Talentloka, and their SPGs didn't disappoint. Great energy, professional, and they really understand the crowd. Especially impressed with their knowledge of golf—makes a big difference!",
-    image:
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiTopgolf',
+    image: '/images/partner-topgolf.png',
   },
   {
     company: 'FDR Tire',
-    text: "Finding SPGs who can confidently represent an automotive brand, especially with technical knowledge, isn't easy. Talentloka nailed it—the team is reliable, proactive, and knows how to engage the right audience.",
-    image:
-      'https://images.unsplash.com/photo-1518306727298-4c17e1bf6942?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiFdr',
+    image: '/images/partner-fdr.png',
   },
   {
     company: 'Focallure',
-    text: 'We urgently needed 20 SPGs, and Talentloka came through fast. They found the right talents, customized everything to fit our needs, and made the whole process hassle-free.',
-    image:
-      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=300&q=80',
+    text: 'landingClientTestiFocallure',
+    image: '/images/partner-focallure.png',
   },
 ]
 
@@ -97,7 +90,7 @@ export default function Contents() {
                 <img
                   src={testimonial.image}
                   alt={testimonial.company}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div>
@@ -109,7 +102,7 @@ export default function Contents() {
                 </p>
               </div>
             </div>
-            <p className="text-lg leading-relaxed text-gray-700">{testimonial.text}</p>
+            <p className="text-lg leading-relaxed text-gray-700">{t(testimonial.text)}</p>
           </div>
 
           <div className="mt-6 flex justify-end">
@@ -159,10 +152,10 @@ export default function Contents() {
       </div>
 
       {/* Pricing Plan */}
-      <div
+      {/* <div
         id="pricing"
         className="relative isolate mt-12 bg-white px-6 py-24 sm:py-32 lg:mt-24 lg:px-8">
-        {/* <div
+        <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl">
           <div
@@ -172,7 +165,7 @@ export default function Contents() {
             }}
             className="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-rose-200 to-pink-200"
           />
-        </div> */}
+        </div>
         <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
           <h2 className="section-caption-gradient text-base font-medium leading-7 text-rose-600">
             Pricing
@@ -265,10 +258,10 @@ export default function Contents() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Testimonials */}
-      <section className="relative overflow-hidden py-24">
+      <section className="relative mt-40 overflow-hidden py-24">
         {/* Background decorations */}
         {/* <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,99,99,0.1),transparent_50%)]"></div>
@@ -279,10 +272,11 @@ export default function Contents() {
             <h2 className="section-caption-gradient text-base font-medium leading-7 text-rose-600">
               Testimonial
             </h2>
-            <h2 className="mb-4 mt-2 text-4xl font-medium text-black">What Our Clients Say</h2>
+            <h2 className="mb-4 mt-2 text-4xl font-medium text-black">
+              {t('landingClientTestiTitle')}
+            </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600">
-              Real feedback from our valued partners who have experienced the excellence of our
-              services
+              {t('landingClientTestiDescription')}
             </p>
           </div>
 
