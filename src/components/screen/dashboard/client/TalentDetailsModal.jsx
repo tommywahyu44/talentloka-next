@@ -155,7 +155,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
             <div className="flex flex-col space-y-8">
               {/* Model ID and Name */}
               <div>
-                <h2 className="bg-clip-text font-display text-xl font-bold text-gray-900 md:text-4xl">
+                <h2 className="font-display bg-clip-text text-xl font-bold text-gray-900 md:text-4xl">
                   {model.name}
                 </h2>
                 <div className="mt-1 font-medium text-gray-800">{code}</div>
@@ -165,7 +165,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
               <div className="grow">
                 <div className="grid grid-cols-2 gap-6">
                   {model.dobYear && (
-                    <div className="rounded-xl bg-white/50 p-2 backdrop-blur-sm transition-colors hover:bg-white/70 sm:p-4">
+                    <div className="rounded-xl bg-white/50 backdrop-blur-sm transition-colors hover:bg-white/70">
                       <div className="flex items-center gap-3">
                         <Calendar
                           size={20}
@@ -181,7 +181,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                     </div>
                   )}
                   {model.city && (
-                    <div className="rounded-xl bg-white/50 p-2 backdrop-blur-sm transition-colors hover:bg-white/70 sm:p-4">
+                    <div className="rounded-xl bg-white/50 backdrop-blur-sm transition-colors hover:bg-white/70">
                       <div className="flex items-center gap-3">
                         <MapPin
                           size={20}
@@ -197,7 +197,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                     </div>
                   )}
                   {model.heightCm && (
-                    <div className="rounded-xl bg-white/50 p-2 backdrop-blur-sm transition-colors hover:bg-white/70 sm:p-4">
+                    <div className="rounded-xl bg-white/50 backdrop-blur-sm transition-colors hover:bg-white/70">
                       <div className="flex items-center gap-3">
                         <Ruler
                           size={20}
@@ -213,7 +213,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                     </div>
                   )}
                   {model.weightKg && (
-                    <div className="rounded-xl bg-white/50 p-2 backdrop-blur-sm transition-colors hover:bg-white/70 sm:p-4">
+                    <div className="rounded-xl bg-white/50 backdrop-blur-sm transition-colors hover:bg-white/70">
                       <div className="flex items-center gap-3">
                         <Weight
                           size={20}
@@ -231,7 +231,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                 </div>
                 <div className="mt-9 space-y-6 text-base text-gray-800 sm:text-sm">
                   <div>
-                    <div className="pb-2">Categories</div>
+                    <div className="pb-3">Categories</div>
                     {model.categories &&
                       model.categories.length > 0 &&
                       model.categories.map((category, index) => (
@@ -243,7 +243,7 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                       ))}
                   </div>
                   <div>
-                    <div className="pb-2">Industry</div>
+                    <div className="pb-3">Industry</div>
                     {model.brands &&
                       model.brands.length > 0 &&
                       model.brands.map((brand, index) => (
@@ -254,6 +254,25 @@ const TalentDetailsModal = ({ isOpen, onClose, code, model, favorites, setListFa
                         </span>
                       ))}
                   </div>
+                  {model.companies && model.companies.length > 0 && (
+                    <div>
+                      <div className="pb-2">Brands</div>
+                      <div className="flex flex-wrap gap-2">
+                        {model.companies.slice(0, 6).map((company, index) => (
+                          <span
+                            key={index}
+                            className="rounded-full border border-rose-400/20 bg-rose-500/80 px-2 py-1 text-xs text-white backdrop-blur-sm sm:px-3 sm:text-sm">
+                            {company}
+                          </span>
+                        ))}
+                        {model.companies.length > 6 && (
+                          <span className="rounded-full border border-gray-400/20 bg-gray-500/80 px-2 py-1 text-xs text-white backdrop-blur-sm sm:px-3 sm:text-sm">
+                            +{model.companies.length - 6}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
