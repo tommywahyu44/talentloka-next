@@ -7,7 +7,8 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useLocale, useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import PromoBanner from './PromoBanner'
 
 const navigation = [
   { name: 'landingClientHeader1', href: '#solution' },
@@ -97,6 +98,8 @@ export default function Example() {
   const locale = useLocale()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isUserSignin, setUserSignin] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  let lastScrollY = 0
 
   const stats = [
     {
@@ -134,54 +137,72 @@ export default function Example() {
     }
   })
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false) // Sembunyikan navbar saat scroll ke bawah
+      } else {
+        setIsVisible(true) // Tampilkan navbar saat scroll ke atas
+      }
+      lastScrollY = window.scrollY
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="bg-white">
       {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 mt-4">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 ring-2 ring-neutral-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <PromoBanner />
         <nav
-          className="sticky top-4 mx-auto flex max-w-7xl items-center justify-between rounded-full bg-white p-3 shadow-md lg:px-4"
+          className="bg-white p-3 py-6 lg:px-4"
           aria-label="Global">
-          <div className="flex lg:flex-1">
-            <a
-              href="#"
-              className="-m-1.5 p-1.5">
-              <span className="sr-only">Talentvis</span>
-              <img
-                className="h-8 w-auto"
-                src="/images/logo-talentloka.png"
-                alt=""
-              />
-            </a>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
-              onClick={() => setMobileMenuOpen(true)}>
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon
-                className="h-6 w-6"
-                aria-hidden="true"
-              />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
+          <div className="mx-auto flex max-w-7xl items-center justify-between">
+            <div className="flex lg:flex-1">
               <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium leading-6 text-slate-900 hover:text-rose-500">
-                {t(item.name)}
+                href="#"
+                className="-m-1.5 p-1.5">
+                <span className="sr-only">Talentvis</span>
+                <img
+                  className="h-8 w-auto"
+                  src="/images/logo-talentloka.png"
+                  alt=""
+                />
               </a>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6">
-            <LanguageChanger locale={locale} />
-            <a
-              onClick={handleClientClick}
-              className="my-auto cursor-pointer rounded-full bg-gradient-to-r from-rose-600 to-purple-500 px-3 py-1 text-center text-xs font-medium leading-6 text-white hover:to-rose-500">
-              {isUserSignin ? 'Dashboard' : 'Log in'}{' '}
-            </a>
+            </div>
+            <div className="flex lg:hidden">
+              <button
+                type="button"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+                onClick={() => setMobileMenuOpen(true)}>
+                <span className="sr-only">Open main menu</span>
+                <Bars3Icon
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
+            <div className="hidden lg:flex lg:gap-x-12">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm font-medium leading-6 text-slate-900 hover:text-rose-500">
+                  {t(item.name)}
+                </a>
+              ))}
+            </div>
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6">
+              <LanguageChanger locale={locale} />
+              <a
+                onClick={handleClientClick}
+                className="my-auto cursor-pointer rounded-full bg-gradient-to-r from-rose-600 to-purple-500 px-3 py-1 text-center text-xs font-medium leading-6 text-white hover:to-rose-500">
+                {isUserSignin ? 'Dashboard' : 'Log in'}{' '}
+              </a>
+            </div>
           </div>
         </nav>
         <Dialog
