@@ -1,10 +1,12 @@
+import { useTranslations } from 'next-intl'
+
 const navigation = {
   main: [
-    { name: 'Solution', href: '#solution' },
-    { name: 'Company', href: '#company' },
-    { name: 'Our Product', href: '#product' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'landingClientHeader1', href: '#solution' },
+    // { name: 'landingClientHeader2', href: '#company' },
+    { name: 'landingClientHeader3', href: '#product' },
+    { name: 'landingClientHeader4', href: '#pricing' },
+    { name: 'landingClientHeader5', href: '#contact' },
   ],
   social: [
     {
@@ -56,6 +58,7 @@ const navigation = {
 }
 
 export default function Example() {
+  const t = useTranslations('default')
   return (
     <footer className="bg-white">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
@@ -69,7 +72,7 @@ export default function Example() {
               <a
                 href={item.href}
                 className="text-sm leading-6 text-slate-600 transition duration-300 hover:text-slate-900">
-                {item.name}
+                {t(item.name)}
               </a>
             </div>
           ))}
